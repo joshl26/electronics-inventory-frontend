@@ -1,0 +1,24 @@
+.dash-footer-paragraph {
+  padding-top: 1em;
+  padding-left: 1em;
+  color: white;
+}
+
+.dash-footer {
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  background-color: var(--BGCOLOR);
+  border-top: 1px solid var(--BORDER-COLOR);
+  border-right: 1px solid var(--BORDER-COLOR);
+  width: 275px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  gap: 1em;
+}
+
+.dash-footer-row {
+  width: 100%;
+}

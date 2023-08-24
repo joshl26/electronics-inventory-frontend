@@ -1,0 +1,19 @@
+.part__name {
+  width: 200px;
+}
+
+.part__description {
+  width: 500px;
+}
+
+.part__owner {
+  width: 200px;
+}
+
+.part__backqty {
+  width: 125px;
+}
+
+.part__username {
+  width: 100px;
+}

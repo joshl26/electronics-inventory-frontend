@@ -1,0 +1,135 @@
+.light {
+  color: white;
+}
+
+@media screen and (min-width: 769px) {
+  .login-footer {
+    position: absolute;
+    top: 95vh;
+  }
+
+  .login-light {
+    background-color: var(--color-one);
+    color: shite;
+    position: relative;
+    top: 0;
+    left: 0;
+    bottom: 100vh;
+  }
+
+  .login-dark {
+    color: white;
+    background-color: var(--color-three);
+  }
+
+  .form {
+    margin: 0 auto;
+    width: 20vw;
+  }
+
+  .login-header-text {
+    padding-left: 1em;
+    padding-top: 0.5em;
+  }
+
+  .login-footer-link {
+    padding-bottom: 1em;
+    padding-left: 1em;
+  }
+
+  .login-icon {
+    width: 100px;
+  }
+
+  .login-text {
+    padding-top: 0.75em;
+    text-align: center;
+    width: min-content;
+    font-family: "Cabin", Times, serif;
+    color: white;
+  }
+
+  .login-col-align-left {
+    display: flex;
+  }
+
+  .login-container-inner-light {
+    width: 25vw;
+    margin: 0 auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 0 10px;
+  }
+
+  .login-container-inner-dark {
+    width: 25vw;
+    margin: 0 auto;
+    box-shadow: rgba(255, 255, 255, 0.201) 0 0 10px;
+  }
+
+  .spacer-extra-small {
+    height: 2vh;
+  }
+
+  .section-break-light {
+    border-top: white 1px solid;
+  }
+
+  .section-break-dark {
+    border-top: white 1px solid;
+  }
+
+  .login-header {
+    padding-top: 1em;
+    color: white;
+  }
+
+  .login-button-icon {
+    width: 25px;
+    padding-left: 0.25em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .login-col-align-left {
+    display: contents;
+  }
+
+  .login-light {
+    background-color: var(--color-one);
+  }
+
+  .login-dark {
+    background-color: var(--color-three);
+  }
+
+  .form {
+    margin: 0 auto;
+    width: 85vw;
+  }
+
+  .login-header-text {
+    padding-left: 1em;
+    padding-top: 0.5em;
+  }
+
+  .login-footer-link {
+    padding-bottom: 1em;
+    padding-left: 1em;
+  }
+
+  .login-icon {
+    width: 100px;
+  }
+
+  .login-button-icon {
+    width: 25px;
+    padding-left: 0.25em;
+  }
+
+  .login-text {
+    padding-top: 0.5em;
+    text-align: center;
+    width: min-content;
+    font-family: "Cabin", Times, serif;
+    font-size: 3em;
+    color: white;
+  }
+}

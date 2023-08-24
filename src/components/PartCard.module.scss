@@ -1,0 +1,28 @@
+.text {
+  color: black;
+}
+
+.partcard_container {
+  background-color: rgb(173, 173, 173);
+  width: 90%;
+  border-radius: 1em;
+  padding: 1em;
+  margin: 0 auto;
+  border: solid rgb(66, 66, 66) 1em;
+}
+
+.partcard_image {
+  width: 150px;
+}
+
+.partdescription_text {
+  height: 10vh;
+}
+
+.spacer {
+  height: 5vh;
+}
+
+.border {
+  border: black solid 2px;
+}

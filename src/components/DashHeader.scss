@@ -1,0 +1,38 @@
+.dash-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--BGCOLOR);
+  padding: 0 0.5em;
+  border-bottom: 1px solid var(--BORDER-COLOR);
+  // height: 200px;
+}
+
+.navbar-dash {
+  background-color: var(--BG-NAVBAR-DASH-LIGHT);
+  position: fixed;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+}
+
+@media screen and (min-width: 769px) {
+  .header_container {
+    width: 100vw;
+    height: 10vh;
+  }
+
+  .header_icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .navbar-brand {
+    padding: 0px;
+  }
+
+  .dash-nav-link {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+  }
+}

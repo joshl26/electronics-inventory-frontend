@@ -1,0 +1,68 @@
+.dash-sidebar-container {
+  position: fixed;
+  background-color: var(--BG-SIDEBAR-LIGHT);
+  top: 50px;
+  height: 100%;
+  /* width: 275px; */
+  padding: 1em;
+  border-right: 1px solid var(--BORDER-COLOR);
+  transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+}
+
+.dash-sidebar-container-minimized {
+  position: fixed;
+  background-color: var(--BG-SIDEBAR-LIGHT);
+  top: 50px;
+  height: 100%;
+  width: 75px;
+  padding: 1em;
+  border-right: 1px solid var(--BORDER-COLOR);
+  transition: width 1s, right 1s;
+  text-align: center;
+}
+
+.welcome-header-text {
+  font-size: 2em;
+  color: var(--TEXT-DARK);
+}
+
+.sidebar-links {
+  /* font-size: 1.3em;
+  line-height: 2;
+  text-decoration: none; */
+  /* padding-top: 50px; */
+  /* vertical-align: middle; */
+  /* display: inline; */
+  color: #c1c9ce;
+}
+
+.sidebar-links:hover {
+  /* background-color: rgba(255, 255, 255, 0.8); */
+  color: white;
+  transition: color 0.5s;
+}
+
+.welcome-today-text {
+  width: 225px;
+  color: var(--TEXT-DARK);
+}
+
+.sidebar-icon {
+  width: 25px;
+  height: 40px;
+}
+
+.sidebar-text {
+  color: #c1c9ce;
+  font-size: 1.3em;
+  line-height: 2;
+  text-decoration: none;
+}
+
+.sidebar-row {
+  color: #c1c9ce;
+}
+
+.sidebar-row:hover {
+  color: white;
+}

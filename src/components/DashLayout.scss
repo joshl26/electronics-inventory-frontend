@@ -1,0 +1,38 @@
+.dash-outlet-container {
+  width: fit-content;
+  position: absolute;
+  top: 100px;
+}
+
+.dash-container {
+  background-color: var(--BG-DASH-LIGHT);
+}
+
+.sidebar-hide-btn {
+  position: fixed;
+  top: 91vh;
+  left: 20px;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: height 0.5s, top 0.5s, left 0.25s;
+}
+
+.sidebar-hide-btn-hidden {
+  position: fixed;
+  top: 95vh;
+  left: 20px;
+  z-index: 1;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transform: rotate(180deg);
+  transition: height 0.5s, top 0.5s, left 0.25s;
+  // background-color: rgb(229, 140, 140);
+}
+
+.btn:hover {
+  background-color: var(--TABLE-SELECTED-ROW);
+  color: black;
+}
