@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAddNewPartMutation } from "./partsApiSlice";
 import { FaSave } from "react-icons/fa";
-import { Row, Col } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  DropdownButton,
+  Dropdown,
+  InputGroup,
+} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useAuth from "../../hooks/useAuth";
@@ -63,7 +69,8 @@ const NewPartForm = ({ users, partTypes }) => {
   const onNameChanged = (e) => setName(e.target.value);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
   const onStockQtyChanged = (e) => setQty(e.target.value);
-  const onPartTypeChanged = (e) => setPartType(e.target.value);
+  // const onPartTypeChanged = (e) => console.log(e.target.innerHTML);
+  const onPartTypeChanged = (e) => setPartType(e.target.innerHTML);
   // const onImagesChanged = (e) => setImages(e.target.value);
   const onPartNumberChanged = (e) => setPartNumber(e.target.value);
   const onLotIdChanged = (e) => setLotId(e.target.value);
@@ -188,7 +195,7 @@ const NewPartForm = ({ users, partTypes }) => {
         </div>
 
         <Row className="mt-3 mb-3">
-          <Form.Group as={Col} md="4" controlId="validationPartName">
+          <Form.Group as={Col} md="3" controlId="validationPartName">
             <Form.Label>Part Name</Form.Label>
             <Form.Control
               onChange={onNameChanged}
@@ -219,15 +226,30 @@ const NewPartForm = ({ users, partTypes }) => {
               Please choose a valid Part Number.
             </Form.Control.Feedback>
           </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationPartType">
+          <Form.Group as={Col} md="4" controlId="validationPartType">
             <Form.Label>Part Type</Form.Label>
-            <Form.Control
-              onChange={onPartTypeChanged}
-              name="parttype"
-              type="text"
-              placeholder="Part Type"
-              defaultValue={partType}
-            />
+            <InputGroup>
+              <Form.Control
+                readOnly
+                onChange={onPartTypeChanged}
+                name="parttype"
+                type="text"
+                placeholder="Part Type"
+                value={partType}
+              />
+              <DropdownButton
+                variant="danger"
+                title="Select Type"
+                id="partType"
+                align="end"
+              >
+                {partTypes.map((type) => (
+                  <Dropdown.Item onClick={(e) => onPartTypeChanged(e)} href="#">
+                    {type}
+                  </Dropdown.Item>
+                ))}
+              </DropdownButton>
+            </InputGroup>
           </Form.Group>
         </Row>
         <Row className="mt-3 mb-3">

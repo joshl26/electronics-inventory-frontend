@@ -73,7 +73,7 @@ function ImagePicker(props) {
         onChange={handleSelectFile}
         multiple={false}
       />
-      <code>
+      {/* <code>
         {Object.keys(res).length > 0
           ? Object.keys(res).map((key) => (
               <p className="output-item" key={key}>
@@ -84,7 +84,7 @@ function ImagePicker(props) {
               </p>
             ))
           : null}
-      </code>
+      </code> */}
       {file && (
         <>
           <button onClick={handleUpload} className="btn-green">

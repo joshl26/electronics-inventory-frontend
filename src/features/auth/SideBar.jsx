@@ -56,7 +56,6 @@ const SideBar = ({ sidebarShown }) => {
                       className="sidebar-links sidebar-text"
                       style={{ color: "rgb(125, 176, 14)", fontWeight: "700" }}
                     >
-                      {" "}
                       CREATE
                     </p>
                   </Link>
@@ -152,8 +151,19 @@ const SideBar = ({ sidebarShown }) => {
         <div className="dash-sidebar-container-minimized">
           <section className="welcome">
             <Col>
-              <Row>
-                <div className="spacer-small"></div>
+              <Row className="sidebar-links">
+                <Col>
+                  <Link
+                    title="Home"
+                    className="sidebar-links sidebar-text"
+                    to="/dash"
+                  >
+                    <FaPlus
+                      style={{ color: "rgb(125, 176, 14)" }}
+                      className="sidebar-icon"
+                    />
+                  </Link>
+                </Col>
               </Row>
               <Row className="sidebar-links">
                 <Col>

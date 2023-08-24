@@ -2,11 +2,18 @@ import { useState, useEffect } from "react";
 import { useUpdatePartMutation, useDeletePartMutation } from "./partsApiSlice";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaEdit, FaSave, FaTrash } from "react-icons/fa";
-import { Row, Col } from "react-bootstrap";
+import {
+  Row,
+  Col,
+  Dropdown,
+  DropdownButton,
+  InputGroup,
+} from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import useAuth from "../../hooks/useAuth";
 import ImagePicker from "../../components/ImagePicker";
 import "./EditPartForm.css";
+import partTypes from "../../mock_data/partTypes";
 
 const EditPartForm = ({ part, idReadOnly }) => {
   const { username, isManager, isAdmin } = useAuth();
@@ -63,7 +70,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
   const [userId, setUserId] = useState(part.user);
 
   useEffect(() => {
-    console.log(idReadOnly);
+    // console.log(idReadOnly);
 
     if (isSuccess || isDelSuccess) {
       setUserId("");
@@ -92,7 +99,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
   const onNameChanged = (e) => setName(e.target.value);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
   const onStockQtyChanged = (e) => setQty(e.target.value);
-  const onPartTypeChanged = (e) => setPartType(e.target.value);
+  const onPartTypeChanged = (e) => setPartType(e.target.innerHTML);
   const onPartNumberChanged = (e) => setPartNumber(e.target.value);
   const onBackorderQtyChanged = (e) => setBackOrder(e.target.value);
   const onLocationChanged = (e) => setPartLocation(e.target.value);
@@ -181,19 +188,30 @@ const EditPartForm = ({ part, idReadOnly }) => {
   //   );
   // });
 
+  const previewUrl =
+    "https://res.cloudinary.com/dv6keahg3/image/upload/f_auto,q_auto/v1/";
+
   const partImages = images.map((image, idx) => {
     return (
       <Col md={2} className="part-image" key={idx}>
         <Row>
-          <a href="">
-            <img alt="" className="part-image" src={image.url} />
+          <a rel="noreferrer" target="_blank" href={image.url}>
+            <img
+              alt=""
+              className="part-image"
+              src={`${previewUrl}${image.fileName}`}
+            />
           </a>
         </Row>
-        <Row style={{ textAlign: "center" }}>
-          <a href="/" onClick={onImageDeleteClicked}>
-            <p name={image.fileName}>Delete</p>
-          </a>
-        </Row>
+        {idReadOnly ? (
+          ""
+        ) : (
+          <Row style={{ textAlign: "center" }}>
+            <a href="/" onClick={onImageDeleteClicked}>
+              <p name={image.fileName}>Delete</p>
+            </a>
+          </Row>
+        )}
       </Col>
     );
   });
@@ -261,7 +279,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
                 disabled={!canSave}
               >
                 <FaSave />
-              </button>{" "}
+              </button>
               {deleteButton}
             </>
           )}
@@ -304,15 +322,36 @@ const EditPartForm = ({ part, idReadOnly }) => {
           </Form.Group>
           <Form.Group as={Col} md="4" controlId="validationPartType">
             <Form.Label>Part Type</Form.Label>
-            <Form.Control
-              title="Part Type"
-              readOnly={idReadOnly}
-              onChange={onPartTypeChanged}
-              name="parttype"
-              type="text"
-              placeholder="Part Type"
-              defaultValue={partType}
-            />
+            <InputGroup>
+              <Form.Control
+                readOnly
+                onChange={onPartTypeChanged}
+                name="parttype"
+                type="text"
+                placeholder="Part Type"
+                value={partType}
+              />
+              {idReadOnly ? (
+                ""
+              ) : (
+                <DropdownButton
+                  variant="danger"
+                  title="Select Type"
+                  id="partType"
+                  align="end"
+                >
+                  {partTypes.map((type) => (
+                    <Dropdown.Item
+                      key={type}
+                      onClick={(e) => onPartTypeChanged(e)}
+                      href="#"
+                    >
+                      {type}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
+              )}
+            </InputGroup>
           </Form.Group>
         </Row>
         <Row className="mt-3 mb-3">
@@ -458,7 +497,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
         </Row>
 
         <Row className="mt-3 mb-3">
-          <Form.Group as={Col} md="2" controlId="validationStockQty">
+          <Form.Group as={Col} controlId="validationStockQty">
             <Form.Label>Date Created</Form.Label>
             <Form.Control
               readOnly
@@ -478,7 +517,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
               title="Created By"
             />
           </Form.Group>
-          <Form.Group as={Col} md="2" controlId="validationStockQty">
+          <Form.Group as={Col} controlId="validationStockQty">
             <Form.Label>Date Edited</Form.Label>
             <Form.Control
               readOnly
@@ -501,13 +540,23 @@ const EditPartForm = ({ part, idReadOnly }) => {
           </Form.Group>
         </Row>
       </Form>
+
       <div className="vh2-spacer"></div>
-      <h4>Attach a file:</h4>
-      <div className="vh2-spacer"></div>
-      <ImagePicker images={images} setImages={setImages} />
-      <div className="vh2-spacer"></div>
-      <Row>{partImages}</Row>
-      <div className="vh5-spacer"></div>
+      <h4>{idReadOnly ? "Attached File(s):" : "Attach or Delete a file:"}</h4>
+      {idReadOnly ? (
+        <>
+          <Row>{partImages}</Row>
+          <div className="vh5-spacer"></div>
+        </>
+      ) : (
+        <>
+          <div className="vh2-spacer"></div>
+          <ImagePicker images={images} setImages={setImages} />
+          <div className="vh2-spacer"></div>
+          <Row>{partImages}</Row>
+          <div className="vh5-spacer"></div>
+        </>
+      )}
     </>
   );
 
