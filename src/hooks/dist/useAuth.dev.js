@@ -17,7 +17,9 @@ var useAuth = function useAuth() {
   var token = (0, _reactRedux.useSelector)(_authSlice.selectCurrentToken);
   var isManager = false;
   var isAdmin = false;
-  var status = "Employee"; // Assign value to a key
+  var isDemo = false;
+  var isEmployee = false;
+  var status = ""; // Assign value to a key
 
   sessionStorage.setItem("token", token);
 
@@ -28,23 +30,31 @@ var useAuth = function useAuth() {
         roles = _decoded$UserInfo.roles;
     isManager = roles.includes("Manager");
     isAdmin = roles.includes("Admin");
-    if (isManager) status = "Manager";
+    isEmployee = roles.includes("Employee");
+    isDemo = roles.includes("Demo");
+    if (isDemo) status = "Demo";
+    if (isEmployee) status = "Employee";
     if (isAdmin) status = "Admin";
+    if (isManager) status = "Manager";
     return {
       username: username,
       roles: roles,
       status: status,
       isManager: isManager,
-      isAdmin: isAdmin
+      isAdmin: isAdmin,
+      isEmployee: isEmployee,
+      isDemo: isDemo
     };
   }
 
   return {
     username: "",
     roles: [],
+    status: status,
     isManager: isManager,
     isAdmin: isAdmin,
-    status: status
+    isEmployee: isEmployee,
+    isDemo: isDemo
   };
 };
 

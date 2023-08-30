@@ -6,7 +6,9 @@ const useAuth = () => {
   const token = useSelector(selectCurrentToken);
   let isManager = false;
   let isAdmin = false;
-  let status = "Employee";
+  let isDemo = false;
+  let isEmployee = false;
+  let status = "";
 
   // Assign value to a key
   sessionStorage.setItem("token", token);
@@ -17,13 +19,25 @@ const useAuth = () => {
 
     isManager = roles.includes("Manager");
     isAdmin = roles.includes("Admin");
+    isEmployee = roles.includes("Employee");
+    isDemo = roles.includes("Demo");
 
-    if (isManager) status = "Manager";
+    if (isDemo) status = "Demo";
+    if (isEmployee) status = "Employee";
     if (isAdmin) status = "Admin";
+    if (isManager) status = "Manager";
 
-    return { username, roles, status, isManager, isAdmin };
+    return { username, roles, status, isManager, isAdmin, isEmployee, isDemo };
   }
 
-  return { username: "", roles: [], isManager, isAdmin, status };
+  return {
+    username: "",
+    roles: [],
+    status,
+    isManager,
+    isAdmin,
+    isEmployee,
+    isDemo,
+  };
 };
 export default useAuth;
