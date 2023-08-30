@@ -16,7 +16,7 @@ import "./EditPartForm.css";
 import partTypes from "../../mock_data/partTypes";
 
 const EditPartForm = ({ part, idReadOnly }) => {
-  const { username, isManager, isAdmin } = useAuth();
+  const { username, isManager, isAdmin, isEmployee } = useAuth();
 
   const [updatePart, { isLoading, isSuccess, isError, error }] =
     useUpdatePartMutation();
@@ -243,44 +243,52 @@ const EditPartForm = ({ part, idReadOnly }) => {
       <Form noValidate validated={validated} onSubmit={onSavePartClicked}>
         <h2>{idReadOnly ? "View" : "Edit"} Part Details</h2>
         <div className="form__action-buttons">
-          {idReadOnly ? (
-            <button
-              className="icon-button-left"
-              title="Back to parts list"
-              onClick={onBackClicked}
-            >
-              <FaArrowLeft />
-            </button>
-          ) : (
-            <button
-              className="icon-button-left"
-              title="View Part Details"
-              onClick={onViewClicked}
-            >
-              <FaArrowLeft />
-            </button>
+          {(isManager || isAdmin || isEmployee) && (
+            <>
+              {idReadOnly ? (
+                <button
+                  className="icon-button-left"
+                  title="Back to parts list"
+                  onClick={onBackClicked}
+                >
+                  <FaArrowLeft />
+                </button>
+              ) : (
+                <button
+                  className="icon-button-left"
+                  title="View Part Details"
+                  onClick={onViewClicked}
+                >
+                  <FaArrowLeft />
+                </button>
+              )}
+            </>
           )}
 
-          {idReadOnly ? (
-            <button
-              className="icon-button"
-              title="Edit Part Details"
-              onClick={onEditPartClicked}
-              disabled={!canSave}
-            >
-              <FaEdit />
-            </button>
-          ) : (
+          {(isManager || isAdmin || isEmployee) && (
             <>
-              <button
-                className="icon-button"
-                title="Save Part"
-                onClick={onSavePartClicked}
-                disabled={!canSave}
-              >
-                <FaSave />
-              </button>
-              {deleteButton}
+              {idReadOnly ? (
+                <button
+                  className="icon-button"
+                  title="Edit Part Details"
+                  onClick={onEditPartClicked}
+                  disabled={!canSave}
+                >
+                  <FaEdit />
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="icon-button"
+                    title="Save Part"
+                    onClick={onSavePartClicked}
+                    disabled={!canSave}
+                  >
+                    <FaSave />
+                  </button>
+                  {deleteButton}
+                </>
+              )}
             </>
           )}
         </div>

@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import "./EditNoteForm.css";
 
 const EditNoteForm = ({ note, users }) => {
-  const { isManager, isAdmin } = useAuth();
+  const { isManager, isAdmin, isEmployee } = useAuth();
 
   const [updateNote, { isLoading, isSuccess, isError, error }] =
     useUpdateNoteMutation();

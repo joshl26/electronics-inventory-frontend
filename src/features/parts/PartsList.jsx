@@ -8,8 +8,11 @@ import OutletLoadingPage from "../../components/OutletLoadingPage";
 import Part from "../parts/Part";
 
 import "./PartsList.css";
+import useAuth from "../../hooks/useAuth";
 
 const PartsList = () => {
+  const { isManager, isAdmin, isEmployee } = useAuth();
+
   const [partsListStatus, setPartsListStatus] = useState("All");
   const [partsListSort, setPartsListSort] = useState("Part Number");
   const [partsListType, setPartsListType] = useState("All");
@@ -79,11 +82,13 @@ const PartsList = () => {
             <h1>Parts Inventory</h1>
           </Col>
           <Col style={{ textAlign: "right" }} md={2}>
-            <Button className="btn-new-part">
-              <Link className="btn-text" to="/dash/parts/new">
-                Add New Part
-              </Link>
-            </Button>
+            {(isManager || isAdmin || isEmployee) && (
+              <Button className="btn-new-part">
+                <Link className="btn-text" to="/dash/parts/new">
+                  Add New Part
+                </Link>
+              </Button>
+            )}
           </Col>
         </Row>
         <div className="vh3-spacer"></div>

@@ -57,7 +57,14 @@ const router = createBrowserRouter(
               <Route index element={<DashCards />} />
               <Route
                 element={
-                  <RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />
+                  <RequireAuth
+                    allowedRoles={[
+                      ROLES.Manager,
+                      ROLES.Admin,
+                      ROLES.Employee,
+                      ROLES.DEMO,
+                    ]}
+                  />
                 }
               >
                 <Route path="parts">

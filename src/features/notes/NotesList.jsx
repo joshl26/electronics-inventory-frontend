@@ -7,7 +7,7 @@ import "./NotesList.css";
 import { Link } from "react-router-dom";
 
 const NotesList = () => {
-  const { username, isManager, isAdmin } = useAuth();
+  const { username, isManager, isAdmin, isEmployee } = useAuth();
 
   const {
     data: notes,

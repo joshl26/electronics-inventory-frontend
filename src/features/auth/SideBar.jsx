@@ -12,7 +12,7 @@ import {
 import "./SideBar.css";
 
 const SideBar = ({ sidebarShown }) => {
-  const { username, isManager, isAdmin } = useAuth();
+  const { username, isManager, isAdmin, isEmployee } = useAuth();
 
   const delay = 1;
 
@@ -82,14 +82,20 @@ const SideBar = ({ sidebarShown }) => {
                 </Col>
               </Row>
               <Row className="sidebar-links">
-                <Col md={2}>
-                  <FaPlusCircle className="sidebar-icon" />
-                </Col>
-                <Col>
-                  <Link to="/dash/parts/new">
-                    <p className="sidebar-links sidebar-text"> Add New Parts</p>
-                  </Link>
-                </Col>
+                {(isManager || isAdmin || isEmployee) && (
+                  <>
+                    <Col md={2}>
+                      <FaPlusCircle className="sidebar-icon" />
+                    </Col>
+                    <Col>
+                      <Link to="/dash/parts/new">
+                        <p className="sidebar-links sidebar-text">
+                          Add New Parts
+                        </p>
+                      </Link>
+                    </Col>
+                  </>
+                )}
               </Row>
 
               <Row className="sidebar-links">
@@ -103,14 +109,20 @@ const SideBar = ({ sidebarShown }) => {
                 </Col>
               </Row>
               <Row className="sidebar-links">
-                <Col md={2}>
-                  <FaPlusCircle className="sidebar-icon" />
-                </Col>
-                <Col>
-                  <Link to="/dash/notes/new">
-                    <p className="sidebar-links sidebar-text"> Add new Notes</p>
-                  </Link>
-                </Col>
+                {(isManager || isAdmin) && (
+                  <>
+                    <Col md={2}>
+                      <FaPlusCircle className="sidebar-icon" />
+                    </Col>
+                    <Col>
+                      <Link to="/dash/notes/new">
+                        <p className="sidebar-links sidebar-text">
+                          Add new Notes
+                        </p>
+                      </Link>
+                    </Col>
+                  </>
+                )}
               </Row>
               <Row className="sidebar-links">
                 {(isManager || isAdmin) && (

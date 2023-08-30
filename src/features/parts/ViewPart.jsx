@@ -5,8 +5,11 @@ import { selectPartById } from "./partsApiSlice";
 import { selectAllUsers } from "../users/usersApiSlice";
 import EditPartForm from "./EditPartForm";
 import partTypes from "../../mock_data/partTypes";
+import useAuth from "../../hooks/useAuth";
 
 const ViewPart = () => {
+  const { isManager, isAdmin, isEmployee } = useAuth();
+
   const { id } = useParams();
 
   const part = useSelector((state) => selectPartById(state, id));
