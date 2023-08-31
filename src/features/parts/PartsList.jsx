@@ -1,5 +1,3 @@
-// import str from "../../mock_data/parts.json";
-
 import { useGetPartsQuery } from "./partsApiSlice";
 import { useState } from "react";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
@@ -12,9 +10,8 @@ import useAuth from "../../hooks/useAuth";
 
 const PartsList = () => {
   const { isManager, isAdmin, isEmployee } = useAuth();
-
   const [partsListStatus, setPartsListStatus] = useState("All");
-  const [partsListSort, setPartsListSort] = useState("Part Number");
+  const [partsListSort, setPartsListSort] = useState("P/N Ascending");
   const [partsListType, setPartsListType] = useState("All");
 
   //TODO Determnine why the first argument in useGetPartsQuery needs to be undefined here
@@ -39,10 +36,102 @@ const PartsList = () => {
   }
 
   if (isSuccess) {
-    const { ids } = parts;
+    const { entities } = parts;
+
+    const partsCopy = entities;
+    let mappedArray = [];
+
+    const partsArray = Object.keys(partsCopy).map((i) => partsCopy[i]);
+
+    switch (partsListSort) {
+      case "P/N Ascending":
+        //  Sort posts in alpahabetical order by partNumber field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) => a.partNumber.localeCompare(b.partNumber));
+        break;
+      case "P/N Descending":
+        //  Sort posts in reverse alpahbetical order by partNumber field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) => b.partNumber.localeCompare(a.partNumber));
+        break;
+
+      case "Date Ascending":
+        //  Sort parts in chronological order by createdAt (date/time) field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+        break;
+      case "Date Descending":
+        //  Sort parts in reverse chronological order by createdAt (date/time) field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+        break;
+      case "Qty Ascending":
+        //  Sort parts in numeric order by qty (number) field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) =>
+            a.qty
+              .toString()
+              .localeCompare(b.qty.toString(), "en", { numeric: true })
+          );
+        break;
+      case "Qty Descending":
+        //  Sort parts in reverse numeric order by qty (number) field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) =>
+            b.qty
+              .toString()
+              .localeCompare(a.qty.toString(), "en", { numeric: true })
+          );
+        break;
+      case "Backorder Ascending":
+        //  Sort parts in numerical order by bacOrder (number) field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) =>
+            a.backOrder
+              .toString()
+              .localeCompare(b.backOrder.toString(), "en", { numeric: true })
+          );
+        break;
+      case "Backorder Descending":
+        //  Sort parts in reverse numerical order by bacOrder (number) field
+        mappedArray = partsArray
+          .slice()
+          .sort((a, b) =>
+            b.backOrder
+              .toString()
+              .localeCompare(a.backOrder.toString(), "en", { numeric: true })
+          );
+        break;
+
+      default:
+        break;
+    }
+
+    var orderedIds = [];
+
+    mappedArray.map((orderedPart) => orderedIds.push(orderedPart.id));
 
     const tableContent =
-      ids?.length && ids.map((partId) => <Part key={partId} partId={partId} />);
+      orderedIds?.length &&
+      orderedIds.map((partId) => (
+        <Part
+          key={partId}
+          partId={partId}
+          partsListSort={partsListSort}
+          partsListStatus={partsListStatus}
+          partsListType={partsListType}
+        />
+      ));
+
+    // const tableContent =
+    //   ids?.length && ids.map((partId) => <Part key={partId} partId={partId} />);
 
     const table = (
       <table className="table table-parts">
@@ -150,22 +239,54 @@ const PartsList = () => {
 
                     <Dropdown.Menu className="parts-status-dropdown-menu">
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Part Number")}
-                        href="#/action-1"
+                        onClick={() => setPartsListSort("P/N Ascending")}
+                        href="#"
                       >
-                        Part Number
+                        P/N Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Qty")}
-                        href="#/action-2"
+                        onClick={() => setPartsListSort("P/N Descending")}
+                        href="#"
                       >
-                        Qty
+                        P/N Descending
+                      </Dropdown.Item>
+
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Date Ascending")}
+                        href="#"
+                      >
+                        Date Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Backorder Qty")}
-                        href="#/action-3"
+                        onClick={() => setPartsListSort("Date Descending")}
+                        href="#"
                       >
-                        Backorder Qty
+                        Date Descending
+                      </Dropdown.Item>
+
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Qty Ascending")}
+                        href="#"
+                      >
+                        Qty Ascending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Qty Descending")}
+                        href="#"
+                      >
+                        Qty Descending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Backorder Ascending")}
+                        href="#"
+                      >
+                        Backorder Ascending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Backorder Descending")}
+                        href="#"
+                      >
+                        Backorder Descending
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
