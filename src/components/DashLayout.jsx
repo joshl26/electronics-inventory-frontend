@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 import DashHeader from "./DashHeader";
-import DashFooter from "./DashFooter";
 import SideBar from "../features/auth/SideBar";
 import { Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
@@ -14,7 +13,6 @@ const DashLayout = () => {
   return (
     <div>
       <DashHeader />
-      {sidebarShown ? <DashFooter /> : ""}
       <div className="dash-container">
         <Row>
           {sidebarShown ? (

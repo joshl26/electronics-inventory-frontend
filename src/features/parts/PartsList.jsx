@@ -11,7 +11,7 @@ import useAuth from "../../hooks/useAuth";
 const PartsList = () => {
   const { isManager, isAdmin, isEmployee } = useAuth();
   const [partsListStatus, setPartsListStatus] = useState("All");
-  const [partsListSort, setPartsListSort] = useState("P/N Ascending");
+  const [partsListSort, setPartsListSort] = useState("Part Number Ascending");
   const [partsListType, setPartsListType] = useState("All");
 
   //TODO Determnine why the first argument in useGetPartsQuery needs to be undefined here
@@ -44,7 +44,7 @@ const PartsList = () => {
     const partsArray = Object.keys(partsCopy).map((i) => partsCopy[i]);
 
     switch (partsListSort) {
-      case "P/N Ascending":
+      case "Part Number Ascending":
         //  Sort posts in alpahabetical order by partNumber field
         mappedArray = [
           ...partsArray
@@ -54,7 +54,7 @@ const PartsList = () => {
             }),
         ];
         break;
-      case "P/N Descending":
+      case "Part Number Descending":
         //  Sort posts in reverse alpahbetical order by partNumber field
         mappedArray = [
           ...partsArray
@@ -65,7 +65,7 @@ const PartsList = () => {
         ];
         break;
 
-      case "Date Ascending":
+      case "Create Date Ascending":
         //  Sort parts in chronological order by createdAt (date/time) field
         mappedArray = [
           ...partsArray
@@ -75,7 +75,7 @@ const PartsList = () => {
             }),
         ];
         break;
-      case "Date Descending":
+      case "Create Date Descending":
         //  Sort parts in reverse chronological order by createdAt (date/time) field
         mappedArray = [
           ...partsArray
@@ -85,7 +85,7 @@ const PartsList = () => {
             }),
         ];
         break;
-      case "Qty Ascending":
+      case "Stock Qty Ascending":
         //  Sort parts in numeric order by qty (number) field
         mappedArray = [
           ...partsArray
@@ -97,7 +97,7 @@ const PartsList = () => {
             ),
         ];
         break;
-      case "Qty Descending":
+      case "Stock Qty Descending":
         //  Sort parts in reverse numeric order by qty (number) field
         mappedArray = [
           ...partsArray
@@ -263,39 +263,47 @@ const PartsList = () => {
 
                     <Dropdown.Menu className="parts-status-dropdown-menu">
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("P/N Ascending")}
+                        onClick={() =>
+                          setPartsListSort("Part Number Ascending")
+                        }
                         href="#"
                       >
                         Part Number Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("P/N Descending")}
+                        onClick={() =>
+                          setPartsListSort("Part Number Descending")
+                        }
                         href="#"
                       >
                         Part Number Descending
                       </Dropdown.Item>
 
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Date Ascending")}
+                        onClick={() =>
+                          setPartsListSort("Create Date Ascending")
+                        }
                         href="#"
                       >
                         Create Date Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Date Descending")}
+                        onClick={() =>
+                          setPartsListSort("Create Date Descending")
+                        }
                         href="#"
                       >
                         Create Date Descending
                       </Dropdown.Item>
 
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Qty Ascending")}
+                        onClick={() => setPartsListSort("Stock Qty Ascending")}
                         href="#"
                       >
                         Stock Qty Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Qty Descending")}
+                        onClick={() => setPartsListSort("Stock Qty Descending")}
                         href="#"
                       >
                         Stock Qty Descending
