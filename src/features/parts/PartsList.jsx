@@ -38,7 +38,7 @@ const PartsList = () => {
   if (isSuccess) {
     const { entities } = parts;
 
-    const partsCopy = entities;
+    const partsCopy = { ...entities };
     let mappedArray = [];
 
     const partsArray = Object.keys(partsCopy).map((i) => partsCopy[i]);
@@ -46,68 +46,92 @@ const PartsList = () => {
     switch (partsListSort) {
       case "P/N Ascending":
         //  Sort posts in alpahabetical order by partNumber field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) => a.partNumber.localeCompare(b.partNumber));
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) => a.partNumber.localeCompare(b.partNumber), "en", {
+              numeric: true,
+            }),
+        ];
         break;
       case "P/N Descending":
         //  Sort posts in reverse alpahbetical order by partNumber field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) => b.partNumber.localeCompare(a.partNumber));
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) => b.partNumber.localeCompare(a.partNumber), "en", {
+              numeric: true,
+            }),
+        ];
         break;
 
       case "Date Ascending":
         //  Sort parts in chronological order by createdAt (date/time) field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) => a.createdAt.localeCompare(b.createdAt), "en", {
+              numeric: true,
+            }),
+        ];
         break;
       case "Date Descending":
         //  Sort parts in reverse chronological order by createdAt (date/time) field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) => b.createdAt.localeCompare(a.createdAt), "en", {
+              numeric: true,
+            }),
+        ];
         break;
       case "Qty Ascending":
         //  Sort parts in numeric order by qty (number) field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) =>
-            a.qty
-              .toString()
-              .localeCompare(b.qty.toString(), "en", { numeric: true })
-          );
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) =>
+              a.qty
+                .toString()
+                .localeCompare(b.qty.toString(), "en", { numeric: true })
+            ),
+        ];
         break;
       case "Qty Descending":
         //  Sort parts in reverse numeric order by qty (number) field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) =>
-            b.qty
-              .toString()
-              .localeCompare(a.qty.toString(), "en", { numeric: true })
-          );
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) =>
+              b.qty
+                .toString()
+                .localeCompare(a.qty.toString(), "en", { numeric: true })
+            ),
+        ];
         break;
       case "Backorder Ascending":
         //  Sort parts in numerical order by bacOrder (number) field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) =>
-            a.backOrder
-              .toString()
-              .localeCompare(b.backOrder.toString(), "en", { numeric: true })
-          );
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) =>
+              a.backOrder
+                .toString()
+                .localeCompare(b.backOrder.toString(), "en", { numeric: true })
+            ),
+        ];
         break;
       case "Backorder Descending":
         //  Sort parts in reverse numerical order by bacOrder (number) field
-        mappedArray = partsArray
-          .slice()
-          .sort((a, b) =>
-            b.backOrder
-              .toString()
-              .localeCompare(a.backOrder.toString(), "en", { numeric: true })
-          );
+        mappedArray = [
+          ...partsArray
+            .slice()
+            .sort((a, b) =>
+              b.backOrder
+                .toString()
+                .localeCompare(a.backOrder.toString(), "en", { numeric: true })
+            ),
+        ];
         break;
 
       default:
