@@ -266,39 +266,39 @@ const PartsList = () => {
                         onClick={() => setPartsListSort("P/N Ascending")}
                         href="#"
                       >
-                        P/N Ascending
+                        Part Number Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => setPartsListSort("P/N Descending")}
                         href="#"
                       >
-                        P/N Descending
+                        Part Number Descending
                       </Dropdown.Item>
 
                       <Dropdown.Item
                         onClick={() => setPartsListSort("Date Ascending")}
                         href="#"
                       >
-                        Date Ascending
+                        Create Date Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => setPartsListSort("Date Descending")}
                         href="#"
                       >
-                        Date Descending
+                        Create Date Descending
                       </Dropdown.Item>
 
                       <Dropdown.Item
                         onClick={() => setPartsListSort("Qty Ascending")}
                         href="#"
                       >
-                        Qty Ascending
+                        Stock Qty Ascending
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => setPartsListSort("Qty Descending")}
                         href="#"
                       >
-                        Qty Descending
+                        Stock Qty Descending
                       </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => setPartsListSort("Backorder Ascending")}

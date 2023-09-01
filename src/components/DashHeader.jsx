@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { useSendLogoutMutation } from "../features/auth/authApiSlice";
-import { FaArrowRight, FaCog, FaGlasses } from "react-icons/fa";
-import { Form, InputGroup } from "react-bootstrap";
+import { FaArrowRight, FaCog, FaUserAstronaut } from "react-icons/fa";
 
 import Lottie from "lottie-react";
 import HamburgerMenu from "../svg/HamburgerMenu.json";
@@ -11,13 +10,14 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./DashHeader.scss";
+import { Col, Row } from "react-bootstrap";
 
 const DASH_REGEX = /^\/dash(\/)?$/;
 const NOTES_REGEX = /^\/dash\/notes(\/)?$/;
 const USERS_REGEX = /^\/dash\/users(\/)?$/;
 
 const DashHeader = () => {
-  const { isManager, isAdmin } = useAuth();
+  const { isManager, isAdmin, username, status } = useAuth();
 
   const { id } = useParams();
 
@@ -102,6 +102,17 @@ const DashHeader = () => {
   //     ""
   //   );
 
+  const userInfo = (
+    <Row className="dash-header-row">
+      <Col>
+        <p className="dash-header-paragraph">User: {username}</p>
+      </Col>
+      <Col md={7}>
+        <p className="dash-header-paragraph">Role: {status}</p>
+      </Col>
+    </Row>
+  );
+
   const logoutButton = (
     <button className="icon-button" title="Logout" onClick={sendLogout}>
       <FaArrowRight />
@@ -131,6 +142,7 @@ const DashHeader = () => {
         {newUserButton}
         {notesButton}
         {userButton} */}
+        {userInfo}
         {settingsButton}
         {logoutButton}
       </>

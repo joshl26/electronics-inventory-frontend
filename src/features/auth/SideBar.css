@@ -14,7 +14,7 @@
   background-color: var(--BG-SIDEBAR-LIGHT);
   top: 50px;
   height: 100%;
-  width: 75px;
+  width: 80px;
   padding: 1em;
   border-right: 1px solid var(--BORDER-COLOR);
   transition: width 1s, right 1s;
