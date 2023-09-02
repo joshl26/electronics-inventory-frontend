@@ -5,12 +5,7 @@ import { useSelector } from "react-redux";
 import { selectPartById } from "./partsApiSlice";
 import "./PartsList.css";
 
-const Part = ({
-  partId,
-  partIdpartsListSort,
-  partsListStatus,
-  partsListType,
-}) => {
+const Part = ({ partId, partsListStatus, partsListType }) => {
   const part = useSelector((state) => selectPartById(state, partId));
   const navigate = useNavigate();
   const handleEdit = () => navigate(`/dash/parts/${partId}`);

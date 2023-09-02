@@ -7,7 +7,9 @@ const DashCards = () => {
   return (
     <section className="home">
       <div className="home-page-container">
-        <div className="Page-title">Home</div>
+        <div className="Page-title">
+          <h1>Home</h1>
+        </div>
         <Row>
           <div className="vh5-spacer"></div>
         </Row>

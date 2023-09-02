@@ -4,9 +4,9 @@ import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import OutletLoadingPage from "../../components/OutletLoadingPage";
 import Part from "../parts/Part";
-
-import "./PartsList.css";
+import partTypes from "../../mock_data/partTypes";
 import useAuth from "../../hooks/useAuth";
+import "./PartsList.css";
 
 const PartsList = () => {
   const { isManager, isAdmin, isEmployee } = useAuth();
@@ -230,18 +230,24 @@ const PartsList = () => {
                       {partsListStatus}
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="parts-status-dropdown-menu">
+                      <Dropdown.Item onClick={() => setPartsListStatus("All")}>
+                        All
+                      </Dropdown.Item>
                       <Dropdown.Item
                         onClick={() => setPartsListStatus("In Stock")}
                       >
                         In Stock
                       </Dropdown.Item>
+
+                      {/* <Dropdown.Item
+                        onClick={() => setPartsListStatus("On Backorder")}
+                      >
+                        On Backorder
+                      </Dropdown.Item> */}
                       <Dropdown.Item
                         onClick={() => setPartsListStatus("Out of Stock")}
                       >
                         Out of Stock
-                      </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setPartsListStatus("All")}>
-                        All
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
@@ -280,6 +286,46 @@ const PartsList = () => {
                       </Dropdown.Item>
 
                       <Dropdown.Item
+                        onClick={() => setPartsListSort("Part Name Ascending")}
+                        href="#"
+                      >
+                        Part Name Ascending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Part Name Descending")}
+                        href="#"
+                      >
+                        Part Name Descending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Part Type Ascending")}
+                        href="#"
+                      >
+                        Part Type Ascending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() => setPartsListSort("Part Type Descending")}
+                        href="#"
+                      >
+                        Part Type Descending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() =>
+                          setPartsListSort("Part Description Ascending")
+                        }
+                        href="#"
+                      >
+                        Part Description Ascending
+                      </Dropdown.Item>
+                      <Dropdown.Item
+                        onClick={() =>
+                          setPartsListSort("Part Description Descending")
+                        }
+                        href="#"
+                      >
+                        Part Description Descending
+                      </Dropdown.Item>
+                      <Dropdown.Item
                         onClick={() =>
                           setPartsListSort("Create Date Ascending")
                         }
@@ -295,7 +341,6 @@ const PartsList = () => {
                       >
                         Create Date Descending
                       </Dropdown.Item>
-
                       <Dropdown.Item
                         onClick={() => setPartsListSort("Stock Qty Ascending")}
                         href="#"
@@ -339,23 +384,20 @@ const PartsList = () => {
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="parts-status-dropdown-menu">
                       <Dropdown.Item
-                        onClick={() => setPartsListType("Resistor")}
-                        href="#/action-1"
-                      >
-                        Resistor
-                      </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => setPartsListType("Capacitor")}
-                        href="#/action-2"
-                      >
-                        Capacitor
-                      </Dropdown.Item>
-                      <Dropdown.Item
                         onClick={() => setPartsListType("All")}
                         href="#/action-3"
                       >
                         All
                       </Dropdown.Item>
+                      {partTypes.map((type) => (
+                        <Dropdown.Item
+                          key={type}
+                          onClick={(e) => setPartsListType(e.target.innerHTML)}
+                          href="#"
+                        >
+                          {type}
+                        </Dropdown.Item>
+                      ))}
                     </Dropdown.Menu>
                   </Dropdown>
                 </Row>

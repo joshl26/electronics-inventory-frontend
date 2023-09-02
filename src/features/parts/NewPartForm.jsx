@@ -182,7 +182,7 @@ const NewPartForm = ({ users, partTypes }) => {
   const content = (
     <section>
       <Form noValidate validated={validated} onSubmit={onSavePartClicked}>
-        <h2>Add New Part to Inventory</h2>
+        <h1>Add New Part to Inventory</h1>
         <div className="form__action-buttons">
           <button
             className="icon-button"

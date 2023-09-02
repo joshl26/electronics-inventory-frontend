@@ -40,7 +40,6 @@ const NewNoteForm = ({ users }) => {
   const options = users.map((user) => {
     return (
       <option key={user.id} value={user.id}>
-        {" "}
         {user.username}
       </option>
     );
@@ -53,10 +52,9 @@ const NewNoteForm = ({ users }) => {
   const content = (
     <>
       <p className={errClass}>{error?.data?.message}</p>
-
       <form className="form-new-note" onSubmit={onSaveNoteClicked}>
         <div className="form__title-row">
-          <h2>Add New Note</h2>
+          <h1>Add New Note</h1>
           <div className="form__action-buttons">
             <button className="icon-button" title="Save" disabled={!canSave}>
               <FontAwesomeIcon icon={faSave} />
