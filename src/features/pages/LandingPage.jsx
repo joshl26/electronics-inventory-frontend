@@ -60,10 +60,19 @@ const LandingPage = ({ colorMode }) => {
             <Col className="landing_one_row" xs={12} md={6} lg={6}>
               <div className="spacer_small"></div>
               <div>
-                <Image
+                {/* <Image
                   className={landingOneImageStyle}
                   src="https://res.cloudinary.com/dv6keahg3/image/upload/v1689524251/ElectronicsInventory/frontend_ui_images/ei_1_pxgvpd.png"
-                ></Image>
+                ></Image> */}
+                <iframe
+                  width="100%"
+                  height="360"
+                  src="https://www.youtube.com/embed/lDAWaOmSFIQ?si=U6czkvzBlWsdcS6_"
+                  title="Electronics Inventory"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
               </div>
             </Col>
           </Row>
