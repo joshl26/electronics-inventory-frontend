@@ -21,9 +21,7 @@ const DashCards = () => {
               <h2 style={{ backgroundColor: "lightGrey", padding: "1rem" }}>
                 Jobs
               </h2>
-              <div
-                style={{ margin: "0 auto", height: "100%", paddingTop: "50px" }}
-              >
+              <div style={{ margin: "0 auto", height: "100%" }}>
                 <Button
                   style={{
                     width: "200px",
@@ -49,9 +47,7 @@ const DashCards = () => {
               <h2 style={{ backgroundColor: "lightGrey", padding: "1rem" }}>
                 Schedule
               </h2>
-              <div
-                style={{ margin: "0 auto", height: "100%", paddingTop: "50px" }}
-              >
+              <div style={{ margin: "0 auto", height: "100%" }}>
                 <Button
                   style={{
                     width: "200px",
@@ -85,9 +81,7 @@ const DashCards = () => {
               <h2 style={{ backgroundColor: "lightGrey", padding: "1rem" }}>
                 Clients
               </h2>
-              <div
-                style={{ margin: "0 auto", height: "100%", paddingTop: "50px" }}
-              >
+              <div style={{ margin: "0 auto", height: "100%" }}>
                 <Button
                   style={{
                     width: "200px",
@@ -114,9 +108,7 @@ const DashCards = () => {
                 Settings
               </h2>
 
-              <div
-                style={{ margin: "0 auto", height: "100%", paddingTop: "50px" }}
-              >
+              <div style={{ margin: "0 auto", height: "100%" }}>
                 <Button
                   style={{
                     width: "200px",

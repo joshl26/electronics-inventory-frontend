@@ -10,13 +10,19 @@ const DashLayout = () => {
 
   useEffect(() => {}, [sidebarShown, setSideBarShown]);
 
+  const outletColumnStyle = sidebarShown
+    ? "outlet-col-closed"
+    : "outlet-col-open";
+
+  const menuColumnStyle = sidebarShown ? "menu-col-open" : "menu-col-closed";
+
   return (
     <div>
       <DashHeader />
       <div className="dash-container">
         <Row>
           {sidebarShown ? (
-            <Col xs={2} md={2}>
+            <div className={menuColumnStyle}>
               <SideBar sidebarShown={sidebarShown} />
               <button
                 onClick={() => setSideBarShown(!sidebarShown)}
@@ -43,9 +49,9 @@ const DashLayout = () => {
                   />
                 </svg>
               </button>
-            </Col>
+            </div>
           ) : (
-            <Col xs={1} md={1}>
+            <div className={menuColumnStyle}>
               <SideBar sidebarShown={sidebarShown} />
               <button
                 onClick={() => setSideBarShown(!sidebarShown)}
@@ -73,10 +79,10 @@ const DashLayout = () => {
                   />
                 </svg>
               </button>
-            </Col>
+            </div>
           )}
 
-          <Col xs={1} md={10}>
+          <Col className={outletColumnStyle}>
             <div className="dash-outlet-container">
               <Outlet />
             </div>

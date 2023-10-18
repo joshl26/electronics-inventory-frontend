@@ -69,9 +69,8 @@ const LandingPage = ({ colorMode }) => {
                   height="360"
                   src="https://www.youtube.com/embed/lDAWaOmSFIQ?si=U6czkvzBlWsdcS6_"
                   title="Electronics Inventory"
-                  frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
+                  allowFullScreen
                 ></iframe>
               </div>
             </Col>

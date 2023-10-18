@@ -33,7 +33,7 @@
 
 .parts-container {
   border: var(--TABLE-BORDER);
-  width: 80vw;
+  width: 100%;
 }
 
 .part-number {
@@ -86,4 +86,8 @@
 
 .btn-text:hover {
   color: white;
+}
+
+.partslist-spacer {
+  height: 100px;
 }

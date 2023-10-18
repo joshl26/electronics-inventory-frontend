@@ -190,6 +190,7 @@ const PartsList = () => {
 
     content = (
       <section>
+        <div className="partslist-spacer"></div>
         <Row>
           <Col md={10}>
             <h1>Parts Inventory</h1>
