@@ -1,7 +1,7 @@
 import React from "react";
-import classes from "./CustomerReviewCard.module.scss";
 import reviewStar from "../svg/reviewstar.svg";
 import { Image, Col, Row, Container } from "react-bootstrap";
+import classes from "./CustomerReviewCard.module.css";
 
 const CustomerReviewCard = ({ review }) => {
   // console.log(review.author);

@@ -1,9 +1,9 @@
 import React from "react";
 import { Slide } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
-import "./CustomerReviews.scss";
 import CustomerReviewCard from "./CustomerReviewCard";
 import { Container } from "react-bootstrap";
+import "react-slideshow-image/dist/styles.css";
+import "./CustomerReviews.css";
 
 const CustomerReviews = () => {
   const data = [

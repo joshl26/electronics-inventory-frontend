@@ -22,7 +22,7 @@
   }
 
   .slider_container {
-    background-color: rgba($color: #2a9d8f, $alpha: 1);
+    background-color: #2a9d8f;
     z-index: 1;
     position: relative;
     width: 100vw;
@@ -37,7 +37,7 @@
   }
 
   .each-slide-effect span {
-    // padding: 20px;
+    /* padding: 20px; */
     font-size: 20px;
     background: #efefef;
     text-align: center;
@@ -51,15 +51,15 @@
   .slider_header_1 {
     padding-top: 1em;
     text-align: center;
-    // font-size: clamp(1em, 3em, 3em);
-    // font-family: "Gloock", serif;
+    /* font-size: clamp(1em, 3em, 3em); */
+    /* font-family: "Gloock", serif; */
   }
 
   .slider_header_2 {
     padding-top: 1em;
     text-align: center;
-    // font-size: 1.5em;
-    // font-family: "Raleway";
+    /* font-size: 1.5em; */
+    /* font-family: "Raleway"; */
   }
 
   .slider {
@@ -98,12 +98,12 @@
   .slider_header_1 {
     padding-top: 0.5rem;
     text-align: center;
-    // font-size: 1.5em;
+    /* font-size: 1.5em; */
   }
 
   .slider_header_2 {
     padding-top: 0.5rem;
     text-align: center;
-    // font-size: 1em;
+    /* font-size: 1em; */
   }
 }

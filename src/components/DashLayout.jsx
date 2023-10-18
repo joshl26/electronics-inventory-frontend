@@ -3,7 +3,7 @@ import DashHeader from "./DashHeader";
 import SideBar from "../features/auth/SideBar";
 import { Col, Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import "./DashLayout.scss";
+import "./DashLayout.css";
 
 const DashLayout = () => {
   const [sidebarShown, setSideBarShown] = useState(true);

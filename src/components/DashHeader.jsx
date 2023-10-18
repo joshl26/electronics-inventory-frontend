@@ -9,7 +9,7 @@ import useAuth from "../hooks/useAuth";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import "./DashHeader.scss";
+import "./DashHeader.css";
 import { Col, Row } from "react-bootstrap";
 
 const DASH_REGEX = /^\/dash(\/)?$/;

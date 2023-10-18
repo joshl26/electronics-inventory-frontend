@@ -100,7 +100,7 @@ const LandingPage = ({ colorMode }) => {
             aspects of inventory management. In short, electronics inventory
             software can provide your business with a powerful and efficient way
             to manage inventory and ensure that you have the right items in the
-            right amounts at all times..
+            right amounts at all times.
           </p>
           <div className="business-metrics">
             <Lottie animationData={BusinessMetrics} loop={true} />

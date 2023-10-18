@@ -1,6 +1,6 @@
 import { Col, Row } from "react-bootstrap";
 import useAuth from "../hooks/useAuth";
-import "./DashFooter.scss";
+import "./DashFooter.css";
 
 const DashFooter = () => {
   const { username, status } = useAuth();

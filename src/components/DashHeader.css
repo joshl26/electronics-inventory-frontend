@@ -5,7 +5,7 @@
   background-color: var(--BGCOLOR);
   padding: 0 0.5em;
   border-bottom: 1px solid var(--BORDER-COLOR);
-  // height: 200px;
+  /* height: 200px; */
 }
 
 .dash-header-row {
