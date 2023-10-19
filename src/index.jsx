@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.scss";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -35,6 +34,7 @@ import Plans from "./components/Plans";
 import Pricing from "./components/Pricing";
 import ViewPart from "./features/parts/ViewPart";
 import DashCards from "./components/DashCards";
+import "./index.scss";
 
 if (process.env.NODE_ENV === "production") disableReactDevTools();
 
@@ -111,3 +111,4 @@ root.render(
     </React.StrictMode>
   </ThemeProvider>
 );
+
