@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import DashHeader from "./DashHeader";
 import SideBar from "../features/auth/SideBar";
-import { Col, Row } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import "./DashLayout.css";
 
