@@ -11,21 +11,28 @@
 .parts-search-input {
   border: var(--TABLE-BORDER);
   width: 100%;
-  height: 55px;
+  height: 40px;
+  border-radius: 0.125rem;
+  padding-left: 0.5rem;
 }
 
 .parts-status-dropdown {
-  border: 1px solid grey;
+  border: 1px solid grey !important;
   width: 100%;
   height: 40px;
-  background-color: white;
+  background-color: white !important;
   text-align: left;
   border-radius: 0;
 }
 
+.parts-status-dropdown:hover {
+  color: white !important;
+  background-color: var(--color-one) !important;
+}
+
 .parts-status-dropdown-menu {
   width: 225px;
-  height: 275px;
+  height: auto;
   background-color: aliceblue;
   text-align: left;
   border-radius: 0;
@@ -68,26 +75,4 @@
 .part-list-row:hover {
   background-color: var(--TABLE-SELECTED-ROW);
   cursor: pointer;
-}
-
-.btn-new-part {
-  border: var(--TABLE-BORDER);
-  color: white;
-}
-
-.btn-new-part:hover {
-  background-color: var(--BUTTON-BG-HOVER);
-  color: white;
-}
-
-.btn-text {
-  color: black;
-}
-
-.btn-text:hover {
-  color: white;
-}
-
-.partslist-spacer {
-  height: 100px;
 }

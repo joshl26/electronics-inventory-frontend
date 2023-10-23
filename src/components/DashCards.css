@@ -60,3 +60,17 @@
 .home-page-container {
   width: 80vw;
 }
+
+.card-button-container {
+  align-items: center;
+  display: flex;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.card-button {
+  width: 200px !important;
+  height: 50px !important;
+  background-color: #7db00e !important;
+  border: #7db00e !important;
+}

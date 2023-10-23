@@ -240,6 +240,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
       {errContent}
       {isError}
       {isDelError}
+      <div className="section-top-spacer"></div>
       <Form noValidate validated={validated} onSubmit={onSavePartClicked}>
         <h2>{idReadOnly ? "View" : "Edit"} Part Details</h2>
         <div className="form__action-buttons">

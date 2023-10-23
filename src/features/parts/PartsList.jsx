@@ -190,18 +190,24 @@ const PartsList = () => {
 
     content = (
       <section>
-        <div className="partslist-spacer"></div>
+        <div className="section-top-spacer"></div>
         <Row>
           <Col md={10}>
             <h1>Parts Inventory</h1>
           </Col>
-          <Col style={{ textAlign: "right" }} md={2}>
+          <Col
+            style={{
+              textAlign: "right",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+            md={2}
+          >
             {(isManager || isAdmin || isEmployee) && (
-              <Button className="btn-new-part">
-                <Link className="btn-text" to="/dash/parts/new">
-                  Add New Part
-                </Link>
-              </Button>
+              <Link className="btn-text" to="/dash/parts/new">
+                <Button className="btn-style">Add New Part</Button>
+              </Link>
             )}
           </Col>
         </Row>
@@ -211,10 +217,13 @@ const PartsList = () => {
             <Row>
               <div className="vh2-spacer"></div>
               <Col style={{ textAlign: "center" }}>
+                <Row style={{ textAlign: "left" }}>
+                  <p style={{ lineHeight: "0" }}>Search</p>
+                </Row>
                 <input
                   name="searchParts"
                   className="parts-search-input"
-                  placeholder="    Search parts..."
+                  placeholder="Search parts..."
                 ></input>
               </Col>
               <Col style={{ textAlign: "center" }}>
@@ -222,7 +231,7 @@ const PartsList = () => {
                   <p style={{ lineHeight: "0" }}>Status</p>
                 </Row>
                 <Row>
-                  <Dropdown>
+                  <Dropdown className="button-style">
                     <Dropdown.Toggle
                       className="parts-status-dropdown"
                       variant="success"

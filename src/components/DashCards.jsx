@@ -6,6 +6,7 @@ import "./DashCards.css";
 const DashCards = () => {
   return (
     <section className="home">
+      <div className="section-top-spacer" />
       <div className="home-page-container">
         <div className="Page-title">
           <h1>Home</h1>
@@ -21,15 +22,8 @@ const DashCards = () => {
               <h2 style={{ backgroundColor: "lightGrey", padding: "1rem" }}>
                 Jobs
               </h2>
-              <div style={{ margin: "0 auto", height: "100%" }}>
-                <Button
-                  style={{
-                    width: "200px",
-                    backgroundColor: "#7db00e",
-                    border: "#7db00e",
-                  }}
-                  variant="success"
-                >
+              <div className="card-button-container">
+                <Button className="card-button">
                   <Link
                     to={"/jobs/new"}
                     style={{ color: "white", textDecoration: "none" }}
@@ -47,15 +41,8 @@ const DashCards = () => {
               <h2 style={{ backgroundColor: "lightGrey", padding: "1rem" }}>
                 Schedule
               </h2>
-              <div style={{ margin: "0 auto", height: "100%" }}>
-                <Button
-                  style={{
-                    width: "200px",
-                    backgroundColor: "#7db00e",
-                    border: "#7db00e",
-                  }}
-                  variant="success"
-                >
+              <div className="card-button-container">
+                <Button className="card-button">
                   <Link
                     to={"/schedule"}
                     style={{ color: "white", textDecoration: "none" }}
@@ -81,15 +68,8 @@ const DashCards = () => {
               <h2 style={{ backgroundColor: "lightGrey", padding: "1rem" }}>
                 Clients
               </h2>
-              <div style={{ margin: "0 auto", height: "100%" }}>
-                <Button
-                  style={{
-                    width: "200px",
-                    backgroundColor: "#7db00e",
-                    border: "#7db00e",
-                  }}
-                  variant="success"
-                >
+              <div className="card-button-container">
+                <Button className="card-button">
                   <Link
                     to={"/clients/new"}
                     style={{ color: "white", textDecoration: "none" }}
@@ -108,15 +88,8 @@ const DashCards = () => {
                 Settings
               </h2>
 
-              <div style={{ margin: "0 auto", height: "100%" }}>
-                <Button
-                  style={{
-                    width: "200px",
-                    backgroundColor: "#7db00e",
-                    border: "#7db00e",
-                  }}
-                  variant="success"
-                >
+              <div className="card-button-container">
+                <Button className="card-button">
                   <Link
                     to={"/settings"}
                     style={{ color: "white", textDecoration: "none" }}

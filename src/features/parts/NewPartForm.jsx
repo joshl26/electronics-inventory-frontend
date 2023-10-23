@@ -181,6 +181,7 @@ const NewPartForm = ({ users, partTypes }) => {
 
   const content = (
     <section>
+      <div className="section-top-spacer"></div>
       <Form noValidate validated={validated} onSubmit={onSavePartClicked}>
         <h1>Add New Part to Inventory</h1>
         <div className="form__action-buttons">
@@ -237,18 +238,18 @@ const NewPartForm = ({ users, partTypes }) => {
                 placeholder="Part Type"
                 value={partType}
               />
-              <DropdownButton
-                variant="danger"
-                title="Select Type"
-                id="partType"
-                align="end"
-              >
-                {partTypes.map((type) => (
-                  <Dropdown.Item onClick={(e) => onPartTypeChanged(e)} href="#">
-                    {type}
-                  </Dropdown.Item>
-                ))}
-              </DropdownButton>
+              <Dropdown className="part-type-dropdown">
+                <DropdownButton title="Select Type" id="partType" align="end">
+                  {partTypes.map((type) => (
+                    <Dropdown.Item
+                      onClick={(e) => onPartTypeChanged(e)}
+                      href="#"
+                    >
+                      {type}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
+              </Dropdown>
             </InputGroup>
           </Form.Group>
         </Row>

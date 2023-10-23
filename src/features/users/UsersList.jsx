@@ -55,16 +55,23 @@ const UsersList = () => {
 
     content = (
       <section>
+        <div className="section-top-spacer"></div>
         <Row>
           <Col md={10}>
             <h1>Users List</h1>
           </Col>
-          <Col style={{ textAlign: "right" }} md={2}>
-            <Button className="btn-new-part">
-              <Link className="btn-text" to="/dash/users/new">
-                Add New User
-              </Link>
-            </Button>
+          <Col
+            style={{
+              display: "flex",
+              textAlign: "right",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+            md={2}
+          >
+            <Link className="btn-text" to="/dash/users/new">
+              <Button className="btn-style">Add New User</Button>
+            </Link>
           </Col>
         </Row>
         <div className="vh3-spacer"></div>
@@ -73,10 +80,13 @@ const UsersList = () => {
             <Row>
               <div className="vh2-spacer"></div>
               <Col style={{ textAlign: "center" }}>
+                <Row style={{ textAlign: "left" }}>
+                  <p style={{ lineHeight: "0" }}>Search</p>
+                </Row>
                 <input
                   name="searchUsers"
                   className="parts-search-input"
-                  placeholder="    Search users..."
+                  placeholder="Search users..."
                 ></input>
               </Col>
               <Col style={{ textAlign: "center" }}>

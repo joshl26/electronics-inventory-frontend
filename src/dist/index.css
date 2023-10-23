@@ -63,7 +63,7 @@
   --TABLE-BORDER: 1.5px solid grey;
   --TABLE-SELECTED-ROW: rgb(255, 253, 232);
   --BUTTON-BG: white;
-  --BUTTON-BG-HOVER: lightGrey;
+  --BUTTON-BG-HOVER: var(--color-one);
 }
 
 #root {
@@ -86,6 +86,24 @@ body {
  tr {
    color: var(--COLOR);
  } */
+.btn-style {
+  border: var(--TABLE-BORDER) !important;
+  color: black !important;
+}
+
+.btn-style:hover {
+  background-color: var(--BUTTON-BG-HOVER) !important;
+  color: white !important;
+}
+
+.btn-text {
+  color: black;
+}
+
+.btn-text:hover {
+  color: white;
+}
+
 .vh1-spacer {
   height: 1vh;
   width: 100%;
@@ -104,6 +122,10 @@ body {
 .vh5-spacer {
   height: 5vh;
   width: 100%;
+}
+
+.section-top-spacer {
+  height: 20px;
 }
 
 .text-light {
@@ -159,8 +181,6 @@ body {
 .icon-button-left {
   width: 35px;
   height: 35px;
-  position: absolute;
-  left: 0px;
   font-size: 1.5rem;
   background-color: transparent;
   border: none;
@@ -448,6 +468,7 @@ h1,
 
   .form__action-buttons {
     position: static;
+    justify-content: space-between;
   }
 }
 .dropdown-menu {

@@ -7,7 +7,7 @@ import "./NotesList.css";
 import { Link } from "react-router-dom";
 
 const NotesList = () => {
-  const { username, isManager, isAdmin, isEmployee } = useAuth();
+  const { username, isManager, isAdmin } = useAuth();
 
   const {
     data: notes,
@@ -76,28 +76,38 @@ const NotesList = () => {
 
     content = (
       <section>
+        <div className="section-top-spacer"></div>
         <Row>
           <Col md={10}>
             <h1>Notes List</h1>
           </Col>
-          <Col style={{ textAlign: "right" }} md={2}>
-            <Button className="btn-new-part">
-              <Link className="btn-text" to="/dash/notes/new">
-                Add New Note
-              </Link>
-            </Button>
+          <Col
+            style={{
+              display: "flex",
+              textAlign: "right",
+              alignItems: "center",
+              justifyContent: "end",
+            }}
+            md={2}
+          >
+            <Link className="btn-text" to="/dash/notes/new">
+              <Button className="btn-style">Add New Note</Button>
+            </Link>
           </Col>
         </Row>
         <div className="vh3-spacer"></div>
-        <div className="notes-container">
-          <div className="notes-search-bar">
+        <div className="parts-container">
+          <div className="parts-search-bar">
             <Row>
               <div className="vh2-spacer"></div>
               <Col style={{ textAlign: "center" }}>
+                <Row style={{ textAlign: "left" }}>
+                  <p style={{ lineHeight: "0" }}>Search</p>
+                </Row>
                 <input
                   name="searchNotes"
-                  className="notes-search-input"
-                  placeholder="    Search notes..."
+                  className="parts-search-input"
+                  placeholder="Search notes..."
                 ></input>
               </Col>
               <Col style={{ textAlign: "center" }}>
@@ -105,16 +115,16 @@ const NotesList = () => {
                   <p style={{ lineHeight: "0" }}>Note Status</p>
                 </Row>
                 <Row>
-                  <Dropdown>
+                  <Dropdown className="button-style">
                     <Dropdown.Toggle
-                      className="notes-status-dropdown"
+                      className="parts-status-dropdown"
                       variant="success"
                       id="dropdown-basic"
                     >
                       All
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu className="notes-status-dropdown-menu">
+                    <Dropdown.Menu className="parts-status-dropdown-menu">
                       <Dropdown.Item>Open</Dropdown.Item>
                       <Dropdown.Item>Completed</Dropdown.Item>
                       <Dropdown.Item>All</Dropdown.Item>
@@ -129,14 +139,14 @@ const NotesList = () => {
                 <Row>
                   <Dropdown>
                     <Dropdown.Toggle
-                      className="notes-status-dropdown"
+                      className="parts-status-dropdown"
                       variant="success"
                       id="dropdown-basic"
                     >
                       All
                     </Dropdown.Toggle>
 
-                    <Dropdown.Menu className="notes-status-dropdown-menu">
+                    <Dropdown.Menu className="parts-status-dropdown-menu">
                       <Dropdown.Item href="#/action-1">
                         Date Created
                       </Dropdown.Item>
@@ -157,11 +167,11 @@ const NotesList = () => {
                 <Row>
                   <Dropdown>
                     <Dropdown.Toggle
-                      className="notes-status-dropdown"
+                      className="parts-status-dropdown"
                       variant="success"
                       id="dropdown-basic"
                     ></Dropdown.Toggle>
-                    <Dropdown.Menu className="notes-status-dropdown-menu">
+                    <Dropdown.Menu className="parts-status-dropdown-menu">
                       <Dropdown.Item href="#/action-1">Resistor</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">Capacitor</Dropdown.Item>
                       <Dropdown.Item href="#/action-3">All</Dropdown.Item>
