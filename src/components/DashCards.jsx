@@ -15,7 +15,7 @@ const DashCards = () => {
           <div className="vh5-spacer"></div>
         </Row>
         <Row>
-          <Col md={1}></Col>
+          <Col></Col>
           <Col md={4}>
             <div className="card">
               <div className="card-color-1"></div>
@@ -34,7 +34,7 @@ const DashCards = () => {
               </div>
             </div>
           </Col>
-          <Col md={1}></Col>
+          <Col></Col>
           <Col md={4}>
             <div className="card">
               <div className="card-color-2"></div>
@@ -53,7 +53,7 @@ const DashCards = () => {
               </div>
             </div>
           </Col>
-          <Col md={1}></Col>
+          <Col></Col>
         </Row>
 
         <Row>
@@ -61,7 +61,7 @@ const DashCards = () => {
         </Row>
 
         <Row>
-          <Col md={1}></Col>
+          <Col></Col>
           <Col md={4}>
             <div className="card">
               <div className="card-color-3"></div>
@@ -80,7 +80,7 @@ const DashCards = () => {
               </div>
             </div>
           </Col>
-          <Col md={1}></Col>
+          <Col></Col>
           <Col md={4}>
             <div className="card">
               <div className="card-color-4"></div>
@@ -100,16 +100,16 @@ const DashCards = () => {
               </div>
             </div>
           </Col>
-          <Col md={1}></Col>
+          <Col></Col>
         </Row>
         <Row>
           <div className="vh5-spacer"></div>
         </Row>
 
         <Row>
-          <Col md={1}></Col>
+          <Col></Col>
           <Col md={9}>
-            <div className="card" style={{ width: "59vw" }}>
+            <div className="card" style={{ margin: "0 auto", width: "100%" }}>
               <h2
                 style={{
                   backgroundColor: "lightGrey",
@@ -158,7 +158,7 @@ const DashCards = () => {
               </Row>
             </div>
           </Col>
-          <Col md={1}></Col>
+          <Col></Col>
         </Row>
       </div>
     </section>
