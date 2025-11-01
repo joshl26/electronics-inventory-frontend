@@ -3,6 +3,10 @@
   "description": "First pre release demo version",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
+  },
   "dependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
