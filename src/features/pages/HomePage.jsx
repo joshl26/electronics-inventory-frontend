@@ -8,6 +8,7 @@ import NewSignup from './SignupPage';
 function HomePage({ colorMode }) {
   return (
     <section>
+      
       <LandingPage colorMode={colorMode} />
       <CustomerGallery />
       <NewSignup colorMode={colorMode} />

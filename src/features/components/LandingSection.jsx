@@ -26,7 +26,9 @@ function LandingPage({ colorMode }) {
           <Row className="align-items-center g-4">
             <Col xs={12} md={6} className="landing-content-col">
               <header className="landing-header-group">
-                <h1 className={`landing-header-1 ${landingHeader1Style}`}>Inventory Control</h1>
+                <h1 data-testid="app-title" className={`landing-header-1 ${landingHeader1Style}`}>
+                  Inventory Control
+                </h1>
                 <h2 className={`landing-header-1-inline ${landingHeader1Style}`}>Simplified</h2>
                 <p className={`landing-header-2 ${landingHeader2Style}`}>
                   Take the guesswork out of inventory control and management. Repetitive tasks like
