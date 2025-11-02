@@ -123,7 +123,6 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "react-scripts": "^5.0.1",
-    "sass": "^1.93.3",
     "storybook": "^10.0.2",
     "web-streams-polyfill": "^3.3.3",
     "webpack": "^5.102.1"
@@ -132,7 +131,6 @@
     "postcss": "^8.5.6"
   },
   "overrides": {
-    "sass-loader": "^13.3.0",
     "webpack-dev-server": "5.2.1",
     "nth-check": "2.1.1"
   },

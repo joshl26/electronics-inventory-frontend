@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Row, Col, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { selectPartById } from '../features/parts/partsApiSlice';
-import classes from './PartCard.module.scss';
+import classes from './PartCard.module.css';
 
 function PartCard({ partId }) {
   const part = useSelector((state) => selectPartById(state, partId));

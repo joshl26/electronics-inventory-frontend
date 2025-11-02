@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { DropZone } from './DropZone';
-import styles from './FilePicker.module.scss';
+import styles from './FilePicker.module.css';
 import FilesList from './FilesList';
 
 function FilePicker({ accept, uploadURL }) {

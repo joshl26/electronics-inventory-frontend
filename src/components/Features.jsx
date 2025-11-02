@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LoginHeader from '../features/pages/LoginHeader';
-import './Features.scss';
+import './Features.css';
 import LoginFooter from '../features/pages/LoginFooter';
 
 function Features() {

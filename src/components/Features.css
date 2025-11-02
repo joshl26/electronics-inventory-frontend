@@ -1,0 +1,13 @@
+.features-header-text {
+  color: black;
+}
+
+.features-light {
+  height: 100vh;
+  background-color: var(--color-five);
+}
+
+.features-dark {
+  height: 100vh;
+  background-color: var(--color-one);
+}

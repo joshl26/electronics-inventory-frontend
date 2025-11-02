@@ -6,7 +6,7 @@ import PieChart from '../features/charts/PieChart';
 import BarChart1 from '../features/charts/BarChart1';
 import AreaChart1 from '../features/charts/AreaChart1';
 
-import './ReactGridLayout.scss';
+import './ReactGridLayout.css';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 

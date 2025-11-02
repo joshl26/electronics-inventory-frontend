@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Button, Col, Container, Image, Row } from 'react-bootstrap';
-import './LandingPage.scss';
+import './LandingPage.css';
 
 import CustomerReviews from '../../components/CustomerReviews';
 

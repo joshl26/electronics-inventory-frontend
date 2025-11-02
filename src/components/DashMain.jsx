@@ -1,4 +1,4 @@
-import './DashMain.scss';
+import './DashMain.css';
 
 function DashMain() {
   return (

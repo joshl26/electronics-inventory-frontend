@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import DashHeader from './DashHeader';
 import DashFooter from './DashFooter';
 import SideBar from '../features/auth/SideBar';
-import './DashLayout.scss';
+import './DashLayout.css';
 
 function DashLayout() {
   const [sidebarShown, setSideBarShown] = useState(true);

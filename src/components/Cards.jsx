@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './Cards.scss';
+import './Cards.css';
 
 const initItems = [
   { id: '1', content: 'one', order: 0 },

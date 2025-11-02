@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import React from 'react';
 import PropTypes from 'prop-types';
-import './NewSignup.scss';
+import './NewSignup.css';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 
 function NewSignup({ colorMode }) {

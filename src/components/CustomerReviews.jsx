@@ -1,7 +1,7 @@
 import React from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
-import './CustomerReviews.scss';
+import './CustomerReviews.css';
 import { Container } from 'react-bootstrap';
 import CustomerReviewCard from './CustomerReviewCard';
 

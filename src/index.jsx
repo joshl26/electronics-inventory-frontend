@@ -1,7 +1,9 @@
 // src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.scss'; // now compiles Bootstrap SCSS with your overrides
+// src/index.js (top)
+import 'bootstrap/dist/css/bootstrap.min.css'; // use prebuilt bootstrap
+import './index.css'; // your app styles (do NOT import bootstrap inside your scss)
 import {
   createBrowserRouter,
   RouterProvider,

@@ -1,0 +1,7 @@
+.signup-section-light {
+  background-image: linear-gradient(var(--color-four), var(--color-four), white);
+}
+
+.signup-section-dark {
+  background-image: linear-gradient(var(--color-four), var(--color-four), black);
+}

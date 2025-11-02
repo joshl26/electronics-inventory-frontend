@@ -1,4 +1,4 @@
-import './HeroImage.scss';
+import './HeroImage.css';
 import background from '../../img/bg.jpg';
 
 function LandingPage() {

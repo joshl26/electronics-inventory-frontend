@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Image, Col, Row, Container } from 'react-bootstrap';
-import classes from './CustomerReviewCard.module.scss';
+import classes from './CustomerReviewCard.module.css';
 import reviewStar from '../svg/reviewstar.svg';
 
 function CustomerReviewCard({ review = {} }) {

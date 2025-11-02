@@ -1,0 +1,13 @@
+.plans-header-text {
+  color: black;
+}
+
+.plans-light {
+  height: 100vh;
+  background-color: var(--color-five);
+}
+
+.plans-dark {
+  height: 100vh;
+  background-color: var(--color-one);
+}

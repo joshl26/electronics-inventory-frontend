@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'react-bootstrap';
-import './CustomerGallery.scss';
+import './CustomerGallery.css';
 // import Apple from '../../svg/Apple.svg';
 // import HP from '../../svg/HP.svg';
 // import GM from '../../svg/GM.svg';

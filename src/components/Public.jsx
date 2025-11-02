@@ -3,7 +3,7 @@ import LoginHeader from '../features/pages/LoginHeader';
 import Experience from './Experience';
 
 import LoadingPage from './LoadingPage';
-import './Public.scss';
+import './Public.css';
 
 const Public = () => {
   const [loading, setLoading] = useState(true);

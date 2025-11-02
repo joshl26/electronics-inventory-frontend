@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import CheckIcon from './Check';
 import ClearIcon from './Clear';
-import styles from './FilesList.module.scss';
+import styles from './FilesList.module.css';
 
 function FilesListItem({ name, id, onClear, uploadComplete }) {
   const handleClear = useCallback(() => {

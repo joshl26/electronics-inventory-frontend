@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import LoginHeader from '../features/pages/LoginHeader';
-import './Plans.scss';
+import './Plans.css';
 import LoginFooter from '../features/pages/LoginFooter';
 
 function Plans() {

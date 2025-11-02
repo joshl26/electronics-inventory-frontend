@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import HamburgerMenu from '../svg/HamburgerMenu.json';
 import { useSendLogoutMutation } from '../features/auth/authApiSlice';
-import './DashHeader.scss';
+import './DashHeader.css';
 
 const DASH_REGEX = /^\/dash(\/)?$/;
 const NOTES_REGEX = /^\/dash\/notes(\/)?$/;

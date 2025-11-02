@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import './LoginFooter.scss';
+import './LoginFooter.css';
 import { SocialIcon } from 'react-social-icons';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import Lottie from 'lottie-react';
