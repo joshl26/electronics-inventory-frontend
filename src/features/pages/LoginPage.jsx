@@ -5,15 +5,15 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Lottie from 'lottie-react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { setCredentials } from './authSlice';
-import { useLoginMutation } from './authApiSlice';
+import { setCredentials } from '../auth/authSlice';
+import { useLoginMutation } from '../auth/authApiSlice';
 
 import usePersist from '../../hooks/usePersist';
 
 import HamburgerMenu from '../../svg/HamburgerMenu.json';
 
 import LoadingPage from '../components/LoadingPage';
-import './Login.css';
+import './LoginPage.css';
 
 function Login() {
   const userRef = useRef();
@@ -117,7 +117,9 @@ function Login() {
   const content = (
     <div className={loginStyle}>
       <Container>
-        <div className="spacer" />
+        <div className="pt-5" />
+        <div className="pt-5" />
+
         <Row>
           <Col />
           <Col md={2} className="login-col-align-left">

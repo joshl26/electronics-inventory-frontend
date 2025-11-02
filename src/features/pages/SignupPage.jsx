@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './NewSignup.css';
+import './SignupPage.css';
 import { Container, Row, Col, Button, Form, InputGroup, Spinner } from 'react-bootstrap';
 
-function NewSignup({ colorMode, onSignup }) {
+function SignupPage({ colorMode, onSignup }) {
   const isLight = colorMode === 'Light';
   const signupSectionStyle = isLight ? 'signup-section-light' : 'signup-section-dark';
 
@@ -133,15 +133,15 @@ function NewSignup({ colorMode, onSignup }) {
   );
 }
 
-NewSignup.propTypes = {
+SignupPage.propTypes = {
   colorMode: PropTypes.oneOf(['Light', 'Dark']),
   // optional callback for performing signup; should return a Promise if async
   onSignup: PropTypes.func,
 };
 
-NewSignup.defaultProps = {
+SignupPage.defaultProps = {
   colorMode: 'Light',
   onSignup: undefined,
 };
 
-export default NewSignup;
+export default SignupPage;

@@ -16,7 +16,7 @@ import ThemeProvider from 'react-bootstrap/ThemeProvider';
 import store from './app/store';
 import PublicLayout from './features/components/PublicLayout';
 import Public from './features/pages/HomePage';
-import Login from './features/auth/Login';
+import Login from './features/pages/LoginPage';
 import DashLayout from './features/components/DashLayout';
 import NotesList from './features/notes/NotesList';
 import UsersList from './features/users/UsersList';
@@ -37,6 +37,7 @@ import Plans from './features/pages/PlansPage';
 import Pricing from './features/pages/PricingPage';
 import ViewPart from './features/parts/ViewPart';
 import DashCards from './features/components/DashCards';
+import SignupPage from './features/pages/SignupPage';
 
 if (process.env.NODE_ENV === 'production') disableReactDevTools();
 
@@ -52,6 +53,7 @@ const router = createBrowserRouter(
         <Route path="plans" element={<Plans />} />
         <Route path="pricing" element={<Pricing />} />
         <Route path="login" element={<Login />} />
+        <Route path="signup" element={<SignupPage />} />
         {/* optional public 404 */}
         <Route path="*" element={<Public />} />
       </Route>

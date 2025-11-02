@@ -3,7 +3,7 @@ import './HomePage.css';
 import PropTypes from 'prop-types';
 import LandingPage from '../components/LandingSection';
 import CustomerGallery from '../components/CustomerGallery';
-import NewSignup from '../components/NewSignup';
+import NewSignup from './SignupPage';
 
 function HomePage({ colorMode }) {
   return (
