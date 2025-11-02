@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Button, Col, Dropdown, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useGetPartsQuery } from './partsApiSlice';
-import OutletLoadingPage from '../../components/OutletLoadingPage';
+import OutletLoadingPage from '../components/OutletLoadingPage';
 import Part from './Part';
 
 import './PartsList.css';

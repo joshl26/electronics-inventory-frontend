@@ -1,7 +1,7 @@
 import { Button, Col, Dropdown, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useGetUsersQuery } from './usersApiSlice';
-import OutletLoadingPage from '../../components/OutletLoadingPage';
+import OutletLoadingPage from '../components/OutletLoadingPage';
 import User from './User';
 import './UsersList.css';
 

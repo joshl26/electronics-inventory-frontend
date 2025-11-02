@@ -12,7 +12,7 @@ import usePersist from '../../hooks/usePersist';
 
 import HamburgerMenu from '../../svg/HamburgerMenu.json';
 
-import LoadingPage from '../../components/LoadingPage';
+import LoadingPage from '../components/LoadingPage';
 import './Login.css';
 
 function Login() {
@@ -117,7 +117,7 @@ function Login() {
   const content = (
     <div className={loginStyle}>
       <Container>
-        <div className="spacer-extra=small" />
+        <div className="spacer" />
         <Row>
           <Col />
           <Col md={2} className="login-col-align-left">
@@ -322,63 +322,6 @@ function Login() {
 
         <div className="spacer-small" />
         <div className="spacer-extra-small" />
-        <div className="spacer-extra-small" />
-        <Col>
-          <div className={sectionBreakStyle} />
-        </Col>
-        <div className="spacer-extra-small" />
-        <div className="spacer-extra-small" />
-        <Col>
-          <h3 className="text-center">BlackRock Design Haus</h3>
-        </Col>
-        <div className="spacer-extra-small" />
-        <Row>
-          <Col>
-            <Link to="/templates">
-              <p className="login-footer-links">Templates</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/pricing">
-              <p>Pricing</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/apps">
-              <p>Apps</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/jobs">
-              <p>Jobs</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/blog">
-              <p>Blog</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/developers">
-              <p>Developers</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/about">
-              <p>About</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/help">
-              <p>Help</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link to="/cookie-settings">
-              <p>Cookie Settings</p>
-            </Link>
-          </Col>
-        </Row>
         <div className="spacer-extra-small" />
       </Container>
     </div>

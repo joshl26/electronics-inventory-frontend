@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Button, Col, Dropdown, Row } from 'react-bootstrap';
 import { useGetNotesQuery } from './notesApiSlice';
 import Note from './Note';
-import OutletLoadingPage from '../../components/OutletLoadingPage';
+import OutletLoadingPage from '../components/OutletLoadingPage';
 import useAuth from '../../hooks/useAuth';
 import './NotesList.css';
 

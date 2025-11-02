@@ -1,0 +1,96 @@
+:root {
+  --customer-bg: var(--color-four, #f7fafc);
+  --header-font: 'Gloock', Georgia, 'Times New Roman', serif;
+  --gap-vertical: 1.25rem;
+}
+
+/* Section */
+.customer-gallery {
+  position: relative;
+  background-color: var(--customer-bg);
+  padding: 3rem 0;
+  box-sizing: border-box;
+}
+
+/* Container / heading */
+.customer-gallery-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.customer-header-text {
+  font-family: var(--header-font);
+  margin: 0;
+  /* scaling heading: min 3rem, up to 6rem */
+  font-size: clamp(3rem, 2.25rem + 3.75vw, 6rem);
+  line-height: 1;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Figure & image layout */
+.customer-figure {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+.customer-icon {
+  /* make images responsive while capping max width */
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition:
+    transform 160ms ease,
+    filter 160ms ease;
+  filter: saturate(0.98);
+}
+
+/* Hover / focus visual affordance */
+.customer-figure:focus-within .customer-icon,
+.customer-figure:hover .customer-icon {
+  transform: translateY(-4px) scale(1.02);
+  filter: saturate(1);
+}
+
+/* Spacing helpers used in markup */
+.spacer {
+  height: var(--gap-vertical);
+}
+
+.spacer-small {
+  height: calc(var(--gap-vertical) / 2);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .customer-gallery {
+    padding: 2rem 0;
+  }
+
+  .customer-header-text {
+    text-align: left;
+    font-size: clamp(2rem, 1.9rem + 2.5vw, 3rem);
+    margin-bottom: 0.5rem;
+  }
+
+  .customer-figure {
+    padding: 0.75rem 0;
+  }
+
+  .customer-icon {
+    max-width: 220px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .customer-gallery-container {
+    width: 90vw;
+  }
+}

@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useAddNewPartMutation } from './partsApiSlice';
 import useAuth from '../../hooks/useAuth';
-import ImagePicker from '../../components/ImagePicker';
+import ImagePicker from '../components/ImagePicker';
 import './NewPartForm.css';
 
 function NewPartForm({ users }) {

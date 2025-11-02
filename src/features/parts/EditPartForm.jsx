@@ -6,7 +6,7 @@ import { Row, Col } from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import { useUpdatePartMutation, useDeletePartMutation } from './partsApiSlice';
 import useAuth from '../../hooks/useAuth';
-import ImagePicker from '../../components/ImagePicker';
+import ImagePicker from '../components/ImagePicker';
 import './EditPartForm.css';
 
 function EditPartForm({ part, idReadOnly }) {

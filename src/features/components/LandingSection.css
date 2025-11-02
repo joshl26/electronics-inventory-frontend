@@ -1,0 +1,210 @@
+:root {
+  --color-one: #0d6efd;
+  --color-two: #e9ecef;
+  --color-three: #198754;
+  --color-four: #f8f9fa;
+  --TEXT-LIGHT: #0f1720;
+  --TEXT-DARK: #e6eef8;
+
+  --focus-ring: 0 0 0 3px rgba(13, 110, 253, 0.25);
+  --header-font: 'Gloock', Georgia, serif;
+  --body-font: 'Figtree', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --spacer-small: 2.5vh;
+  --spacer-medium: 5vh;
+  --spacer-large: 15vh;
+}
+
+/* Main wrapper */
+.landing-page-wrapper {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Hero section */
+.landing-one {
+  background-image: url('https://res.cloudinary.com/dv6keahg3/image/upload/v1689524251/ElectronicsInventory/frontend_ui_images/background_1_crnuep.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  min-height: 80vh;
+  width: 100%;
+  padding: 0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Container */
+.landing-container {
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+/* Headers */
+.landing-header-group {
+  margin-bottom: 1rem;
+}
+
+.landing-header-1 {
+  font-family: var(--header-font);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin: 0 0 0.25rem;
+  line-height: 1.1;
+}
+
+.landing-header-1-inline {
+  font-family: var(--body-font);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 800;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+}
+
+.landing-header-2 {
+  font-family: var(--body-font);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  margin: 0 0 1.5rem;
+  line-height: 1.5;
+  max-width: 90%;
+}
+
+/* Text colors */
+.landing-one-text-light {
+  color: var(--TEXT-LIGHT);
+}
+
+.landing-one-text-dark {
+  color: var(--TEXT-DARK);
+}
+
+/* Image */
+.landing-figure {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.landing-hero-image {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+.landing-one-image-light {
+  border: 2px solid var(--color-two);
+}
+
+.landing-one-image-dark {
+  border: 2px solid white;
+}
+
+/* Button */
+.landing-signup-btn {
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  min-width: 240px;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-signup-light {
+  background-color: var(--color-three);
+  border: 1px solid var(--color-three);
+  color: white;
+}
+
+.btn-signup-light:hover,
+.btn-signup-light:focus {
+  background-color: white;
+  color: var(--color-three);
+  border-color: var(--color-three);
+}
+
+.btn-signup-dark {
+  background-color: var(--color-three);
+  border: 1px solid var(--color-three);
+  color: white;
+}
+
+.btn-signup-dark:hover,
+.btn-signup-dark:focus {
+  background-color: white;
+  color: var(--color-three);
+  border-color: white;
+}
+
+/* Focus styles */
+button:focus-visible,
+a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: 6px;
+}
+
+/* Spacing helpers */
+.landing-spacer {
+  height: var(--spacer-small);
+}
+
+.spacer_small {
+  height: var(--spacer-small);
+}
+
+.spacer_medium {
+  height: var(--spacer-medium);
+}
+
+.spacer_large {
+  height: var(--spacer-large);
+}
+
+/* Responsive layout */
+@media (max-width: 768px) {
+  .landing-one {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .landing-header-1,
+  .landing-header-1-inline {
+    text-align: center;
+  }
+
+  .landing-header-2 {
+    text-align: left;
+    max-width: 100%;
+  }
+
+  .landing-figure {
+    margin-top: 1rem;
+  }
+
+  .landing-signup-btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .spacer_medium {
+    height: 3vh;
+  }
+}
+
+@media (min-width: 769px) {
+  .landing-container {
+    padding: 0 2rem;
+  }
+
+  .landing-content-col {
+    padding-right: 2rem;
+  }
+
+  .landing-image-col {
+    padding-left: 2rem;
+  }
+}
