@@ -10,8 +10,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest",
-      "plugin:storybook/recommended"
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -69,8 +68,6 @@
     "start": "craco start",
     "build": "craco build",
     "eject": "react-scripts eject",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --coverageDirectory=coverage --coverageThreshold='{\"global\":{\"branches\":70,\"functions\":70,\"lines\":70,\"statements\":70}}'",
@@ -86,21 +83,17 @@
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@babel/preset-env": "^7.28.5",
     "@babel/preset-react": "^7.28.5",
     "@craco/craco": "^7.1.0",
     "@playwright/test": "^1.56.1",
-    "@storybook/addon-docs": "^10.0.2",
-    "@storybook/jest": "^0.2.2",
-    "@storybook/preset-create-react-app": "^10.0.2",
-    "@storybook/react": "^10.0.2",
-    "@storybook/react-webpack5": "^10.0.2",
-    "@storybook/testing-library": "^0.2.1",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/lodash": "^4.17.20",
     "@types/three": "^0.181.0",
     "babel-jest": "^30.2.0",
+    "babel-loader": "^10.0.0",
     "babel-plugin-macros": "^3.1.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb": "^19.0.4",
@@ -111,7 +104,6 @@
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "eslint-plugin-storybook": "^10.0.2",
     "fetch-blob": "^4.0.0",
     "husky": "^9.1.7",
     "identity-obj-proxy": "^3.0.0",
@@ -124,7 +116,6 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "react-scripts": "^5.0.1",
-    "storybook": "^10.0.2",
     "web-streams-polyfill": "^3.3.3",
     "webpack": "^5.102.1"
   },
