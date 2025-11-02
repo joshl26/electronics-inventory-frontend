@@ -1,0 +1,8 @@
+// src/_bootstrap-overrides.scss
+// Customize Bootstrap variables here before importing Bootstrap
+
+// Example: change the default background color
+// $body-bg: #f8f9fa;
+
+// Import Bootstrap after setting variables
+@import 'bootstrap/scss/bootstrap';

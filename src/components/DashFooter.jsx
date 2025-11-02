@@ -1,8 +1,8 @@
-import { Col, Row } from "react-bootstrap";
-import useAuth from "../hooks/useAuth";
-import "./DashFooter.scss";
+import { Col, Row } from 'react-bootstrap';
+import useAuth from '../hooks/useAuth';
+import './DashFooter.scss';
 
-const DashFooter = () => {
+function DashFooter() {
   const { username, status } = useAuth();
 
   const content = (
@@ -18,5 +18,5 @@ const DashFooter = () => {
     </footer>
   );
   return content;
-};
+}
 export default DashFooter;

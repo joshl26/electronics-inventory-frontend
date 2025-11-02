@@ -1,9 +1,9 @@
-import { useGetUsersQuery } from "./usersApiSlice";
-import { Button, Col, Dropdown, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import OutletLoadingPage from "../../components/OutletLoadingPage";
-import User from "./User";
-import "./UsersList.css";
+import { Button, Col, Dropdown, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useGetUsersQuery } from './usersApiSlice';
+import OutletLoadingPage from '../../components/OutletLoadingPage';
+import User from './User';
+import './UsersList.css';
 
 const UsersList = () => {
   const {
@@ -12,7 +12,7 @@ const UsersList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery("userslist", {
+  } = useGetUsersQuery('userslist', {
     pollingInterval: 1500000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
@@ -23,16 +23,13 @@ const UsersList = () => {
   if (isLoading) content = <OutletLoadingPage />;
 
   if (isError) {
-    content = (
-      <p className={isError ? "errmsg" : "offscreen"}>{error?.data?.message}</p>
-    );
+    content = <p className={isError ? 'errmsg' : 'offscreen'}>{error?.data?.message}</p>;
   }
 
   if (isSuccess) {
     const { ids } = users;
 
-    const tableContent =
-      ids?.length && ids.map((userId) => <User key={userId} userId={userId} />);
+    const tableContent = ids?.length && ids.map((userId) => <User key={userId} userId={userId} />);
 
     const table = (
       <table className="table table-notes">
@@ -59,7 +56,7 @@ const UsersList = () => {
           <Col md={10}>
             <h1>Users List</h1>
           </Col>
-          <Col style={{ textAlign: "right" }} md={2}>
+          <Col style={{ textAlign: 'right' }} md={2}>
             <Button className="btn-new-part">
               <Link className="btn-text" to="/dash/users/new">
                 Add New User
@@ -67,21 +64,21 @@ const UsersList = () => {
             </Button>
           </Col>
         </Row>
-        <div className="vh3-spacer"></div>
+        <div className="vh3-spacer" />
         <div className="parts-container">
           <div className="parts-search-bar">
             <Row>
-              <div className="vh2-spacer"></div>
-              <Col style={{ textAlign: "center" }}>
+              <div className="vh2-spacer" />
+              <Col style={{ textAlign: 'center' }}>
                 <input
                   name="searchUsers"
                   className="parts-search-input"
                   placeholder="    Search users..."
-                ></input>
+                />
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Role</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Role</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -101,9 +98,9 @@ const UsersList = () => {
                   </Dropdown>
                 </Row>
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Sort</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Sort</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -115,22 +112,16 @@ const UsersList = () => {
                       All
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="parts-status-dropdown-menu">
-                      <Dropdown.Item href="#/action-1">
-                        Date Created
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Created By
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Description
-                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-1">Date Created</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Created By</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">Description</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Row>
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Date Created</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Date Created</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -138,11 +129,11 @@ const UsersList = () => {
                       className="parts-status-dropdown"
                       variant="success"
                       id="dropdown-basic"
-                    ></Dropdown.Toggle>
+                    />
                     <Dropdown.Menu className="parts-status-dropdown-menu">
-                      <Dropdown.Item href="#/action-1"></Dropdown.Item>
-                      <Dropdown.Item href="#/action-2"></Dropdown.Item>
-                      <Dropdown.Item href="#/action-3"></Dropdown.Item>
+                      <Dropdown.Item href="#/action-1" />
+                      <Dropdown.Item href="#/action-2" />
+                      <Dropdown.Item href="#/action-3" />
                     </Dropdown.Menu>
                   </Dropdown>
                 </Row>

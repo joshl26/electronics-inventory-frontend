@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
-import { selectAllUsers } from "../users/usersApiSlice";
-import NewNoteForm from "./NewNoteForm";
+import { useSelector } from 'react-redux';
+import { selectAllUsers } from '../users/usersApiSlice';
+import NewNoteForm from './NewNoteForm';
 
-const NewNote = () => {
+function NewNote() {
   const users = useSelector(selectAllUsers);
 
   if (!users?.length) return <p>Not Currently Available</p>;
@@ -10,6 +10,6 @@ const NewNote = () => {
   const content = <NewNoteForm users={users} />;
 
   return content;
-};
+}
 
 export default NewNote;

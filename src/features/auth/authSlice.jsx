@@ -1,16 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+// src/features/auth/authSlice.jsx
+import { createSlice } from '@reduxjs/toolkit';
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: { token: null },
   reducers: {
     setCredentials: (state, action) => {
       const { accessToken } = action.payload;
-      state.token = accessToken;
+      // return a new state object instead of mutating `state`
+      return { ...state, token: accessToken };
     },
-    logOut: (state, action) => {
-      state.token = null;
-    },
+    logOut: (state) =>
+      // no unused `action` parameter and no param reassignment
+      ({ ...state, token: null }),
   },
 });
 

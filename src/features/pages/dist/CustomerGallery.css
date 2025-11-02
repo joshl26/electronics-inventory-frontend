@@ -4,7 +4,7 @@
 }
 
 .customer-header-text {
-  font-family: "Gloock", sans-serif;
+  font-family: 'Gloock', sans-serif;
   font-size: 6rem;
   font-size: clamp(3rem, calc(2.25rem + 3.75vw), 6rem);
 }

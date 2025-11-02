@@ -1,21 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* eslint-disable no-console */
+import { createSlice } from '@reduxjs/toolkit';
 
 export const settingsSlice = createSlice({
-  name: "settings",
+  name: 'settings',
   initialState: {
     userSettings: {
-      colorMode: "",
-      partsListView: "",
+      colorMode: '',
+      partsListView: '',
     },
   },
   reducers: {
     colorModeState: (state, action) => {
-      console.log("Set color mode to: " + action.payload);
-      state.colorMode = action.payload;
+      console.log(`Set color mode to: ${action.payload}`);
+      return {
+        ...state,
+        userSettings: {
+          ...state.userSettings,
+          colorMode: action.payload,
+        },
+      };
     },
     partsListViewState: (state, action) => {
-      console.log("Set parts list view to: " + action.payload);
-      state.partsListView = action.payload;
+      console.log(`Set parts list view to: ${action.payload}`);
+      return {
+        ...state,
+        userSettings: {
+          ...state.userSettings,
+          partsListView: action.payload,
+        },
+      };
     },
   },
 });

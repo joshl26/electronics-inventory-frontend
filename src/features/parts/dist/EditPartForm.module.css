@@ -20,7 +20,7 @@
   width: 4em;
 }
 
-input[type=number]::-webkit-inner-spin-button {
+input[type='number']::-webkit-inner-spin-button {
   opacity: 1;
 }
 

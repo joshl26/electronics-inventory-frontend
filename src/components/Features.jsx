@@ -1,57 +1,45 @@
-import React, { useState } from "react";
-import LoginHeader from "../features/pages/LoginHeader";
-import "./Features.scss";
-import LoginFooter from "../features/pages/LoginFooter";
-import { useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import LoginHeader from '../features/pages/LoginHeader';
+import './Features.scss';
+import LoginFooter from '../features/pages/LoginFooter';
 
-const Features = () => {
+function Features() {
   const [colorMode, setColorMode] = useState(
-    JSON.parse(localStorage.getItem("colorMode"))
+    () => JSON.parse(localStorage.getItem('colorMode')) ?? 'Light'
   );
 
-  const featuresStyle =
-    colorMode === "Light"
-      ? "features-light"
-      : "" || colorMode === "Dark"
-      ? "features-dark"
-      : "";
+  let featuresStyle = '';
+  if (colorMode === 'Light') {
+    featuresStyle = 'features-light';
+  } else if (colorMode === 'Dark') {
+    featuresStyle = 'features-dark';
+  }
 
-  const onChangeColorMode = (e) => {
-    console.log("On Change Color Mode " + e);
-
-    if (e === "Light") {
-      localStorage.setItem("colorMode", JSON.stringify("Dark"));
-      setColorMode("Dark");
-    } else {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
-    }
+  const onChangeColorMode = (mode) => {
+    const next = mode === 'Light' ? 'Dark' : 'Light';
+    localStorage.setItem('colorMode', JSON.stringify(next));
+    setColorMode(next);
   };
 
   useEffect(() => {
-    const colorMode = JSON.parse(localStorage.getItem("colorMode"));
-
-    if (colorMode === null) {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
+    const storedColorMode = JSON.parse(localStorage.getItem('colorMode'));
+    if (storedColorMode === null) {
+      localStorage.setItem('colorMode', JSON.stringify('Light'));
+      setColorMode('Light');
     }
-  }, [colorMode, featuresStyle]);
+    // run once on mount
+  }, []);
 
-  const content = (
+  return (
     <>
-      <LoginHeader
-        onChangeColorMode={onChangeColorMode}
-        colorMode={colorMode}
-      />
+      <LoginHeader onChangeColorMode={onChangeColorMode} colorMode={colorMode} />
       <section className={featuresStyle}>
-        <div className="spacer"></div>
-        <h1 classname="features-header-text">Features</h1>
+        <div className="spacer" />
+        <h1 className="features-header-text">Features</h1>
       </section>
       <LoginFooter colorMode={colorMode} />
     </>
   );
-
-  return content;
-};
+}
 
 export default Features;

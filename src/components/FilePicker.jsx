@@ -1,19 +1,19 @@
-// import axios from "axios";
-import classNames from "classnames";
-import { nanoid } from "nanoid";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { DropZone } from "./DropZone";
-import styles from "./FilePicker.module.scss";
-import { FilesList } from "./FilesList";
+import classNames from 'classnames';
+import { nanoid } from 'nanoid';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import PropTypes from 'prop-types';
+import { DropZone } from './DropZone';
+import styles from './FilePicker.module.scss';
+import FilesList from './FilesList';
 
-const FilePicker = ({ accept, uploadURL }) => {
+function FilePicker({ accept, uploadURL }) {
   const [files, setFiles] = useState([]);
   const [progress, setProgress] = useState(0);
   const [uploadStarted, setUploadStarted] = useState(false);
 
-  // handler called when files are selected via the Dropzone component
-  const handleOnChange = useCallback((files) => {
-    let filesArray = Array.from(files);
+  // handler called when files are selected via the DropZone component
+  const handleOnChange = useCallback((selectedFiles) => {
+    let filesArray = Array.from(selectedFiles);
 
     filesArray = filesArray.map((file) => ({
       id: nanoid(),
@@ -25,42 +25,13 @@ const FilePicker = ({ accept, uploadURL }) => {
     setUploadStarted(false);
   }, []);
 
-  // handle for removing files form the files list view
+  // handle for removing files from the files list view
   const handleClearFile = useCallback((id) => {
     setFiles((prev) => prev.filter((file) => file.id !== id));
   }, []);
 
   // whether to show the progress bar or not
   const canShowProgress = useMemo(() => files.length > 0, [files.length]);
-
-  // execute the upload operation
-  //   const handleUpload = useCallback(async () => {
-  //     try {
-  //       const data = new FormData();
-
-  //       files.forEach((file) => {
-  //         data.append("file", file.file);
-  //       });
-
-  //       const res = await axios.request({
-  //         url: uploadURL,
-  //         method: "POST",
-  //         data,
-  //         onUploadProgress: (progressEvent) => {
-  //           setUploadStarted(true);
-  //           const percentCompleted = Math.round(
-  //             (progressEvent.loaded * 100) / progressEvent.total
-  //           );
-  //           setProgress(percentCompleted);
-  //         },
-  //       });
-
-  //       setUploadStarted(false);
-  //       console.log(res);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }, [files.length]);
 
   // set progress to zero when there are no files
   useEffect(() => {
@@ -88,28 +59,26 @@ const FilePicker = ({ accept, uploadURL }) => {
       {/* files listing */}
       {files.length ? (
         <div className={styles.files_list_wrapper}>
-          <FilesList
-            files={files}
-            onClear={handleClearFile}
-            uploadComplete={uploadComplete}
-          />
+          <FilesList files={files} onClear={handleClearFile} uploadComplete={uploadComplete} />
         </div>
       ) : null}
 
       {/* progress bar */}
       {canShowProgress ? (
         <div className={styles.files_list_progress_wrapper}>
-          <progress value={progress} max={100} style={{ width: "100%" }} />
+          <progress value={progress} max={100} style={{ width: '100%' }} />
         </div>
       ) : null}
 
       {/* upload button */}
       {files.length ? (
         <button
-          //   onClick={handleUpload}
+          type="button"
+          // onClick={handleUpload}
+          data-upload-url={uploadURL}
           className={classNames(
             styles.upload_button,
-            uploadComplete || uploadStarted ? styles.disabled : ""
+            uploadComplete || uploadStarted ? styles.disabled : ''
           )}
         >
           {`Upload ${files.length} Files`}
@@ -117,6 +86,16 @@ const FilePicker = ({ accept, uploadURL }) => {
       ) : null}
     </div>
   );
+}
+
+FilePicker.propTypes = {
+  accept: PropTypes.string,
+  uploadURL: PropTypes.string,
 };
 
-export { FilePicker };
+FilePicker.defaultProps = {
+  accept: undefined,
+  uploadURL: '',
+};
+
+export default FilePicker;

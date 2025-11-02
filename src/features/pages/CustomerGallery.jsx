@@ -1,17 +1,17 @@
-import { Container, Row, Col } from "react-bootstrap";
-import "./CustomerGallery.scss";
-import Apple from "../../svg/Apple.svg";
-import HP from "../../svg/HP.svg";
-import GM from "../../svg/GM.svg";
-import Nvidia from "../../svg/Nvidia.svg";
+import { Container, Row, Col } from 'react-bootstrap';
+import './CustomerGallery.scss';
+// import Apple from '../../svg/Apple.svg';
+// import HP from '../../svg/HP.svg';
+// import GM from '../../svg/GM.svg';
+// import Nvidia from '../../svg/Nvidia.svg';
 
-const CustomerGallery = () => {
+function CustomerGallery() {
   return (
     <div className="customer-gallery">
       <Container className="customer-gallery-container">
-        <div className="spacer"></div>
+        <div className="spacer" />
         <h1 className="customer-header-text">These companies trust Ei:</h1>
-        <div className="spacer-small"></div>
+        <div className="spacer-small" />
         <Row>
           <Col xs={12} sm={12} md={4} lg={4}>
             <img
@@ -35,7 +35,7 @@ const CustomerGallery = () => {
             />
           </Col>
         </Row>
-        <div className="spacer-small"></div>
+        <div className="spacer-small" />
         <Row>
           <Col xs={12} sm={12} md={4} lg={4}>
             <img
@@ -59,10 +59,10 @@ const CustomerGallery = () => {
             />
           </Col>
         </Row>
-        <div className="spacer-small"></div>
+        <div className="spacer-small" />
       </Container>
     </div>
   );
-};
+}
 
 export default CustomerGallery;

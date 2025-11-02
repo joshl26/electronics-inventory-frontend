@@ -1,10 +1,11 @@
-import { Outlet, Link } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
-import { useRefreshMutation } from "./authApiSlice";
-import usePersist from "../../hooks/usePersist";
-import { useSelector } from "react-redux";
-import { selectCurrentToken } from "./authSlice";
-import LoadingPage from "../../components/LoadingPage";
+/* eslint-disable no-console */
+import { Outlet, Link } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useRefreshMutation } from './authApiSlice';
+import usePersist from '../../hooks/usePersist';
+import { selectCurrentToken } from './authSlice';
+import LoadingPage from '../../components/LoadingPage';
 
 const PersistLogin = () => {
   const [persist] = usePersist();
@@ -13,17 +14,16 @@ const PersistLogin = () => {
 
   const [trueSuccess, setTrueSuccess] = useState(false);
 
-  const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
-    useRefreshMutation();
+  const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] = useRefreshMutation();
 
   useEffect(() => {
-    if (effectRan.current === true || process.env.NODE_ENV !== "development") {
+    if (effectRan.current === true || process.env.NODE_ENV !== 'development') {
       const verifyRefreshToken = async () => {
         // console.log("Verifying refresh token");
         try {
-          //const response =
+          // const response =
           await refresh();
-          //const {accessToken} = response.data
+          // const {accessToken} = response.data
           setTrueSuccess(true);
         } catch (err) {
           console.group(err);
@@ -32,7 +32,9 @@ const PersistLogin = () => {
 
       if (!token && persist) verifyRefreshToken();
     }
-    return () => (effectRan.current = true);
+    return () => {
+      effectRan.current = true;
+    };
 
     // eslint-disable-next-line
   }, []);
@@ -40,16 +42,16 @@ const PersistLogin = () => {
   let content;
 
   if (!persist) {
-    //persist: no
+    // persist: no
 
     // console.log("no persist");
     content = <Outlet />;
   } else if (isLoading) {
-    //persist: yes, token: no
+    // persist: yes, token: no
     // console.log("loading");
     content = <LoadingPage />;
   } else if (isError) {
-    //persist: yes, token: no
+    // persist: yes, token: no
     // console.log("error");
     content = (
       <p className="errmsg">
@@ -58,11 +60,11 @@ const PersistLogin = () => {
       </p>
     );
   } else if (isSuccess && trueSuccess) {
-    //persist: yes, token: yes
+    // persist: yes, token: yes
     // console.log("success");
     content = <Outlet />;
   } else if (token && isUninitialized) {
-    //persist: yes, token: yes
+    // persist: yes, token: yes
     // console.log("token and uninit");
     // console.log(isUninitialized);
     content = <Outlet />;

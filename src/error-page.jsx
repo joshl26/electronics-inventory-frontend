@@ -1,5 +1,6 @@
-import { Link, useRouteError } from "react-router-dom";
-import classes from "./error-page.module.scss";
+/* eslint-disable no-console */
+import { Link, useRouteError } from 'react-router-dom';
+import classes from './error-page.module.scss';
 
 export default function ErrorPage() {
   const error = useRouteError();

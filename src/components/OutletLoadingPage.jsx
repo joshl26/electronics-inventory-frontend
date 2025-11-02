@@ -1,33 +1,22 @@
-import Lottie from "lottie-react";
-import React, { useState } from "react";
-import { Image } from "react-bootstrap";
-import HamburgerIcon from "../svg/HamburgerMenu.json";
-import background from "../img/background_2.png";
+import React from 'react';
+import Lottie from 'lottie-react';
+import HamburgerIcon from '../svg/HamburgerMenu.json';
 
-const LoadingPage = () => {
-  const [colorMode, setColorMode] = useState(
-    JSON.parse(localStorage.getItem("colorMode"))
-  );
+function LoadingPage() {
+  const colorMode = JSON.parse(localStorage.getItem('colorMode')) ?? 'Light';
 
-  const publicStyle =
-    colorMode === "Light"
-      ? "public-light"
-      : "" || colorMode === "Dark"
-      ? "public-dark"
-      : "";
+  let publicStyle = '';
+  if (colorMode === 'Light') {
+    publicStyle = 'public-light';
+  } else if (colorMode === 'Dark') {
+    publicStyle = 'public-dark';
+  }
 
-  const content = (
+  return (
     <section className={publicStyle}>
-      {/* <Image className="loading-background" src={background} /> */}
-      <Lottie
-        className="hamburger-icon"
-        animationData={HamburgerIcon}
-        loop={true}
-      />
+      <Lottie className="hamburger-icon" animationData={HamburgerIcon} loop />
     </section>
   );
-
-  return content;
-};
+}
 
 export default LoadingPage;

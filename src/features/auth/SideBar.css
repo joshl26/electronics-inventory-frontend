@@ -6,7 +6,11 @@
   /* width: 275px; */
   padding: 1em;
   border-right: 1px solid var(--BORDER-COLOR);
-  transition: width 0.5s, height 0.5s, top 0.5s, left 0.5s;
+  transition:
+    width 0.5s,
+    height 0.5s,
+    top 0.5s,
+    left 0.5s;
 }
 
 .dash-sidebar-container-minimized {
@@ -17,7 +21,9 @@
   width: 75px;
   padding: 1em;
   border-right: 1px solid var(--BORDER-COLOR);
-  transition: width 1s, right 1s;
+  transition:
+    width 1s,
+    right 1s;
   text-align: center;
 }
 

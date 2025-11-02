@@ -1,6 +1,6 @@
-import { Outlet } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
 
-const Layout = () => {
+function Layout() {
   return <Outlet />;
-};
+}
 export default Layout;

@@ -1,62 +1,64 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAddNewPartMutation } from "./partsApiSlice";
-import { FaSave } from "react-icons/fa";
-import { Row, Col } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import useAuth from "../../hooks/useAuth";
-import ImagePicker from "../../components/ImagePicker";
-import "./NewPartForm.css";
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaSave } from 'react-icons/fa';
+import { Row, Col } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { useAddNewPartMutation } from './partsApiSlice';
+import useAuth from '../../hooks/useAuth';
+import ImagePicker from '../../components/ImagePicker';
+import './NewPartForm.css';
 
-const NewPartForm = ({ users, partTypes }) => {
+function NewPartForm({ users }) {
   const { username } = useAuth();
 
   const [addNewPart, { isLoading, isSuccess }] = useAddNewPartMutation();
 
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [userId, setUserId] = useState(users[0].id);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [userId, setUserId] = useState(users[0]?.id ?? '');
   const [qty, setQty] = useState(0);
-  const [partType, setPartType] = useState("None");
+  const [partType, setPartType] = useState('None');
   const [createdBy] = useState(username);
-  const [createdAt] = useState("Not Created Yet");
-  const [editedBy] = useState("Not Edited Yet");
-  const [editedAt] = useState("Not Edited Yet");
+  const [createdAt] = useState('Not Created Yet');
+  const [editedBy] = useState('Not Edited Yet');
+  const [editedAt] = useState('Not Edited Yet');
   const [images, setImages] = useState([]);
-  // const [deletedImages, setDeletedImages] = useState([]);
-  const [partNumber, setPartNumber] = useState("None");
-  const [lotId, setLotId] = useState("None");
-  const [serialNumber, setSerialNumber] = useState("None");
-  const [manufacturer, setManufacturer] = useState("None");
-  const [mfgDate, setMfgDate] = useState("None");
+  const [partNumber, setPartNumber] = useState('None');
+  const [lotId, setLotId] = useState('None');
+  const [serialNumber, setSerialNumber] = useState('None');
+  const [manufacturer, setManufacturer] = useState('None');
+  const [mfgDate, setMfgDate] = useState('None');
   const [backOrder, setBackOrder] = useState(0);
-  const [vendorName, setVendorName] = useState("None");
-  const [partPackage, setPartPackage] = useState("None");
-  const [partLocation, setPartLocation] = useState("None");
+  const [vendorName, setVendorName] = useState('None');
+  const [partPackage, setPartPackage] = useState('None');
+  const [partLocation, setPartLocation] = useState('None');
   const [cost, setCost] = useState(0.0);
+
+  const [validated] = useState(false);
 
   useEffect(() => {
     if (isSuccess) {
-      setName("");
-      setDescription("");
-      setUserId("");
+      setName('');
+      setDescription('');
+      setUserId('');
       setQty(0);
-      setPartType("");
+      setPartType('');
       setImages([]);
-      setPartNumber("");
-      setLotId("");
-      setSerialNumber("");
-      setManufacturer("");
-      setMfgDate("");
+      setPartNumber('');
+      setLotId('');
+      setSerialNumber('');
+      setManufacturer('');
+      setMfgDate('');
       setBackOrder(0);
-      setVendorName("");
-      setPartPackage("");
-      setPartLocation("");
+      setVendorName('');
+      setPartPackage('');
+      setPartLocation('');
       setCost(0.0);
-      navigate("/dash/parts");
+      navigate('/dash/parts');
     }
   }, [isSuccess, navigate]);
 
@@ -64,7 +66,6 @@ const NewPartForm = ({ users, partTypes }) => {
   const onDescriptionChanged = (e) => setDescription(e.target.value);
   const onStockQtyChanged = (e) => setQty(e.target.value);
   const onPartTypeChanged = (e) => setPartType(e.target.value);
-  // const onImagesChanged = (e) => setImages(e.target.value);
   const onPartNumberChanged = (e) => setPartNumber(e.target.value);
   const onLotIdChanged = (e) => setLotId(e.target.value);
   const onSerialNumberChanged = (e) => setSerialNumber(e.target.value);
@@ -103,74 +104,8 @@ const NewPartForm = ({ users, partTypes }) => {
     }
   };
 
-  // const options = partTypes.map((types, idx) => {
-  //   return (
-  //     <option key={idx} value={types}>
-  //       {types}
-  //     </option>
-  //   );
-  // });
-
-  // const errContent = error?.data?.message ?? "";
-
-  // const errClass = isError ? "errmsg" : "offscreen";
-  const validNameClass = !name ? "form__input__incomplete" : "";
-  const validDescriptionClass = !description ? "form__input__incomplete" : "";
-
-  // const [validated, setValidated] = useState(false);
-
-  const [validated] = useState(false);
-
-  // const handleSubmit = async (event) => {
-  //   const form = event.currentTarget;
-  //   if (form.checkValidity() === false) {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-  //   }
-
-  //   setValidated(true);
-
-  //   console.log("Part Name: " + `${name}`);
-  //   console.log("Part Number: " + `${partNumber}`);
-  //   console.log("Part Type: " + `${partType}`);
-  //   console.log("Description: " + `${description}`);
-  //   console.log("Stock Qty: " + `${qty}`);
-  //   console.log("Backorder Qty: " + `${backOrder}`);
-  //   console.log("Unit Cost: " + `${cost}`);
-  //   console.log("Location: " + `${partLocation}`);
-  //   console.log("Package Type: " + `${partPackage}`);
-  //   console.log("LotId: " + `${lotId}`);
-  //   console.log("Serial Number: " + `${serialNumber}`);
-  //   console.log("Mfg Date: " + `${mfgDate}`);
-  //   console.log("Manufacturer: " + `${manufacturer}`);
-  //   console.log("Vendor: " + `${vendorName}`);
-  //   console.log("Date created: " + `${createdAt}`);
-  //   console.log("Created by: " + `${userId}`);
-  //   console.log("Date edited: " + `${editedAt}`);
-  //   console.log("Edited by: " + `${editedBy}`);
-  //   console.log("Images: " + `${images}`);
-
-  //   if (canSave) {
-  //     await addNewPart({
-  //       user: userId,
-  //       name,
-  //       partNumber,
-  //       partType,
-  //       description,
-  //       qty,
-  //       backOrder,
-  //       cost,
-  //       partLocation,
-  //       partPackage,
-  //       lotId,
-  //       serialNumber,
-  //       mfgDate,
-  //       manufacturer,
-  //       vendorName,
-  //       images,
-  //     });
-  //   }
-  // };
+  const validNameClass = !name ? 'form__input__incomplete' : '';
+  const validDescriptionClass = !description ? 'form__input__incomplete' : '';
 
   const content = (
     <section>
@@ -178,6 +113,7 @@ const NewPartForm = ({ users, partTypes }) => {
         <h2>Add New Part to Inventory</h2>
         <div className="form__action-buttons">
           <button
+            type="button"
             className="icon-button"
             title="Save"
             onClick={onSavePartClicked}
@@ -353,48 +289,22 @@ const NewPartForm = ({ users, partTypes }) => {
         <Row className="mt-3 mb-3">
           <Form.Group as={Col} md="2" controlId="validationDateCreated">
             <Form.Label>Date Created</Form.Label>
-            <Form.Control
-              readOnly
-              defaultValue={createdAt}
-              type="text"
-              placeholder=""
-            />
+            <Form.Control readOnly defaultValue={createdAt} type="text" placeholder="" />
           </Form.Group>
           <Form.Group as={Col} md="2" controlId="validationCreatedBy">
             <Form.Label>Created By</Form.Label>
-            <Form.Control
-              readOnly
-              defaultValue={createdBy}
-              type="text"
-              placeholder=""
-            />
+            <Form.Control readOnly defaultValue={createdBy} type="text" placeholder="" />
           </Form.Group>
           <Form.Group as={Col} md="2" controlId="validationDateEdited">
             <Form.Label>Date Edited</Form.Label>
-            <Form.Control
-              readOnly
-              defaultValue={editedAt}
-              onChange={onStockQtyChanged}
-              type="text"
-              placeholder=""
-            />
+            <Form.Control readOnly defaultValue={editedAt} type="text" placeholder="" />
           </Form.Group>
           <Form.Group as={Col} md="2" controlId="validationEditedBy">
             <Form.Label>Edited By</Form.Label>
-            <Form.Control
-              readOnly
-              defaultValue={editedBy}
-              type="text"
-              placeholder=""
-            />
+            <Form.Control readOnly defaultValue={editedBy} type="text" placeholder="" />
           </Form.Group>
         </Row>
-        <Button
-          title="Save"
-          onClick={onSavePartClicked}
-          // type="submit"
-          disabled={!canSave}
-        >
+        <Button type="button" title="Save" onClick={onSavePartClicked} disabled={!canSave}>
           Save New Part
         </Button>
       </Form>
@@ -403,6 +313,14 @@ const NewPartForm = ({ users, partTypes }) => {
   );
 
   return content;
+}
+
+NewPartForm.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    })
+  ).isRequired,
 };
 
 export default NewPartForm;

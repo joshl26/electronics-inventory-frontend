@@ -44,7 +44,7 @@
     padding-top: 0.75em;
     text-align: center;
     width: min-content;
-    font-family: "Cabin", Times, serif;
+    font-family: 'Cabin', Times, serif;
     color: white;
   }
 
@@ -130,7 +130,7 @@
     padding-top: 0.5em;
     text-align: center;
     width: min-content;
-    font-family: "Cabin", Times, serif;
+    font-family: 'Cabin', Times, serif;
     font-size: 3em;
     color: white;
   }

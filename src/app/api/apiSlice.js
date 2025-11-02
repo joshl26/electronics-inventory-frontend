@@ -1,22 +1,25 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { setCredentials } from "../../features/auth/authSlice";
+/* eslint-disable no-unused-vars */
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable no-console */
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { setCredentials } from '../../features/auth/authSlice';
 
 const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://electronics-inventory-server.onrender.com"
-    : "http://localhost:3500";
+  process.env.NODE_ENV === 'production'
+    ? 'https://electronics-inventory-server.onrender.com'
+    : 'http://localhost:3500';
 
-//TODO Google login
+// TODO Google login
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
 
-  credentials: "include",
+  credentials: 'include',
   prepareHeaders: (headers, { getState }) => {
-    const token = getState().auth.token;
+    const { token } = getState().auth;
 
     if (token) {
-      headers.set("authorization", `Bearer ${token}`);
+      headers.set('authorization', `Bearer ${token}`);
     }
 
     return headers;
@@ -34,10 +37,10 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
   // If you want, handle other status codes, too
   if (result?.error?.status === 403) {
-    console.log("sending refresh token");
+    console.log('sending refresh token');
 
     // send refresh token to get new access token
-    const refreshResult = await baseQuery("/auth/refresh", api, extraOptions);
+    const refreshResult = await baseQuery('/auth/refresh', api, extraOptions);
 
     if (refreshResult?.data) {
       // store the new token
@@ -47,7 +50,7 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
       result = await baseQuery(args, api, extraOptions);
     } else {
       if (refreshResult?.error?.status === 403) {
-        refreshResult.error.data.message = "Your login has expired.";
+        refreshResult.error.data.message = 'Your login has expired.';
       }
       return refreshResult;
     }
@@ -58,6 +61,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
 
 export const apiSlice = createApi({
   baseQuery: baseQueryWithReauth,
-  tagTypes: ["Part", "Note", "User"],
+  tagTypes: ['Part', 'Note', 'User'],
   endpoints: (builder) => ({}),
 });

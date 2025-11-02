@@ -1,11 +1,11 @@
 .slider_header_1 {
   font-size: clamp(3rem, 5vw, 6rem);
-  font-family: "Gloock", serif;
+  font-family: 'Gloock', serif;
 }
 
 .slider_header_2 {
   font-size: clamp(1.5em, 3vw, 3em);
-  font-family: "Cabin", serif;
+  font-family: 'Cabin', serif;
 }
 
 @media screen and (min-width: 769px) {

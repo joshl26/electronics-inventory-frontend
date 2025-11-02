@@ -1,35 +1,57 @@
-import React, { useCallback } from "react";
-import CheckIcon from "./Check";
-import ClearIcon from "./Clear";
-import styles from "./FilesList.module.scss";
+import React, { useCallback } from 'react';
+import PropTypes from 'prop-types';
+import CheckIcon from './Check';
+import ClearIcon from './Clear';
+import styles from './FilesList.module.scss';
 
-const FilesListItem = ({ name, id, onClear, uploadComplete }) => {
+function FilesListItem({ name, id, onClear, uploadComplete }) {
   const handleClear = useCallback(() => {
     onClear(id);
   }, [id, onClear]);
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        handleClear();
+      }
+    },
+    [handleClear]
+  );
 
   return (
     <li className={styles.files_list_item}>
       <span className={styles.files_list_item_name}>{name}</span>
       {!uploadComplete ? (
-        <span
+        <button
+          type="button"
           className={styles.files_list_item_clear}
-          role="button"
           aria-label="remove file"
           onClick={handleClear}
+          onKeyDown={handleKeyDown}
         >
           <ClearIcon />
-        </span>
+        </button>
       ) : (
-        <span role="img" className={styles.file_list_item_check}>
+        <span role="img" className={styles.file_list_item_check} aria-label="upload complete">
           <CheckIcon />
         </span>
       )}
     </li>
   );
+}
+
+FilesListItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onClear: PropTypes.func.isRequired,
+  uploadComplete: PropTypes.bool,
 };
 
-const FilesList = ({ files, onClear, uploadComplete }) => {
+FilesListItem.defaultProps = {
+  uploadComplete: false,
+};
+
+function FilesList({ files, onClear, uploadComplete }) {
   return (
     <ul className={styles.files_list}>
       {files.map(({ file, id }) => (
@@ -43,6 +65,23 @@ const FilesList = ({ files, onClear, uploadComplete }) => {
       ))}
     </ul>
   );
+}
+
+FilesList.propTypes = {
+  files: PropTypes.arrayOf(
+    PropTypes.shape({
+      file: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    })
+  ).isRequired,
+  onClear: PropTypes.func.isRequired,
+  uploadComplete: PropTypes.bool,
 };
 
-export { FilesList };
+FilesList.defaultProps = {
+  uploadComplete: false,
+};
+
+export default FilesList;

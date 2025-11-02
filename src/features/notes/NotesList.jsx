@@ -1,10 +1,10 @@
-import { useGetNotesQuery } from "./notesApiSlice";
-import Note from "./Note";
-import OutletLoadingPage from "../../components/OutletLoadingPage";
-import useAuth from "../../hooks/useAuth";
-import { Button, Col, Dropdown, Row } from "react-bootstrap";
-import "./NotesList.css";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
+import { Button, Col, Dropdown, Row } from 'react-bootstrap';
+import { useGetNotesQuery } from './notesApiSlice';
+import Note from './Note';
+import OutletLoadingPage from '../../components/OutletLoadingPage';
+import useAuth from '../../hooks/useAuth';
+import './NotesList.css';
 
 const NotesList = () => {
   const { username, isManager, isAdmin } = useAuth();
@@ -15,7 +15,7 @@ const NotesList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetNotesQuery("notelist", {
+  } = useGetNotesQuery('notelist', {
     pollingInterval: 1500000,
     refetchOnFocus: true,
     refetchOnMountOrArgChange: true,
@@ -37,14 +37,11 @@ const NotesList = () => {
     if (isManager || isAdmin) {
       filteredIds = [...ids];
     } else {
-      filteredIds = ids.filter(
-        (noteId) => entities[noteId].username === username
-      );
+      filteredIds = ids.filter((noteId) => entities[noteId].username === username);
     }
 
     const tableContent =
-      ids?.length &&
-      filteredIds.map((noteId) => <Note key={noteId} noteId={noteId} />);
+      ids?.length && filteredIds.map((noteId) => <Note key={noteId} noteId={noteId} />);
 
     const table = (
       <table className="table table-notes">
@@ -80,7 +77,7 @@ const NotesList = () => {
           <Col md={10}>
             <h1>Notes List</h1>
           </Col>
-          <Col style={{ textAlign: "right" }} md={2}>
+          <Col style={{ textAlign: 'right' }} md={2}>
             <Button className="btn-new-part">
               <Link className="btn-text" to="/dash/notes/new">
                 Add New Note
@@ -88,21 +85,21 @@ const NotesList = () => {
             </Button>
           </Col>
         </Row>
-        <div className="vh3-spacer"></div>
+        <div className="vh3-spacer" />
         <div className="notes-container">
           <div className="notes-search-bar">
             <Row>
-              <div className="vh2-spacer"></div>
-              <Col style={{ textAlign: "center" }}>
+              <div className="vh2-spacer" />
+              <Col style={{ textAlign: 'center' }}>
                 <input
                   name="searchNotes"
                   className="notes-search-input"
                   placeholder="    Search notes..."
-                ></input>
+                />
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Note Status</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Note Status</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -122,9 +119,9 @@ const NotesList = () => {
                   </Dropdown>
                 </Row>
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Sort</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Sort</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -137,22 +134,16 @@ const NotesList = () => {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu className="notes-status-dropdown-menu">
-                      <Dropdown.Item href="#/action-1">
-                        Date Created
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Created By
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Description
-                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-1">Date Created</Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">Created By</Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">Description</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Row>
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Type</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Type</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -160,7 +151,7 @@ const NotesList = () => {
                       className="notes-status-dropdown"
                       variant="success"
                       id="dropdown-basic"
-                    ></Dropdown.Toggle>
+                    />
                     <Dropdown.Menu className="notes-status-dropdown-menu">
                       <Dropdown.Item href="#/action-1">Resistor</Dropdown.Item>
                       <Dropdown.Item href="#/action-2">Capacitor</Dropdown.Item>

@@ -1,13 +1,13 @@
-import * as _ from "lodash";
+import * as _ from 'lodash';
 
-export function changeNumberOfData(data) {
+function changeNumberOfData(data) {
   if (Array.isArray(data)) {
     return data.map(changeNumberOfData);
   }
 
-  if (typeof data === "object") {
+  if (typeof data === 'object') {
     return _.mapValues(data, (val) => {
-      if (typeof val === "number") {
+      if (typeof val === 'number') {
         return Math.floor(val * Math.random() * 2);
       }
 
@@ -17,3 +17,5 @@ export function changeNumberOfData(data) {
 
   return data;
 }
+
+export default changeNumberOfData;

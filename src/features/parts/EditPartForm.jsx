@@ -1,93 +1,112 @@
-import { useState, useEffect } from "react";
-import { useUpdatePartMutation, useDeletePartMutation } from "./partsApiSlice";
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaEdit, FaSave, FaTrash } from "react-icons/fa";
-import { Row, Col } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-import useAuth from "../../hooks/useAuth";
-import ImagePicker from "../../components/ImagePicker";
-import "./EditPartForm.css";
+import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FaArrowLeft, FaEdit, FaSave, FaTrash } from 'react-icons/fa';
+import { Row, Col } from 'react-bootstrap';
+import Form from 'react-bootstrap/Form';
+import { useUpdatePartMutation, useDeletePartMutation } from './partsApiSlice';
+import useAuth from '../../hooks/useAuth';
+import ImagePicker from '../../components/ImagePicker';
+import './EditPartForm.css';
 
-const EditPartForm = ({ part, idReadOnly }) => {
+function EditPartForm({ part, idReadOnly }) {
   const { username, isManager, isAdmin } = useAuth();
 
-  const [updatePart, { isLoading, isSuccess, isError, error }] =
-    useUpdatePartMutation();
+  const [
+    updatePart,
+    {
+      isLoading,
+      isSuccess,
+
+      // isError,
+
+      error,
+    },
+  ] = useUpdatePartMutation();
 
   const [
     deletePart,
-    { isSuccess: isDelSuccess, isError: isDelError, error: delerror },
+    {
+      isSuccess: isDelSuccess,
+
+      // isError: isDelError,
+
+      error: delerror,
+    },
   ] = useDeletePartMutation();
 
   const navigate = useNavigate();
 
-  const created = new Date(part.createdAt).toLocaleString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-  });
-  const updated = new Date(part.updatedAt).toLocaleString("en-US", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-  });
+  const created = part?.createdAt
+    ? new Date(part.createdAt).toLocaleString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      })
+    : '';
 
-  const [name, setName] = useState(part.name);
-  const [description, setDescription] = useState(part.description);
-  const [qty, setQty] = useState(part.qty);
-  const [partType, setPartType] = useState(part.partType);
-  const [createdBy] = useState(part.createdBy);
+  const updated = part?.updatedAt
+    ? new Date(part.updatedAt).toLocaleString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+      })
+    : '';
+
+  const [name, setName] = useState(part?.name ?? '');
+  const [description, setDescription] = useState(part?.description ?? '');
+  const [qty, setQty] = useState(part?.qty ?? 0);
+  const [partType, setPartType] = useState(part?.partType ?? '');
+  const [createdBy] = useState(part?.createdBy ?? '');
   const [createdAt] = useState(created);
   const [updatedAt] = useState(updated);
-  const [updatedBy, setUpdatedBy] = useState(username);
-  const [images, setImages] = useState(part.images);
+  const [updatedBy, setUpdatedBy] = useState(username ?? '');
+  const [images, setImages] = useState(part?.images ?? []);
   const [newImages, setNewImages] = useState([]);
-  const [deletedImages, setDeletedImages] = useState(part.deletedImages);
-  const [partNumber, setPartNumber] = useState(part.partNumber);
-  const [lotId, setLotId] = useState(part.lotId);
-  const [serialNumber, setSerialNumber] = useState(part.serialNumber);
-  const [manufacturer, setManufacturer] = useState(part.manufacturer);
-  const [mfgDate, setMfgDate] = useState(part.mfgDate);
-  const [backOrder, setBackOrder] = useState(part.backOrder);
-  const [vendorName, setVendorName] = useState(part.vendorName);
-  const [partPackage, setPartPackage] = useState(part.partPackage);
-  const [partLocation, setPartLocation] = useState(part.partLocation);
-  const [cost, setCost] = useState(part.cost);
+  const [deletedImages, setDeletedImages] = useState(part?.deletedImages ?? []);
+  const [partNumber, setPartNumber] = useState(part?.partNumber ?? '');
+  const [lotId, setLotId] = useState(part?.lotId ?? '');
+  const [serialNumber, setSerialNumber] = useState(part?.serialNumber ?? '');
+  const [manufacturer, setManufacturer] = useState(part?.manufacturer ?? '');
+  const [mfgDate, setMfgDate] = useState(part?.mfgDate ?? '');
+  const [backOrder, setBackOrder] = useState(part?.backOrder ?? 0);
+  const [vendorName, setVendorName] = useState(part?.vendorName ?? '');
+  const [partPackage, setPartPackage] = useState(part?.partPackage ?? '');
+  const [partLocation, setPartLocation] = useState(part?.partLocation ?? '');
+  const [cost, setCost] = useState(part?.cost ?? 0.0);
 
-  const [userId, setUserId] = useState(part.user);
+  const [userId, setUserId] = useState(part?.user ?? '');
 
   useEffect(() => {
-    console.log(idReadOnly);
-
     if (isSuccess || isDelSuccess) {
-      setUserId("");
-      setName("");
-      setDescription("");
+      setUserId('');
+      setName('');
+      setDescription('');
       setQty(0);
-      setPartType("");
-      setUpdatedBy("");
-      setImages("");
-      setNewImages("");
+      setPartType('');
+      setUpdatedBy('');
+      setImages([]);
+      setNewImages([]);
       setDeletedImages([]);
-      setPartNumber("");
-      setLotId("");
-      setSerialNumber("");
-      setManufacturer("");
-      setMfgDate("");
+      setPartNumber('');
+      setLotId('');
+      setSerialNumber('');
+      setManufacturer('');
+      setMfgDate('');
       setBackOrder(0);
-      setVendorName("");
-      setPartPackage("");
-      setPartLocation("");
+      setVendorName('');
+      setPartPackage('');
+      setPartLocation('');
       setCost(0.0);
-      navigate("/dash/parts");
+      navigate('/dash/parts');
     }
-  }, [isSuccess, isDelSuccess, navigate, images, deletedImages, idReadOnly]);
+  }, [isSuccess, isDelSuccess, navigate]);
 
   const onNameChanged = (e) => setName(e.target.value);
   const onDescriptionChanged = (e) => setDescription(e.target.value);
@@ -103,8 +122,6 @@ const EditPartForm = ({ part, idReadOnly }) => {
   const onManufacturerChanged = (e) => setManufacturer(e.target.value);
   const onCostChanged = (e) => setCost(e.target.value);
   const onVendorNameChanged = (e) => setVendorName(e.target.value);
-
-  // const onNewImagesChanged = (e) => setNewImages(e.target.value);
 
   const canSave = [name, description, userId].every(Boolean) && !isLoading;
 
@@ -138,17 +155,17 @@ const EditPartForm = ({ part, idReadOnly }) => {
     }
   };
 
-  const onBackClicked = async (e) => {
+  const onBackClicked = (e) => {
     e.preventDefault();
     navigate(`/dash/parts`);
   };
 
-  const onViewClicked = async (e) => {
+  const onViewClicked = (e) => {
     e.preventDefault();
     navigate(`/dash/parts/${part.id}`);
   };
 
-  const onEditPartClicked = async (e) => {
+  const onEditPartClicked = (e) => {
     e.preventDefault();
     navigate(`/dash/parts/${part.id}/edit`);
   };
@@ -159,56 +176,57 @@ const EditPartForm = ({ part, idReadOnly }) => {
     navigate(`/dash/parts`);
   };
 
-  const onImageDeleteClicked = async (e) => {
+  const onImageDeleteClicked = (e) => {
     e.preventDefault();
-    console.log(e.target.getAttribute("name"));
+    const fileName = e.currentTarget.dataset.filename;
+    if (!fileName) return;
 
-    const fileName = e.target.getAttribute("name");
+    const tag = { fileName };
+    setDeletedImages((prev) => [...prev, tag]);
 
-    const tag = {
-      fileName: fileName,
-    };
-    setDeletedImages([...deletedImages, tag]);
-
-    setImages(images.filter((image) => image.fileName !== fileName));
+    setImages((prev) => prev.filter((image) => image.fileName !== fileName));
   };
 
-  // const options = partTypes.map((types, idx) => {
-  //   return (
-  //     <option key={idx} value={types}>
-  //       {types}
-  //     </option>
-  //   );
-  // });
-
-  const partImages = images.map((image, idx) => {
+  const partImages = images.map((image) => {
+    const key = image.fileName ?? image.url ?? image.id;
     return (
-      <Col md={2} className="part-image" key={idx}>
+      <Col md={2} className="part-image" key={key}>
         <Row>
-          <a href="">
-            <img alt="" className="part-image" src={image.url} />
-          </a>
+          {image.url ? (
+            <a href={image.url} target="_blank" rel="noopener noreferrer">
+              <img alt={image.fileName ?? 'part image'} className="part-image" src={image.url} />
+            </a>
+          ) : (
+            <div>
+              <img alt={image.fileName ?? 'part image'} className="part-image" src={image.url} />
+            </div>
+          )}
         </Row>
-        <Row style={{ textAlign: "center" }}>
-          <a href="/" onClick={onImageDeleteClicked}>
-            <p name={image.fileName}>Delete</p>
-          </a>
+        <Row style={{ textAlign: 'center' }}>
+          <button
+            type="button"
+            className="link-button"
+            data-filename={image.fileName}
+            onClick={onImageDeleteClicked}
+            aria-label={`Delete image ${image.fileName ?? ''}`}
+          >
+            Delete
+          </button>
         </Row>
       </Col>
     );
   });
 
-  // const errClass = isError || isDelError ? "errmsg" : "offscreen";
-
-  const errContent = (error?.data?.message || delerror?.data?.message) ?? "";
+  const errContent = (error?.data?.message || delerror?.data?.message) ?? '';
 
   let deleteButton = null;
   if (isManager || isAdmin) {
     deleteButton = (
       <button
+        type="button"
         className="icon-button"
         title="Delete Part"
-        onClick={(e) => onDeletePartClicked(e)}
+        onClick={onDeletePartClicked}
       >
         <FaTrash />
       </button>
@@ -220,13 +238,12 @@ const EditPartForm = ({ part, idReadOnly }) => {
   const content = (
     <>
       {errContent}
-      {isError}
-      {isDelError}
       <Form noValidate validated={validated} onSubmit={onSavePartClicked}>
-        <h2>{idReadOnly ? "View" : "Edit"} Part Details</h2>
+        <h2>{idReadOnly ? 'View' : 'Edit'} Part Details</h2>
         <div className="form__action-buttons">
           {idReadOnly ? (
             <button
+              type="button"
               className="icon-button-left"
               title="Back to parts list"
               onClick={onBackClicked}
@@ -235,6 +252,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
             </button>
           ) : (
             <button
+              type="button"
               className="icon-button-left"
               title="View Part Details"
               onClick={onViewClicked}
@@ -245,6 +263,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
 
           {idReadOnly ? (
             <button
+              type="button"
               className="icon-button"
               title="Edit Part Details"
               onClick={onEditPartClicked}
@@ -255,13 +274,14 @@ const EditPartForm = ({ part, idReadOnly }) => {
           ) : (
             <>
               <button
+                type="button"
                 className="icon-button"
                 title="Save Part"
                 onClick={onSavePartClicked}
                 disabled={!canSave}
               >
                 <FaSave />
-              </button>{" "}
+              </button>{' '}
               {deleteButton}
             </>
           )}
@@ -277,7 +297,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
               required
               type="text"
               placeholder="Part Name"
-              defaultValue={name}
+              value={name}
               title="Part Name"
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -285,6 +305,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
               Please choose a valid Part Name.
             </Form.Control.Feedback>
           </Form.Group>
+
           <Form.Group as={Col} md="4" controlId="validationPartNumber">
             <Form.Label>Part Number</Form.Label>
             <Form.Control
@@ -294,7 +315,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
               required
               type="text"
               placeholder="Part Number"
-              defaultValue={partNumber}
+              value={partNumber}
               title="Part Number"
             />
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
@@ -302,6 +323,7 @@ const EditPartForm = ({ part, idReadOnly }) => {
               Please choose a valid Part Number.
             </Form.Control.Feedback>
           </Form.Group>
+
           <Form.Group as={Col} md="4" controlId="validationPartType">
             <Form.Label>Part Type</Form.Label>
             <Form.Control
@@ -311,10 +333,11 @@ const EditPartForm = ({ part, idReadOnly }) => {
               name="parttype"
               type="text"
               placeholder="Part Type"
-              defaultValue={partType}
+              value={partType}
             />
           </Form.Group>
         </Row>
+
         <Row className="mt-3 mb-3">
           <Form.Group as={Col} md="12" controlId="validationDescription">
             <Form.Label>Description</Form.Label>
@@ -325,18 +348,19 @@ const EditPartForm = ({ part, idReadOnly }) => {
               as="textarea"
               rows={4}
               placeholder="Description"
-              defaultValue={description}
+              value={description}
               title="Part Description"
             />
           </Form.Group>
         </Row>
+
         <Row>
           <Form.Group as={Col} md="3" controlId="validationStockQty">
             <Form.Label>Stock Qty</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               name="stockqty"
-              defaultValue={qty}
+              value={qty}
               onChange={onStockQtyChanged}
               min="0"
               max="10000"
@@ -345,12 +369,13 @@ const EditPartForm = ({ part, idReadOnly }) => {
               title="Stock Qty"
             />
           </Form.Group>
+
           <Form.Group as={Col} md="3" controlId="validationBackorderQty">
             <Form.Label>Backorder Qty (B/O)</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onBackorderQtyChanged}
-              defaultValue={backOrder}
+              value={backOrder}
               min="0"
               max="10000"
               type="number"
@@ -358,12 +383,13 @@ const EditPartForm = ({ part, idReadOnly }) => {
               title="Backorder Qty"
             />
           </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="3" controlId="validationUnitCost">
             <Form.Label>Unit Cost</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onCostChanged}
-              defaultValue={cost}
+              value={cost}
               min="0.00"
               max="10000.00"
               step="0.01"
@@ -375,34 +401,36 @@ const EditPartForm = ({ part, idReadOnly }) => {
         </Row>
 
         <Row className="mt-3 mb-3">
-          <Form.Group as={Col} md="3" controlId="validationStockQty">
+          <Form.Group as={Col} md="3" controlId="validationLocation">
             <Form.Label>Location</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onLocationChanged}
-              defaultValue={partLocation}
+              value={partLocation}
               type="text"
               placeholder="Location"
               title="Location"
             />
           </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="3" controlId="validationPackageType">
             <Form.Label>Package Type</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onPackageTypeChanged}
-              defaultValue={partPackage}
+              value={partPackage}
               type="text"
               placeholder="Part Package"
               title="Part Package"
             />
           </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="3" controlId="validationLotId">
             <Form.Label>Lot Id</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onLotIdChanged}
-              defaultValue={lotId}
+              value={lotId}
               type="text"
               placeholder="Lot Id"
               title="Lot Id"
@@ -411,45 +439,48 @@ const EditPartForm = ({ part, idReadOnly }) => {
         </Row>
 
         <Row className="mt-3 mb-3">
-          <Form.Group as={Col} md="3" controlId="validationStockQty">
+          <Form.Group as={Col} md="3" controlId="validationSerialNumber">
             <Form.Label>Serial Number (S/N)</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
-              defaultValue={serialNumber}
+              value={serialNumber}
               onChange={onSerialNumberChanged}
               type="text"
               placeholder="Serial Number"
               title="Serial Number"
             />
           </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="3" controlId="validationMfgDate">
             <Form.Label>Manufacturing Date</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onMfgDateChanged}
-              defaultValue={mfgDate}
+              value={mfgDate}
               type="date"
               placeholder="Mfg Date"
               title="Mfg Date"
             />
           </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="3" controlId="validationManufacturer">
             <Form.Label>Manufacturer</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onManufacturerChanged}
-              defaultValue={manufacturer}
+              value={manufacturer}
               type="text"
               placeholder="Manufacturer"
               title="Manufacturer"
             />
           </Form.Group>
-          <Form.Group as={Col} md="3" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="3" controlId="validationVendor">
             <Form.Label>Vendor</Form.Label>
             <Form.Control
               readOnly={idReadOnly}
               onChange={onVendorNameChanged}
-              defaultValue={vendorName}
+              value={vendorName}
               type="text"
               placeholder="Vendor"
               title="Vendor"
@@ -458,42 +489,44 @@ const EditPartForm = ({ part, idReadOnly }) => {
         </Row>
 
         <Row className="mt-3 mb-3">
-          <Form.Group as={Col} md="2" controlId="validationStockQty">
+          <Form.Group as={Col} md="2" controlId="validationDateCreated">
             <Form.Label>Date Created</Form.Label>
             <Form.Control
               readOnly
-              defaultValue={createdAt}
+              value={createdAt}
               type="text"
               placeholder="Date Created"
               title="Date Created"
             />
           </Form.Group>
-          <Form.Group as={Col} md="2" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="2" controlId="validationCreatedBy">
             <Form.Label>Created By</Form.Label>
             <Form.Control
               readOnly
-              defaultValue={createdBy}
+              value={createdBy}
               type="text"
               placeholder="Created By"
               title="Created By"
             />
           </Form.Group>
-          <Form.Group as={Col} md="2" controlId="validationStockQty">
+
+          <Form.Group as={Col} md="2" controlId="validationDateEdited">
             <Form.Label>Date Edited</Form.Label>
             <Form.Control
               readOnly
-              defaultValue={updatedAt}
-              onChange={onStockQtyChanged}
+              value={updatedAt}
               type="text"
               placeholder="Date Edited"
               title="Date Edited"
             />
           </Form.Group>
-          <Form.Group as={Col} md="2" controlId="validationBackorderQty">
+
+          <Form.Group as={Col} md="2" controlId="validationEditedBy">
             <Form.Label>Edited By</Form.Label>
             <Form.Control
               readOnly
-              defaultValue={updatedBy}
+              value={updatedBy}
               type="text"
               placeholder="Updated By"
               title="Updated By"
@@ -501,17 +534,59 @@ const EditPartForm = ({ part, idReadOnly }) => {
           </Form.Group>
         </Row>
       </Form>
-      <div className="vh2-spacer"></div>
+
+      <div className="vh2-spacer" />
       <h4>Attach a file:</h4>
-      <div className="vh2-spacer"></div>
+      <div className="vh2-spacer" />
       <ImagePicker images={images} setImages={setImages} />
-      <div className="vh2-spacer"></div>
+      <div className="vh2-spacer" />
       <Row>{partImages}</Row>
-      <div className="vh5-spacer"></div>
+      <div className="vh5-spacer" />
     </>
   );
 
   return content;
+}
+
+EditPartForm.propTypes = {
+  part: PropTypes.shape({
+    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    createdAt: PropTypes.string,
+    updatedAt: PropTypes.string,
+    name: PropTypes.string,
+    description: PropTypes.string,
+    qty: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    partType: PropTypes.string,
+    createdBy: PropTypes.string,
+    images: PropTypes.arrayOf(
+      PropTypes.shape({
+        fileName: PropTypes.string,
+        url: PropTypes.string,
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      })
+    ),
+    deletedImages: PropTypes.arrayOf(
+      PropTypes.shape({
+        fileName: PropTypes.string,
+      })
+    ),
+    partNumber: PropTypes.string,
+    lotId: PropTypes.string,
+    serialNumber: PropTypes.string,
+    manufacturer: PropTypes.string,
+    mfgDate: PropTypes.string,
+    backOrder: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    vendorName: PropTypes.string,
+    partPackage: PropTypes.string,
+    partLocation: PropTypes.string,
+    cost: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    user: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
+  idReadOnly: PropTypes.bool,
+};
+
+EditPartForm.defaultProps = {
+  idReadOnly: false,
 };
 
 export default EditPartForm;

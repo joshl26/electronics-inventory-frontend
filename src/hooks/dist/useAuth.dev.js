@@ -1,52 +1,47 @@
-"use strict";
+// src/hooks/useAuth.js
+import { useSelector } from 'react-redux';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+import jwtDecode from 'jwt-decode';
+import { selectCurrentToken } from '../../features/auth/authSlice';
 
-var _reactRedux = require("react-redux");
+export default function useAuth() {
+  const token = useSelector(selectCurrentToken);
 
-var _authSlice = require("../features/auth/authSlice");
-
-var _jwtDecode = _interopRequireDefault(require("jwt-decode"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var useAuth = function useAuth() {
-  var token = (0, _reactRedux.useSelector)(_authSlice.selectCurrentToken);
-  var isManager = false;
-  var isAdmin = false;
-  var status = "Employee"; // Assign value to a key
-
-  sessionStorage.setItem("token", token);
+  let username = '';
+  let roles = [];
+  let isManager = false;
+  let isAdmin = false;
+  let status = 'Employee';
 
   if (token) {
-    var decoded = (0, _jwtDecode["default"])(token);
-    var _decoded$UserInfo = decoded.UserInfo,
-        username = _decoded$UserInfo.username,
-        roles = _decoded$UserInfo.roles;
-    isManager = roles.includes("Manager");
-    isAdmin = roles.includes("Admin");
-    if (isManager) status = "Manager";
-    if (isAdmin) status = "Admin";
-    return {
-      username: username,
-      roles: roles,
-      status: status,
-      isManager: isManager,
-      isAdmin: isAdmin
-    };
+    try {
+      const decoded = jwtDecode(token);
+      const userInfo = decoded && decoded.UserInfo ? decoded.UserInfo : {};
+
+      username = userInfo.username || '';
+      roles = Array.isArray(userInfo.roles) ? userInfo.roles : [];
+
+      isManager = roles.includes('Manager');
+      isAdmin = roles.includes('Admin');
+
+      if (isAdmin) status = 'Admin';
+      else if (isManager) status = 'Manager';
+
+      try {
+        sessionStorage.setItem('token', token);
+      } catch (err) {
+        // ignore sessionStorage errors (e.g. SSR or private mode)
+      }
+    } catch (err) {
+      // invalid token — keep defaults
+    }
   }
 
   return {
-    username: "",
-    roles: [],
-    isManager: isManager,
-    isAdmin: isAdmin,
-    status: status
+    username,
+    roles,
+    status,
+    isManager,
+    isAdmin,
   };
-};
-
-var _default = useAuth;
-exports["default"] = _default;
+}

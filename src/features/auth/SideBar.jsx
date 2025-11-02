@@ -1,32 +1,27 @@
-import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
-import { Col, Row } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import {
-  FaGlasses,
-  FaHammer,
-  FaHome,
-  FaPlus,
-  FaPlusCircle,
-} from "react-icons/fa";
-import "./SideBar.css";
+import { Link } from 'react-router-dom';
+import { Col, Row } from 'react-bootstrap';
+import { useEffect, useState } from 'react';
+import { FaGlasses, FaHammer, FaHome, FaPlusCircle } from 'react-icons/fa';
+import PropTypes from 'prop-types';
+import useAuth from '../../hooks/useAuth';
+import './SideBar.css';
 
-const SideBar = ({ sidebarShown }) => {
+function SideBar({ sidebarShown }) {
   const { username, isManager, isAdmin } = useAuth();
 
   const delay = 1;
 
   const [dateState, setDateState] = useState(new Date());
 
-  const today = new Intl.DateTimeFormat("en-US", {
-    dateStyle: "full",
-    timeStyle: "long",
+  const today = new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'full',
+    timeStyle: 'long',
   }).format(dateState);
 
   useEffect(() => {
-    setInterval(() => setDateState(new Date()), delay * 1000);
-    return () => {};
-  }, []);
+    const id = setInterval(() => setDateState(new Date()), delay * 1000);
+    return () => clearInterval(id);
+  }, [delay]);
 
   return (
     <div>
@@ -41,22 +36,18 @@ const SideBar = ({ sidebarShown }) => {
                 <h1 className="welcome-header-text">Welcome {username}</h1>
               </Row>
               <Row>
-                <div className="spacer-small"></div>
+                <div className="spacer-small" />
               </Row>
-              <Row
-                className="sidebar-links"
-                style={{ color: "rgb(125, 176, 14)" }}
-              >
+              <Row className="sidebar-links" style={{ color: 'rgb(125, 176, 14)' }}>
                 <Col md={2}>
-                  <FaPlus className="sidebar-icon" />
+                  <FaPlusCircle className="sidebar-icon" />
                 </Col>
                 <Col>
                   <Link to="/dash">
                     <p
                       className="sidebar-links sidebar-text"
-                      style={{ color: "rgb(125, 176, 14)", fontWeight: "700" }}
+                      style={{ color: 'rgb(125, 176, 14)', fontWeight: '700' }}
                     >
-                      {" "}
                       CREATE
                     </p>
                   </Link>
@@ -68,7 +59,7 @@ const SideBar = ({ sidebarShown }) => {
                 </Col>
                 <Col>
                   <Link to="/dash">
-                    <p className="sidebar-links sidebar-text"> DashBoard</p>
+                    <p className="sidebar-links sidebar-text">DashBoard</p>
                   </Link>
                 </Col>
               </Row>
@@ -88,7 +79,7 @@ const SideBar = ({ sidebarShown }) => {
                 </Col>
                 <Col>
                   <Link to="/dash/parts/new">
-                    <p className="sidebar-links sidebar-text"> Add New Parts</p>
+                    <p className="sidebar-links sidebar-text">Add New Parts</p>
                   </Link>
                 </Col>
               </Row>
@@ -99,7 +90,7 @@ const SideBar = ({ sidebarShown }) => {
                 </Col>
                 <Col>
                   <Link to="/dash/notes">
-                    <p className="sidebar-links sidebar-text"> View Notes</p>
+                    <p className="sidebar-links sidebar-text">View Notes</p>
                   </Link>
                 </Col>
               </Row>
@@ -109,7 +100,7 @@ const SideBar = ({ sidebarShown }) => {
                 </Col>
                 <Col>
                   <Link to="/dash/notes/new">
-                    <p className="sidebar-links sidebar-text"> Add new Notes</p>
+                    <p className="sidebar-links sidebar-text">Add new Notes</p>
                   </Link>
                 </Col>
               </Row>
@@ -121,9 +112,7 @@ const SideBar = ({ sidebarShown }) => {
                     </Col>
                     <Col>
                       <Link to="/dash/users">
-                        <p className="sidebar-links sidebar-text">
-                          View User Settings
-                        </p>
+                        <p className="sidebar-links sidebar-text">View User Settings</p>
                       </Link>
                     </Col>
                   </>
@@ -137,9 +126,7 @@ const SideBar = ({ sidebarShown }) => {
                     </Col>
                     <Col>
                       <Link to="/dash/users/new">
-                        <p className="sidebar-links sidebar-text">
-                          Add new User
-                        </p>
+                        <p className="sidebar-links sidebar-text">Add new User</p>
                       </Link>
                     </Col>
                   </>
@@ -153,15 +140,11 @@ const SideBar = ({ sidebarShown }) => {
           <section className="welcome">
             <Col>
               <Row>
-                <div className="spacer-small"></div>
+                <div className="spacer-small" />
               </Row>
               <Row className="sidebar-links">
                 <Col>
-                  <Link
-                    title="Home"
-                    className="sidebar-links sidebar-text"
-                    to="/dash"
-                  >
+                  <Link title="Home" className="sidebar-links sidebar-text" to="/dash">
                     <FaHome className="sidebar-icon" />
                   </Link>
                 </Col>
@@ -240,9 +223,16 @@ const SideBar = ({ sidebarShown }) => {
           </section>
         </div>
       )}
-      ;
     </div>
   );
+}
+
+SideBar.propTypes = {
+  sidebarShown: PropTypes.bool,
+};
+
+SideBar.defaultProps = {
+  sidebarShown: false,
 };
 
 export default SideBar;

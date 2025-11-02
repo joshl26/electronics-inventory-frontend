@@ -54,7 +54,7 @@
   }
 
   .logo_text {
-    font-family: "Figtree", sans-serif;
+    font-family: 'Figtree', sans-serif;
     margin: 0;
     font-size: 2em;
   }
@@ -115,7 +115,9 @@
     z-index: 10;
     position: fixed;
     width: 100%;
-    transition: background-color 0.5s ease 0s, box-shadow 0.5s ease 0s;
+    transition:
+      background-color 0.5s ease 0s,
+      box-shadow 0.5s ease 0s;
   }
 
   .nav-bg-light {
@@ -135,7 +137,7 @@
   }
 
   .login_text {
-    font-family: "Figtree", sans-serif;
+    font-family: 'Figtree', sans-serif;
     margin: 0;
     font-size: 1.25em;
   }

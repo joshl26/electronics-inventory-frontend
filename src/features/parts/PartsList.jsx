@@ -1,20 +1,20 @@
 // import str from "../../mock_data/parts.json";
 
-import { useGetPartsQuery } from "./partsApiSlice";
-import { useState } from "react";
-import { Button, Col, Dropdown, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import OutletLoadingPage from "../../components/OutletLoadingPage";
-import Part from "../parts/Part";
+import { useState } from 'react';
+import { Button, Col, Dropdown, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useGetPartsQuery } from './partsApiSlice';
+import OutletLoadingPage from '../../components/OutletLoadingPage';
+import Part from './Part';
 
-import "./PartsList.css";
+import './PartsList.css';
 
 const PartsList = () => {
-  const [partsListStatus, setPartsListStatus] = useState("All");
-  const [partsListSort, setPartsListSort] = useState("Part Number");
-  const [partsListType, setPartsListType] = useState("All");
+  const [partsListStatus, setPartsListStatus] = useState('All');
+  const [partsListSort, setPartsListSort] = useState('Part Number');
+  const [partsListType, setPartsListType] = useState('All');
 
-  //TODO Determnine why the first argument in useGetPartsQuery needs to be undefined here
+  // TODO Determnine why the first argument in useGetPartsQuery needs to be undefined here
   const {
     data: parts,
     isLoading,
@@ -38,8 +38,7 @@ const PartsList = () => {
   if (isSuccess) {
     const { ids } = parts;
 
-    const tableContent =
-      ids?.length && ids.map((partId) => <Part key={partId} partId={partId} />);
+    const tableContent = ids?.length && ids.map((partId) => <Part key={partId} partId={partId} />);
 
     const table = (
       <table className="table table-parts">
@@ -78,7 +77,7 @@ const PartsList = () => {
           <Col md={10}>
             <h1>Parts Inventory</h1>
           </Col>
-          <Col style={{ textAlign: "right" }} md={2}>
+          <Col style={{ textAlign: 'right' }} md={2}>
             <Button className="btn-new-part">
               <Link className="btn-text" to="/dash/parts/new">
                 Add New Part
@@ -86,21 +85,21 @@ const PartsList = () => {
             </Button>
           </Col>
         </Row>
-        <div className="vh3-spacer"></div>
+        <div className="vh3-spacer" />
         <div className="parts-container">
           <div className="parts-search-bar">
             <Row>
-              <div className="vh2-spacer"></div>
-              <Col style={{ textAlign: "center" }}>
+              <div className="vh2-spacer" />
+              <Col style={{ textAlign: 'center' }}>
                 <input
                   name="searchParts"
                   className="parts-search-input"
                   placeholder="    Search parts..."
-                ></input>
+                />
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Status</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Status</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -112,26 +111,20 @@ const PartsList = () => {
                       {partsListStatus}
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="parts-status-dropdown-menu">
-                      <Dropdown.Item
-                        onClick={() => setPartsListStatus("In Stock")}
-                      >
+                      <Dropdown.Item onClick={() => setPartsListStatus('In Stock')}>
                         In Stock
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => setPartsListStatus("Out of Stock")}
-                      >
+                      <Dropdown.Item onClick={() => setPartsListStatus('Out of Stock')}>
                         Out of Stock
                       </Dropdown.Item>
-                      <Dropdown.Item onClick={() => setPartsListStatus("All")}>
-                        All
-                      </Dropdown.Item>
+                      <Dropdown.Item onClick={() => setPartsListStatus('All')}>All</Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Row>
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Sort</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Sort</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -145,19 +138,16 @@ const PartsList = () => {
 
                     <Dropdown.Menu className="parts-status-dropdown-menu">
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Part Number")}
+                        onClick={() => setPartsListSort('Part Number')}
                         href="#/action-1"
                       >
                         Part Number
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => setPartsListSort("Qty")}
-                        href="#/action-2"
-                      >
+                      <Dropdown.Item onClick={() => setPartsListSort('Qty')} href="#/action-2">
                         Qty
                       </Dropdown.Item>
                       <Dropdown.Item
-                        onClick={() => setPartsListSort("Backorder Qty")}
+                        onClick={() => setPartsListSort('Backorder Qty')}
                         href="#/action-3"
                       >
                         Backorder Qty
@@ -166,9 +156,9 @@ const PartsList = () => {
                   </Dropdown>
                 </Row>
               </Col>
-              <Col style={{ textAlign: "center" }}>
-                <Row style={{ textAlign: "left" }}>
-                  <p style={{ lineHeight: "0" }}>Type</p>
+              <Col style={{ textAlign: 'center' }}>
+                <Row style={{ textAlign: 'left' }}>
+                  <p style={{ lineHeight: '0' }}>Type</p>
                 </Row>
                 <Row>
                   <Dropdown>
@@ -180,22 +170,16 @@ const PartsList = () => {
                       {partsListType}
                     </Dropdown.Toggle>
                     <Dropdown.Menu className="parts-status-dropdown-menu">
-                      <Dropdown.Item
-                        onClick={() => setPartsListType("Resistor")}
-                        href="#/action-1"
-                      >
+                      <Dropdown.Item onClick={() => setPartsListType('Resistor')} href="#/action-1">
                         Resistor
                       </Dropdown.Item>
                       <Dropdown.Item
-                        onClick={() => setPartsListType("Capacitor")}
+                        onClick={() => setPartsListType('Capacitor')}
                         href="#/action-2"
                       >
                         Capacitor
                       </Dropdown.Item>
-                      <Dropdown.Item
-                        onClick={() => setPartsListType("All")}
-                        href="#/action-3"
-                      >
+                      <Dropdown.Item onClick={() => setPartsListType('All')} href="#/action-3">
                         All
                       </Dropdown.Item>
                     </Dropdown.Menu>

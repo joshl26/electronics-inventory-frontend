@@ -1,67 +1,50 @@
-import React, { useState } from "react";
-import LandingPage from "../features/pages/LandingPage";
-import LoginHeader from "../features/pages/LoginHeader";
-// import HeroImage from "../features/pages/HeroImage";
-import "./Plans.scss";
-import LoginFooter from "../features/pages/LoginFooter";
-import SwipeUpIcon from "../svg/SwipeUpIcon.json";
-import Lottie from "lottie-react";
-import CustomerGallery from "../features/pages/CustomerGallery";
-import { useEffect, useCallback } from "react";
+import React, { useState, useEffect } from 'react';
+import LoginHeader from '../features/pages/LoginHeader';
+import './Plans.scss';
+import LoginFooter from '../features/pages/LoginFooter';
 
-const Plans = () => {
+function Plans() {
   const [colorMode, setColorMode] = useState(
-    JSON.parse(localStorage.getItem("colorMode"))
+    () => JSON.parse(localStorage.getItem('colorMode')) ?? 'Light'
   );
 
-  const plansStyle =
-    colorMode === "Light"
-      ? "plans-light"
-      : "" || colorMode === "Dark"
-      ? "plans-dark"
-      : "";
-
-  const SwipeUpClickHandler = () => {
-    window.scrollTo(0, 0);
-  };
+  let plansStyle = '';
+  if (colorMode === 'Light') {
+    plansStyle = 'plans-light';
+  } else if (colorMode === 'Dark') {
+    plansStyle = 'plans-dark';
+  }
 
   const onChangeColorMode = (e) => {
-    console.log("On Change Color Mode " + e);
-
-    if (e === "Light") {
-      localStorage.setItem("colorMode", JSON.stringify("Dark"));
-      setColorMode("Dark");
+    // toggle color mode (keeps API compatible with your previous usage)
+    if (e === 'Light') {
+      localStorage.setItem('colorMode', JSON.stringify('Dark'));
+      setColorMode('Dark');
     } else {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
+      localStorage.setItem('colorMode', JSON.stringify('Light'));
+      setColorMode('Light');
     }
   };
 
   useEffect(() => {
-    const colorMode = JSON.parse(localStorage.getItem("colorMode"));
-
-    if (colorMode === null) {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
+    const stored = JSON.parse(localStorage.getItem('colorMode'));
+    if (stored === null) {
+      localStorage.setItem('colorMode', JSON.stringify('Light'));
+      setColorMode('Light');
     }
-  }, [colorMode, plansStyle]);
+    // run once on mount
+  }, []);
 
-  const content = (
+  return (
     <>
-      <LoginHeader
-        onChangeColorMode={onChangeColorMode}
-        colorMode={colorMode}
-      />
+      <LoginHeader onChangeColorMode={onChangeColorMode} colorMode={colorMode} />
       <section className={plansStyle}>
-        <div className="spacer"></div>
-
-        <h1 classname="plans-header-text">Plans</h1>
+        <div className="spacer" />
+        <h1 className="plans-header-text">Plans</h1>
       </section>
       <LoginFooter colorMode={colorMode} />
     </>
   );
-
-  return content;
-};
+}
 
 export default Plans;

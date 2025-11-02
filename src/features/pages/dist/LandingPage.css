@@ -1,5 +1,5 @@
 .landing-one {
-  background-image: url("https://res.cloudinary.com/dv6keahg3/image/upload/v1689524251/ElectronicsInventory/frontend_ui_images/background_1_crnuep.png");
+  background-image: url('https://res.cloudinary.com/dv6keahg3/image/upload/v1689524251/ElectronicsInventory/frontend_ui_images/background_1_crnuep.png');
   background-size: cover;
   min-height: 80vh;
   min-height: 80dvh;
@@ -13,14 +13,14 @@
 }
 
 .landing-header-1 {
-  font-family: "Gloock", serif;
+  font-family: 'Gloock', serif;
   font-size: 4rem;
   font-size: clamp(4rem, calc(3.25rem + 3.75vw), 7rem);
   font-size: clamp(4rem, calc(3.25rem + 3.75dvw), 7rem);
 }
 
 .landing-header-2 {
-  font-family: "Figtree", sans-serif;
+  font-family: 'Figtree', sans-serif;
   font-size: 1.5rem;
   font-size: clamp(1.5rem, calc(1.125rem + 1.875vw), 3rem);
   font-size: clamp(1.5rem, calc(1.125rem + 1.875dvw), 3rem);
@@ -31,7 +31,7 @@
 }
 
 .landing-header-3 {
-  font-family: "Figtree", sans-serif;
+  font-family: 'Figtree', sans-serif;
   font-size: 1.5rem;
   font-size: clamp(1.5rem, calc(1.125rem + 1.875vw), 3rem);
   font-size: clamp(1.5rem, calc(1.125rem + 1.875dvw), 3rem);
@@ -39,7 +39,7 @@
 }
 
 .landing-header-1-inline {
-  font-family: "Figtree", sans-serif;
+  font-family: 'Figtree', sans-serif;
   font-size: 7.25rem;
   font-size: clamp(4rem, calc(3.25rem + 3.75vw), 7rem);
   font-size: clamp(4rem, calc(3.25rem + 3.75dvw), 7rem);
@@ -286,7 +286,7 @@
 
   .landing-header-1-inline {
     font-size: 7.25rem;
-    font-family: "Figtree", sans-serif;
+    font-family: 'Figtree', sans-serif;
   }
 
   .landing-one-image-light {
@@ -417,7 +417,7 @@
 
   .landing-header-1-inline {
     font-size: 7.25rem;
-    font-family: "Figtree", sans-serif;
+    font-family: 'Figtree', sans-serif;
   }
 
   .landing-one-image-light {
@@ -548,7 +548,7 @@
 
   .landing-header-1-inline {
     font-size: 7.25rem;
-    font-family: "Figtree", sans-serif;
+    font-family: 'Figtree', sans-serif;
   }
 
   .landing-one-image-light {
@@ -679,7 +679,7 @@
 
   .landing-header-1-inline {
     font-size: 7.25rem;
-    font-family: "Figtree", sans-serif;
+    font-family: 'Figtree', sans-serif;
   }
 
   .landing-one-image-light {

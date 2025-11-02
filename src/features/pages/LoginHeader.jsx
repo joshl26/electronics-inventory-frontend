@@ -1,30 +1,29 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Lottie from "lottie-react";
-import HamburgerMenu from "../../svg/HamburgerMenu.json";
-import { Link } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import "./LoginHeader.css";
+import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Lottie from 'lottie-react';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import HamburgerMenu from '../../svg/HamburgerMenu.json';
+import './LoginHeader.css';
 
-const LoginHeader = ({ colorMode, onChangeColorMode }) => {
+function LoginHeader({ colorMode, onChangeColorMode }) {
   const NavBarStyle =
-    colorMode === "Light"
-      ? "navbar-login navbar-light nav-bg-light"
-      : "navbar-login navbar-dark nav-bg-dark";
+    colorMode === 'Light'
+      ? 'navbar-login navbar-light nav-bg-light'
+      : 'navbar-login navbar-dark nav-bg-dark';
 
-  const LoginButtonStyle =
-    colorMode === "Light" ? "btn-login-light" : "btn-login-dark";
+  const LoginButtonStyle = colorMode === 'Light' ? 'btn-login-light' : 'btn-login-dark';
 
-  const SignupButtonStyle =
-    colorMode === "Light" ? "btn-signup-light" : "btn-signup-dark";
+  const SignupButtonStyle = colorMode === 'Light' ? 'btn-signup-light' : 'btn-signup-dark';
 
   return (
     <Navbar className={NavBarStyle} collapseOnSelect expand="lg">
       <Container>
         <Lottie
-          onClick={() => onChangeColorMode(colorMode)}
+          onClick={() => onChangeColorMode && onChangeColorMode(colorMode)}
           className="header_icon"
           animationData={HamburgerMenu}
           loop={false}
@@ -51,16 +50,14 @@ const LoginHeader = ({ colorMode, onChangeColorMode }) => {
               <NavDropdown.Divider />
               <NavDropdown.Item href="/">Integrations</NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Plans" id="collasible-nav-dropdown">
+            <NavDropdown title="Plans" id="collasible-nav-dropdown-plans">
               <NavDropdown.Item href="/pricing">Free Tier</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/pricing">Standard Tier</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="/pricing">Premium Tier</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/pricing">
-                Enterprise Tier
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/pricing">Enterprise Tier</NavDropdown.Item>
             </NavDropdown>
             <div className="nav-item">
               <Link className="nav-link" to="/pricing">
@@ -68,28 +65,15 @@ const LoginHeader = ({ colorMode, onChangeColorMode }) => {
               </Link>
             </div>
           </Nav>
-          {/* <Nav>
-            <Lottie
-              className="header_icon"
-              animationData={
-                colorMode == "Light" ? LightToDarkButton : DarkToLightButton
-              }
-              loop={false}
-            />
-          </Nav> */}
 
           <Nav>
             <Link className="nav-link" to="/login">
-              <Button
-                title="Signup"
-                className={SignupButtonStyle}
-                variant="danger"
-              >
+              <Button title="Signup" className={SignupButtonStyle} variant="danger" type="button">
                 Sign Up
               </Button>
             </Link>
             <Link className="nav-link" to="/login">
-              <Button title="Login" className={LoginButtonStyle}>
+              <Button title="Login" className={LoginButtonStyle} type="button">
                 Log In
               </Button>
             </Link>
@@ -98,6 +82,16 @@ const LoginHeader = ({ colorMode, onChangeColorMode }) => {
       </Container>
     </Navbar>
   );
+}
+
+LoginHeader.propTypes = {
+  colorMode: PropTypes.string,
+  onChangeColorMode: PropTypes.func,
+};
+
+LoginHeader.defaultProps = {
+  colorMode: 'Light',
+  onChangeColorMode: undefined,
 };
 
 export default LoginHeader;

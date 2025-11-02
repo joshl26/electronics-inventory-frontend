@@ -1,10 +1,10 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectPartById } from "./partsApiSlice";
-import { selectAllUsers } from "../users/usersApiSlice";
-import EditPartForm from "./EditPartForm";
-import partTypes from "../../mock_data/partTypes";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectPartById } from './partsApiSlice';
+import { selectAllUsers } from '../users/usersApiSlice';
+import EditPartForm from './EditPartForm';
+import partTypes from '../../mock_data/partTypes';
 
 const ViewPart = () => {
   const { id } = useParams();
@@ -14,12 +14,7 @@ const ViewPart = () => {
 
   const content =
     part && users ? (
-      <EditPartForm
-        idReadOnly={true}
-        part={part}
-        users={users}
-        partTypes={partTypes}
-      />
+      <EditPartForm idReadOnly part={part} users={users} partTypes={partTypes} />
     ) : (
       <p>Loading...</p>
     );

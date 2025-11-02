@@ -1,38 +1,37 @@
-import React, { useState } from "react";
-import LoginHeader from "../features/pages/LoginHeader";
-import Experience from "../components/Experience";
-import { useEffect } from "react";
-import LoadingPage from "./LoadingPage";
-import "./Public.scss";
+import React, { useState, useEffect } from 'react';
+import LoginHeader from '../features/pages/LoginHeader';
+import Experience from './Experience';
+
+import LoadingPage from './LoadingPage';
+import './Public.scss';
 
 const Public = () => {
   const [loading, setLoading] = useState(true);
 
   const [colorMode, setColorMode] = useState(
-    JSON.parse(localStorage.getItem("colorMode"))
+    () =>
+      // default to 'Light' if not present
+      JSON.parse(localStorage.getItem('colorMode')) ?? 'Light'
   );
 
-  const publicStyle =
-    colorMode === "Light"
-      ? "public-light"
-      : "" || colorMode === "Dark"
-      ? "public-dark"
-      : "";
+  // compute publicStyle without nested ternary
+  let publicStyle = '';
+  if (colorMode === 'Light') {
+    publicStyle = 'public-light';
+  } else if (colorMode === 'Dark') {
+    publicStyle = 'public-dark';
+  }
 
-  const backgroundColor = colorMode === "Light" ? "#e76f51" : "#264653";
-  const SwipeUpClickHandler = () => {
-    window.scrollTo(0, 0);
-  };
+  const backgroundColor = colorMode === 'Light' ? '#e76f51' : '#264653';
 
   const onChangeColorMode = (e) => {
-    // console.log("On Change Color Mode " + e);
-
-    if (e === "Light") {
-      localStorage.setItem("colorMode", JSON.stringify("Dark"));
-      setColorMode("Dark");
+    // toggle color mode (keeps API compatible with your previous usage)
+    if (e === 'Light') {
+      localStorage.setItem('colorMode', JSON.stringify('Dark'));
+      setColorMode('Dark');
     } else {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
+      localStorage.setItem('colorMode', JSON.stringify('Light'));
+      setColorMode('Light');
     }
   };
 
@@ -46,23 +45,20 @@ const Public = () => {
     };
   }, []);
 
+  // ensure localStorage has a value on first mount (no shadowing)
   useEffect(() => {
-    const colorMode = JSON.parse(localStorage.getItem("colorMode"));
-
-    if (colorMode === null) {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
+    const storedColorMode = JSON.parse(localStorage.getItem('colorMode'));
+    if (storedColorMode === null) {
+      localStorage.setItem('colorMode', JSON.stringify('Light'));
+      setColorMode('Light');
     }
-  }, [colorMode, publicStyle]);
+  }, []);
 
   const content = loading ? (
     <LoadingPage />
   ) : (
-    <section>
-      <LoginHeader
-        onChangeColorMode={onChangeColorMode}
-        colorMode={colorMode}
-      />
+    <section className={publicStyle}>
+      <LoginHeader onChangeColorMode={onChangeColorMode} colorMode={colorMode} />
       <Experience colorMode={colorMode} backgroundColor={backgroundColor} />
     </section>
   );
@@ -71,21 +67,3 @@ const Public = () => {
 };
 
 export default Public;
-
-{
-  /* <section className={publicStyle}>
-        <Lottie
-          onClick={SwipeUpClickHandler}
-          className="swipe-up-icon"
-          animationData={SwipeUpIcon}
-          loop={true}
-        />
-        <LoginHeader
-          onChangeColorMode={onChangeColorMode}
-          colorMode={colorMode}
-        />
-        <LandingPage colorMode={colorMode} />
-        <CustomerGallery />
-        <LoginFooter colorMode={colorMode} />
-      </section> */
-}

@@ -1,29 +1,47 @@
-import { useSelector } from "react-redux";
-import { selectCurrentToken } from "../features/auth/authSlice";
-import jwtDecode from "jwt-decode";
+import jwtDecode from 'jwt-decode';
+import { useSelector } from 'react-redux';
+import { selectCurrentToken } from '../features/auth/authSlice';
 
-const useAuth = () => {
+export default function useAuth() {
   const token = useSelector(selectCurrentToken);
+
   let isManager = false;
   let isAdmin = false;
-  let status = "Employee";
-
-  // Assign value to a key
-  sessionStorage.setItem("token", token);
+  let status = 'Employee';
+  let username = '';
+  let roles = [];
 
   if (token) {
-    const decoded = jwtDecode(token);
-    const { username, roles } = decoded.UserInfo;
+    try {
+      const decoded = jwtDecode(token);
+      const { UserInfo = {} } = decoded;
+      username = UserInfo.username || '';
+      roles = Array.isArray(UserInfo.roles) ? UserInfo.roles : [];
 
-    isManager = roles.includes("Manager");
-    isAdmin = roles.includes("Admin");
+      isManager = roles.includes('Manager');
+      isAdmin = roles.includes('Admin');
 
-    if (isManager) status = "Manager";
-    if (isAdmin) status = "Admin";
+      if (isAdmin) status = 'Admin';
+      else if (isManager) status = 'Manager';
 
-    return { username, roles, status, isManager, isAdmin };
+      // persist token for tests or other code that reads sessionStorage
+      try {
+        sessionStorage.setItem('token', token);
+      } catch (err) {
+        // ignore storage errors (e.g. SSR or private mode)
+        /* noop */
+      }
+    } catch (err) {
+      // invalid token; fall through to defaults
+      /* noop */
+    }
   }
 
-  return { username: "", roles: [], isManager, isAdmin, status };
-};
-export default useAuth;
+  return {
+    username,
+    roles,
+    status,
+    isManager,
+    isAdmin,
+  };
+}

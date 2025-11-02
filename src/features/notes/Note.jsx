@@ -1,28 +1,29 @@
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectNoteById } from "./notesApiSlice";
-import { FaGlasses } from "react-icons/fa";
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { FaGlasses } from 'react-icons/fa';
+import { selectNoteById } from './notesApiSlice';
 
-const Note = ({ noteId }) => {
+function Note({ noteId }) {
   const note = useSelector((state) => selectNoteById(state, noteId));
-
-  // const pal = useSelector((state) => selectAllNotes(state));
-  // console.log(pal);
-
   const navigate = useNavigate();
 
   if (note) {
-    const created = new Date(note.createdAt).toLocaleString("en-US", {
-      day: "numeric",
-      month: "long",
+    const created = new Date(note.createdAt).toLocaleString('en-US', {
+      day: 'numeric',
+      month: 'long',
     });
 
-    const updated = new Date(note.updatedAt).toLocaleString("en-US", {
-      day: "numeric",
-      month: "long",
+    const updated = new Date(note.updatedAt).toLocaleString('en-US', {
+      day: 'numeric',
+      month: 'long',
     });
 
-    const handleEdit = () => navigate(`/dash/notes/${noteId}`);
+    const handleEdit = (e) => {
+      // stop event propagation when called from the inner button to avoid double navigation
+      if (e && typeof e.stopPropagation === 'function') e.stopPropagation();
+      navigate(`/dash/notes/${noteId}`);
+    };
 
     return (
       <tr onClick={() => handleEdit()} className="note-list-row">
@@ -38,15 +39,23 @@ const Note = ({ noteId }) => {
         <td className="note-title">{note.title}</td>
         <td className="note-username">{note.username}</td>
         <td className="note-edit">
-          <button className="icon-button-edit" onClick={handleEdit}>
+          <button
+            type="button"
+            className="icon-button-edit"
+            onClick={handleEdit}
+            aria-label={`View note ${note.title}`}
+          >
             <FaGlasses />
           </button>
         </td>
       </tr>
     );
-  } else {
-    return null;
   }
+  return null;
+}
+
+Note.propTypes = {
+  noteId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
 
 export default Note;

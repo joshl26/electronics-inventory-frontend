@@ -1,8 +1,11 @@
+// babel.config.js
 module.exports = function (api) {
-  // Cache the returned value forever and don't call this function again.
   api.cache(true);
-
   return {
-    plugins: ["macros"],
+    presets: [
+      ['@babel/preset-env', { targets: { node: 'current' } }],
+      ['@babel/preset-react', { runtime: 'automatic' }], // <-- enables JSX
+    ],
+    plugins: ['macros'],
   };
 };

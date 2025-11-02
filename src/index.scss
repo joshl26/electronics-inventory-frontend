@@ -1,31 +1,17 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+// src/index.scss
+// Use @use/@forward instead of @import
 
-@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
-/* font-family: 'Cabin', sans-serif; */
+// Import your custom partials
+@use 'bootstrap-overrides' as *; // loads Bootstrap with your overrides
 
-@import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
-/* font-family: 'Abril Fatface', cursive; */
-
-@import url("https://fonts.googleapis.com/css2?family=Gloock&display=swap");
-/* font-family: 'Gloock', serif; */
-
-@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-/* font-family: 'Fira Sans', sans-serif */
-
-@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@300&display=swap");
-/* font-family: 'Figtree', sans-serif; */
-
+// Your app styles (rest of the file remains the same)
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* border: red solid 1px; */
 }
 
-/* || VARIABLES */
-
 :root {
-  /* COLORS */
   --BG-NAVBAR-LOGIN-DARK: #000000;
   --BG-NAVBAR-LOGIN-LIGHT: #ffffff;
   --BG-NAVBAR-DASH-DARK: #000000;
@@ -75,13 +61,15 @@
   width: 100vw;
 }
 
-/* html {
-   background-color: var(--color-one);
- } */
-
 body {
   overflow-x: hidden;
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  background-color: var(--BGCOLOR);
+  color: var(--COLOR);
 }
+
+// ...rest of your styles unchanged...
 
 /* p,
  h1,
@@ -208,7 +196,7 @@ body {
 /* || GENERAL STYLES */
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: 'Nunito', sans-serif;
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
@@ -307,6 +295,7 @@ h1 {
 }
 
 .table__thead {
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 1;
@@ -504,5 +493,4 @@ h1 {
     font-size: small;
   }
 }
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-@import "custom";
+@import '../node_modules/bootstrap/scss/bootstrap.scss';
