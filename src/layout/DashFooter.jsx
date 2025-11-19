@@ -5,16 +5,18 @@ import "./DashFooter.css";
 const DashFooter = () => {
   const { username, status } = useAuth();
 
-  const content = (
-    <Row className="dash-footer-row">
-      <Row>
-        <p className="dash-footer-paragraph">User: {username}</p>
+  return (
+    <footer className="dash-footer" aria-label="Dashboard footer user info">
+      <Row className="dash-footer-row">
+        <Col>
+          <p className="dash-footer-paragraph">User: {username}</p>
+        </Col>
+        <Col>
+          <p className="dash-footer-paragraph">Role: {status}</p>
+        </Col>
       </Row>
-      <Row>
-        <p className="dash-footer-paragraph">Role: {status}</p>
-      </Row>
-    </Row>
+    </footer>
   );
-  return content;
 };
+
 export default DashFooter;

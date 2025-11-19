@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "ignoreDeprecations": "6.0",
+      "baseUrl": "src",
+      "paths": {
+        "features/*": ["features/*"],
+        "shared/*": ["shared/*"],
+        "app/*": ["app/*"],
+        "config/*": ["config/*"],
+        "utils/*": ["utils/*"],
+        "hooks/*": ["hooks/*"],
+        "img/*": ["img/*"],
+        "svg/*": ["svg/*"]
+      }
+    },
+    "include": ["src"]
+  }

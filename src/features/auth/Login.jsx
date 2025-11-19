@@ -14,7 +14,6 @@ import { Col, Container, Row } from "react-bootstrap";
 import LoadingPage from "../../layout/LoadingPage";
 import "./Login.css";
 
-
 const Login = () => {
   const userRef = useRef();
   const errRef = useRef();

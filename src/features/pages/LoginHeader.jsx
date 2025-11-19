@@ -1,3 +1,4 @@
+import React, { useCallback, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -6,93 +7,146 @@ import Lottie from "lottie-react";
 import HamburgerMenu from "../../svg/HamburgerMenu.json";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 import "./LoginHeader.css";
 
+const COLLAPSE_ID = "responsive-navbar-nav";
+
 const LoginHeader = ({ colorMode, onChangeColorMode }) => {
-  const NavBarStyle =
+  const [expanded, setExpanded] = useState(false);
+
+  const navBarClass =
     colorMode === "Light"
       ? "navbar-login navbar-light nav-bg-light"
       : "navbar-login navbar-dark nav-bg-dark";
 
-  const LoginButtonStyle =
-    colorMode === "Light" ? "btn-login-light" : "btn-login-dark";
+  const loginBtnClass = colorMode === "Light" ? "btn-login-light" : "btn-login-dark";
+  const signupBtnClass = colorMode === "Light" ? "btn-signup-light" : "btn-signup-dark";
 
-  const SignupButtonStyle =
-    colorMode === "Light" ? "btn-signup-light" : "btn-signup-dark";
+  const handleToggle = useCallback(() => {
+    if (typeof onChangeColorMode === "function") onChangeColorMode();
+  }, [onChangeColorMode]);
+
+  const handleKeyDown = useCallback(
+    (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        handleToggle();
+      }
+    },
+    [handleToggle]
+  );
+
+  const closeNav = useCallback(() => setExpanded(false), []);
 
   return (
-    <Navbar className={NavBarStyle} collapseOnSelect expand="lg">
+    <Navbar
+      className={navBarClass}
+      collapseOnSelect
+      expand="lg"
+      expanded={expanded}
+      onToggle={(next) => setExpanded(next)}
+      role="navigation"
+    >
       <Container>
         <Lottie
-          onClick={() => onChangeColorMode(colorMode)}
+          onClick={handleToggle}
+          onKeyDown={handleKeyDown}
           className="header_icon"
           animationData={HamburgerMenu}
           loop={false}
+          role="button"
+          tabIndex={0}
+          aria-label="Toggle color mode"
         />
-        <Navbar.Brand>
+
+        <Navbar.Brand as={Link} to="/" onClick={closeNav} aria-label="Go to home">
           <h1 className="login_text">Ei</h1>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
+
+        <Navbar.Toggle aria-controls={COLLAPSE_ID} />
+        <Navbar.Collapse id={COLLAPSE_ID}>
           <Nav className="me-auto">
-            <div className="nav-item">
-              <Link className="nav-link" to="/">
+            <Nav.Item>
+              <Nav.Link as={Link} to="/" className="nav-link" onClick={closeNav}>
                 Inventory Tracker
-              </Link>
-            </div>
-            <NavDropdown title="Features" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/">Views</NavDropdown.Item>
+              </Nav.Link>
+            </Nav.Item>
+
+            <NavDropdown title="Features" id="nav-dropdown-features">
+              <NavDropdown.Item as={Link} to="/features/views" onClick={closeNav}>
+                Views
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/">Automation</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/features/automation" onClick={closeNav}>
+                Automation
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/">Power-Ups</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/features/power-ups" onClick={closeNav}>
+                Power-Ups
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/">Templates</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/features/templates" onClick={closeNav}>
+                Templates
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/">Integrations</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/features/integrations" onClick={closeNav}>
+                Integrations
+              </NavDropdown.Item>
             </NavDropdown>
-            <NavDropdown title="Plans" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="/pricing">Free Tier</NavDropdown.Item>
+
+            <NavDropdown title="Plans" id="nav-dropdown-plans">
+              <NavDropdown.Item as={Link} to="/pricing#free" onClick={closeNav}>
+                Free Tier
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/pricing">Standard Tier</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/pricing#standard" onClick={closeNav}>
+                Standard Tier
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/pricing">Premium Tier</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/pricing#premium" onClick={closeNav}>
+                Premium Tier
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="/pricing">
+              <NavDropdown.Item as={Link} to="/pricing#enterprise" onClick={closeNav}>
                 Enterprise Tier
               </NavDropdown.Item>
             </NavDropdown>
-            <div className="nav-item">
-              <Link className="nav-link" to="/pricing">
+
+            <Nav.Item>
+              <Nav.Link as={Link} to="/pricing" className="nav-link" onClick={closeNav}>
                 Pricing
-              </Link>
-            </div>
+              </Nav.Link>
+            </Nav.Item>
           </Nav>
-          {/* <Nav>
-            <Lottie
-              className="header_icon"
-              animationData={
-                colorMode == "Light" ? LightToDarkButton : DarkToLightButton
-              }
-              loop={false}
-            />
-          </Nav> */}
 
           <Nav>
-            <Link className="nav-link" to="/login">
+            <Nav.Item>
               <Button
+                as={Link}
+                to="/login"
                 title="Signup"
-                className={SignupButtonStyle}
+                className={signupBtnClass}
                 variant="danger"
+                aria-label="Sign up"
+                onClick={closeNav}
               >
                 Sign Up
               </Button>
-            </Link>
-            <Link className="nav-link" to="/login">
-              <Button title="Login" className={LoginButtonStyle}>
+            </Nav.Item>
+
+            <Nav.Item className="ms-2">
+              <Button
+                as={Link}
+                to="/login"
+                title="Login"
+                className={loginBtnClass}
+                aria-label="Log in"
+                onClick={closeNav}
+              >
                 Log In
               </Button>
-            </Link>
+            </Nav.Item>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -100,4 +154,14 @@ const LoginHeader = ({ colorMode, onChangeColorMode }) => {
   );
 };
 
-export default LoginHeader;
+LoginHeader.propTypes = {
+  colorMode: PropTypes.string,
+  onChangeColorMode: PropTypes.func,
+};
+
+LoginHeader.defaultProps = {
+  colorMode: "Light",
+  onChangeColorMode: () => {},
+};
+
+export default React.memo(LoginHeader);

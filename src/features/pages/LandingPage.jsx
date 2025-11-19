@@ -1,113 +1,95 @@
-import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import React, { useMemo, lazy, Suspense } from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./LandingPage.scss";
 
-import CustomerReviews from "../../shared/ui/CustomerReviews";
+const CustomerReviews = lazy(() => import("../../shared/ui/CustomerReviews"));
 
-const LandingPage = ({ colorMode }) => {
-  const landingHeader1Style =
-    colorMode === "Light"
-      ? "landing-one-text-light landing-header-1"
-      : "landing-one-text-dark landing-header-1 light";
+const LandingPage = ({ colorMode = "Light" }) => {
+  const landingHeader1Class = useMemo(
+    () =>
+      colorMode === "Light"
+        ? "landing-one-text-light landing-header-1"
+        : "landing-one-text-dark landing-header-1",
+    [colorMode]
+  );
 
-  const landingHeader1InlineStyle =
-    colorMode === "Light"
-      ? "landing-one-text-light landing-header-1-inline"
-      : "landing-one-text-dark landing-header-1-inline";
+  const landingHeader1InlineClass = useMemo(
+    () =>
+      colorMode === "Light"
+        ? "landing-one-text-light landing-header-1-inline"
+        : "landing-one-text-dark landing-header-1-inline",
+    [colorMode]
+  );
 
-  const landingHeader2Style =
-    colorMode === "Light"
-      ? "landing-one-text-light landing-header-2"
-      : "landing-one-text-dark landing-header-2";
+  const landingHeader2Class = useMemo(
+    () =>
+      colorMode === "Light"
+        ? "landing-one-text-light landing-header-2"
+        : "landing-one-text-dark landing-header-2",
+    [colorMode]
+  );
 
-  const landingHeaderStyle =
-    colorMode === "Light"
-      ? "landing-one-text-light landing-header"
-      : "landing-one-text-dark landing-header";
-
-  const landingParagraphStyle =
-    colorMode === "Light"
-      ? "landing-one-text-light landing-paragraph"
-      : "landing-one-text-dark landing-paragraph";
-
-  const landingOneImageStyle =
-    colorMode === "Light"
-      ? "landing-one-image-light"
-      : "landing-one-image-dark";
-
-  const SignupButtonStyle =
-    colorMode === "Light" ? "btn-signup-light" : "btn-signup-dark";
+  const signupBtnClass = useMemo(
+    () => (colorMode === "Light" ? "btn-signup-light" : "btn-signup-dark"),
+    [colorMode]
+  );
 
   return (
-    <div>
-      <div className="background-image" />
-      <div className="landing-one">
-        <Container>
-          <div className="spacer_medium"></div>
-          <Row>
-            <Col className="landing_one_row" xs={12} md={6} lg={6}>
-              <h1 className={landingHeader1Style}>Inventory Control</h1>
-              <h3 className={landingHeader1InlineStyle}>Simplified</h3>
-              <h2 className={landingHeader2Style}>
+    <main>
+      <section className="landing-one" aria-labelledby="landing-heading">
+        <Container className="landing-inner">
+          <div className="spacer_medium" />
+          <Row className="align-items-center">
+            <Col xs={12} md={6} lg={6} className="landing-one-col">
+              <h1 id="landing-heading" className={landingHeader1Class}>
+                Inventory Control
+              </h1>
+              <h3 className={landingHeader1InlineClass}>Simplified</h3>
+
+              <h2 className={landingHeader2Class}>
                 Take the guesswork out of inventory control and management.
-                Repetetive tasks like repurchase set points, inventory costing,
-                JIT managment are automaticallly calculated by our software.
+                Repetitive tasks like reorder setpoints, inventory costing, and
+                just-in-time management are automatically calculated by our
+                software so you can focus on running the business.
               </h2>
-              <div className="landing-spacer"></div>
-              <Button variant="danger" className={SignupButtonStyle}>
-                Sign Up Now and Start your Free Trial!
+
+              <div className="landing-spacer" />
+
+              <Button
+                as={Link}
+                to="/signup"
+                variant="danger"
+                className={signupBtnClass}
+                aria-label="Sign up and start free trial"
+              >
+                Sign up — Start your free trial
               </Button>
             </Col>
-            <Col className="landing_one_row" xs={12} md={6} lg={6}>
-              <div className="spacer_small"></div>
-              <div>
-                {/* <Image
-                  className={landingOneImageStyle}
-                  src="https://res.cloudinary.com/dv6keahg3/image/upload/v1689524251/ElectronicsInventory/frontend_ui_images/ei_1_pxgvpd.png"
-                ></Image> */}
+
+            <Col xs={12} md={6} lg={6} className="landing-one-col">
+              <div className="spacer_small" />
+              <div className="video-wrapper" aria-hidden="false">
                 <iframe
-                  width="100%"
-                  height="360"
+                  title="Electronics Inventory demo"
                   src="https://www.youtube.com/embed/lDAWaOmSFIQ?si=U6czkvzBlWsdcS6_"
-                  title="Electronics Inventory"
+                  frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                ></iframe>
+                  loading="lazy"
+                />
               </div>
             </Col>
           </Row>
-          <div className="spacer_small"></div>
+
+          <div className="spacer_small" />
         </Container>
-      </div>
-      {/* <div className="spacer_large"></div> */}
-      <CustomerReviews />
-      {/* <div className="spacer_large"></div> */}
+      </section>
 
-      {/* <div className="landing-three">
-        <div className="spacer_small"></div>
-
-        <Container>
-          <h1 className={landingHeaderStyle}>Why choose our Software?</h1>
-          <p className={landingParagraphStyle}>
-            Electronics inventory software is the best way to keep track of
-            stock and ensure that your business has the right items in the right
-            amounts. It can provide you with real-time data on current stock
-            levels and allow you to quickly and accurately reorder items when
-            necessary. It can also allow you to track and trace items from the
-            moment they enter your inventory until the moment they are sold,
-            providing you with an unprecedented level of visibility and control
-            over your inventory. Finally, electronics inventory software can
-            help you easily manage pricing, discounts, returns, and other
-            aspects of inventory management. In short, electronics inventory
-            software can provide your business with a powerful and efficient way
-            to manage inventory and ensure that you have the right items in the
-            right amounts at all times.
-          </p>
-          <div className="business-metrics">
-            <Lottie animationData={BusinessMetrics} loop={true} />
-          </div>
-        </Container> 
-      </div>*/}
-    </div>
+      <Suspense fallback={<div className="spinner">Loading reviews…</div>}>
+        <CustomerReviews />
+      </Suspense>
+    </main>
   );
 };
 
