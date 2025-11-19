@@ -54,7 +54,7 @@ const router = createBrowserRouter(
         >
           <Route element={<Prefetch />}>
             <Route element={<DashLayout />} path="dash">
-              <Route index element={<DashCards />} />
+              <Route index element={<ReactGridLayout />} />  {/* Dash Home */}
               <Route
                 element={
                   <RequireAuth
