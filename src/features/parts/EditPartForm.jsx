@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import useAuth from "../../hooks/useAuth";
-import ImagePicker from "../../components/ImagePicker";
+import ImagePicker from "../files/ImagePicker";
 import "./EditPartForm.css";
 import partTypes from "../../mock_data/partTypes";
 

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import LoginHeader from "../features/pages/LoginHeader";
+import LoginHeader from "../../features/pages/LoginHeader";
 import "./Pricing.scss";
-import LoginFooter from "../features/pages/LoginFooter";
+import LoginFooter from "../../features/pages/LoginFooter";
 import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import features from "../mock_data/features.json";
-import { arraySearch } from "../utils";
+import features from "../../mock_data/features.json";
+import { arraySearch } from "../../utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 

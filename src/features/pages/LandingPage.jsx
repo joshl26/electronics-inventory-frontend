@@ -1,7 +1,7 @@
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import "./LandingPage.scss";
 
-import CustomerReviews from "../../components/CustomerReviews";
+import CustomerReviews from "../../shared/ui/CustomerReviews";
 
 const LandingPage = ({ colorMode }) => {
   const landingHeader1Style =

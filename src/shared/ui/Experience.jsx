@@ -1,7 +1,7 @@
 import React from "react";
-import LandingPage from "../features/pages/LandingPage";
-import LoginFooter from "../features/pages/LoginFooter";
-import CustomerGallery from "../features/pages/CustomerGallery";
+import LandingPage from "../../features/pages/LandingPage";
+import LoginFooter from "../../features/pages/LoginFooter";
+import CustomerGallery from "../../features/pages/CustomerGallery";
 import NewSignup from "./NewSignup";
 import "./Experience.scss";
 

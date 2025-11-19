@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import LoginHeader from "../features/pages/LoginHeader";
-import Experience from "../components/Experience";
+import LoginHeader from "../../features/pages/LoginHeader";
+import Experience from "./Experience";
 import { useEffect } from "react";
-import LoadingPage from "./LoadingPage";
+import LoadingPage from "../../layout/LoadingPage";
 import "./Public.scss";
 
 const Public = () => {
@@ -20,9 +20,6 @@ const Public = () => {
       : "";
 
   const backgroundColor = colorMode === "Light" ? "#e76f51" : "#264653";
-  const SwipeUpClickHandler = () => {
-    window.scrollTo(0, 0);
-  };
 
   const onChangeColorMode = (e) => {
     // console.log("On Change Color Mode " + e);
@@ -72,20 +69,3 @@ const Public = () => {
 
 export default Public;
 
-{
-  /* <section className={publicStyle}>
-        <Lottie
-          onClick={SwipeUpClickHandler}
-          className="swipe-up-icon"
-          animationData={SwipeUpIcon}
-          loop={true}
-        />
-        <LoginHeader
-          onChangeColorMode={onChangeColorMode}
-          colorMode={colorMode}
-        />
-        <LandingPage colorMode={colorMode} />
-        <CustomerGallery />
-        <LoginFooter colorMode={colorMode} />
-      </section> */
-}

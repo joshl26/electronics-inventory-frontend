@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import LandingPage from "../features/pages/LandingPage";
-import LoginHeader from "../features/pages/LoginHeader";
+import LandingPage from "../../features/pages/LandingPage";
+import LoginHeader from "../../features/pages/LoginHeader";
 // import HeroImage from "../features/pages/HeroImage";
 import "./Plans.scss";
-import LoginFooter from "../features/pages/LoginFooter";
-import SwipeUpIcon from "../svg/SwipeUpIcon.json";
+import LoginFooter from "../../features/pages/LoginFooter";
+import SwipeUpIcon from "../../svg/SwipeUpIcon.json";
 import Lottie from "lottie-react";
-import CustomerGallery from "../features/pages/CustomerGallery";
+import CustomerGallery from "../../features/pages/CustomerGallery";
 import { useEffect, useCallback } from "react";
 
 const Plans = () => {

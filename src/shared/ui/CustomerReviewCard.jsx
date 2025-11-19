@@ -1,5 +1,5 @@
 import React from "react";
-import reviewStar from "../svg/reviewstar.svg";
+import reviewStar from "../../svg/reviewstar.svg";
 import { Image, Col, Row, Container } from "react-bootstrap";
 import classes from "./CustomerReviewCard.module.css";
 

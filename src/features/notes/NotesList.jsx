@@ -1,6 +1,6 @@
 import { useGetNotesQuery } from "./notesApiSlice";
 import Note from "./Note";
-import OutletLoadingPage from "../../components/OutletLoadingPage";
+import OutletLoadingPage from "../../layout/OutletLoadingPage";
 import useAuth from "../../hooks/useAuth";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import "./NotesList.css";

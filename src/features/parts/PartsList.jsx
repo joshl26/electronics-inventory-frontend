@@ -2,7 +2,7 @@ import { useGetPartsQuery } from "./partsApiSlice";
 import { useState } from "react";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import OutletLoadingPage from "../../components/OutletLoadingPage";
+import OutletLoadingPage from "../../layout/OutletLoadingPage";
 import Part from "../parts/Part";
 import partTypes from "../../mock_data/partTypes";
 import useAuth from "../../hooks/useAuth";

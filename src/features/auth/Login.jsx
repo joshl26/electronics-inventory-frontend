@@ -11,7 +11,7 @@ import Lottie from "lottie-react";
 import HamburgerMenu from "../../svg/HamburgerMenu.json";
 
 import { Col, Container, Row } from "react-bootstrap";
-import LoadingPage from "../../components/LoadingPage";
+import LoadingPage from "../../layout/LoadingPage";
 import "./Login.css";
 
 

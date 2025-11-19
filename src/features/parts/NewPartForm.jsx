@@ -12,7 +12,7 @@ import {
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useAuth from "../../hooks/useAuth";
-import ImagePicker from "../../components/ImagePicker";
+import ImagePicker from "../files/ImagePicker";
 import "./NewPartForm.css";
 
 const NewPartForm = ({ users, partTypes }) => {

@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./PartCard.module.scss";
 import { useSelector } from "react-redux";
-import { selectPartById } from "../features/parts/partsApiSlice";
+import { selectPartById } from "./partsApiSlice";
 import { Row, Col, Container } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";

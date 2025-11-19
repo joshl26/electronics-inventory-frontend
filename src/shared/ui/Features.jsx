@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import LoginHeader from "../features/pages/LoginHeader";
+import LoginHeader from "../../features/pages/LoginHeader";
 import "./Features.scss";
-import LoginFooter from "../features/pages/LoginFooter";
+import LoginFooter from "../../features/pages/LoginFooter";
 import { useEffect } from "react";
 
 const Features = () => {
