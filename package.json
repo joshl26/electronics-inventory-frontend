@@ -121,5 +121,8 @@
       "node_modules",
       "build"
     ]
-  }
+  },
+  "engines": {
+  "node": "22.16.0"
+}
 }
