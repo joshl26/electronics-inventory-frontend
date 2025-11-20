@@ -11,7 +11,7 @@ import Lottie from "lottie-react";
 import HamburgerMenu from "../../svg/HamburgerMenu.json";
 
 import { Col, Container, Row } from "react-bootstrap";
-import LoadingPage from "../../layout/LoadingPage";
+import LoadingPage from "../../components/layout/LoadingPage";
 import "./Login.css";
 
 const Login = () => {
@@ -26,9 +26,7 @@ const Login = () => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
-  const [colorMode, setColorMode] = useState(
-    JSON.parse(localStorage.getItem("colorMode"))
-  );
+  const [colorMode] = useState(JSON.parse(localStorage.getItem("colorMode")));
 
   const loginContainerStyle =
     colorMode === "Light"

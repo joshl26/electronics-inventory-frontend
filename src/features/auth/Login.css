@@ -3,11 +3,6 @@
 }
 
 @media screen and (min-width: 769px) {
-  .login-footer {
-    position: absolute;
-    top: 95vh;
-  }
-
   .login-light {
     background-color: var(--color-one);
     color: shite;
@@ -24,16 +19,6 @@
   .form {
     margin: 0 auto;
     width: 20vw;
-  }
-
-  .login-header-text {
-    padding-left: 1em;
-    padding-top: 0.5em;
-  }
-
-  .login-footer-link {
-    padding-bottom: 1em;
-    padding-left: 1em;
   }
 
   .login-icon {
@@ -78,11 +63,6 @@
     border-top: white 1px solid;
   }
 
-  .login-header {
-    padding-top: 1em;
-    color: white;
-  }
-
   .login-button-icon {
     width: 25px;
     padding-left: 0.25em;
@@ -105,16 +85,6 @@
   .form {
     margin: 0 auto;
     width: 85vw;
-  }
-
-  .login-header-text {
-    padding-left: 1em;
-    padding-top: 0.5em;
-  }
-
-  .login-footer-link {
-    padding-bottom: 1em;
-    padding-left: 1em;
   }
 
   .login-icon {

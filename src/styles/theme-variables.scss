@@ -1,0 +1,171 @@
+/* theme-variables.scss
+   CSS Custom Properties for theming (light + dark)
+   - Add [data-theme="dark"] to <html> or body, or apply .theme-dark class
+   - Keep this file pure CSS custom properties so JS can toggle easily
+*/
+
+:root {
+  /* ====================================
+     LIGHT THEME (Default)
+     ==================================== */
+
+  /* Core brand colors */
+  --color-primary: #ff7b00;
+  --color-primary-dark: #e66900;
+  --color-primary-light: #ff9940;
+  --color-secondary: #007bff;
+  --color-secondary-dark: #0056b3;
+
+  /* Backgrounds */
+  --bg-body: #ffffff;
+  --bg-surface: #f8f9fa;
+  --bg-elevated: #ffffff;
+  --bg-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Text */
+  --text-primary: #000000;
+  --text-secondary: rgba(0, 0, 0, 0.7);
+  --text-tertiary: rgba(0, 0, 0, 0.5);
+  --text-inverse: #ffffff;
+
+  /* Borders / radius */
+  --border-color: rgba(0, 0, 0, 0.12);
+  --border-color-strong: rgba(0, 0, 0, 0.2);
+  --border-radius-sm: 6px;
+  --border-radius-md: 10px;
+  --border-radius-lg: 12px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* Interactive */
+  --hover-bg: rgba(0, 0, 0, 0.04);
+  --active-bg: rgba(0, 0, 0, 0.08);
+  --focus-ring: rgba(255, 123, 0, 0.4);
+
+  /* Forms */
+  --input-bg: #ffffff;
+  --input-border: rgba(0, 0, 0, 0.12);
+  --input-text: #000000;
+  --input-placeholder: rgba(0, 0, 0, 0.4);
+  --input-focus-border: var(--color-primary);
+  --input-focus-shadow: 0 0 0 3px rgba(255, 123, 0, 0.15);
+
+  /* Buttons */
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-text: #ffffff;
+  --btn-primary-hover-bg: var(--color-primary-dark);
+
+  /* Navbar / Footer */
+  --navbar-bg: rgba(255, 255, 255, 0.95);
+  --navbar-border: rgba(0, 0, 0, 0.08);
+  --navbar-text: rgba(0, 0, 0, 0.8);
+
+  --footer-bg: linear-gradient(
+    180deg,
+    rgba(249, 250, 251, 0.8),
+    rgba(255, 255, 255, 1)
+  );
+  --footer-border: rgba(0, 0, 0, 0.06);
+  --footer-text: #000000;
+
+  /* Tables */
+  --table-header-bg: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  );
+  --table-header-text: #ffffff;
+  --table-row-bg: #ffffff;
+  --table-row-hover-bg: rgba(255, 123, 0, 0.04);
+  --table-border: rgba(0, 0, 0, 0.06);
+
+  /* Status colors */
+  --status-success: #28a745;
+  --status-success-bg: rgba(40, 167, 69, 0.1);
+  --status-warning: #ffc107;
+  --status-warning-bg: rgba(255, 193, 7, 0.1);
+  --status-error: #dc3545;
+  --status-error-bg: rgba(220, 53, 69, 0.1);
+  --status-info: #17a2b8;
+  --status-info-bg: rgba(23, 162, 184, 0.1);
+
+  /* Transitions */
+  --transition-smooth: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 280ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ====================================
+   Dark theme
+   Usage: <html data-theme="dark"> or add .theme-dark to root container
+   ==================================== */
+[data-theme="dark"],
+.theme-dark {
+  --color-primary: #ff9940;
+  --color-primary-dark: #ff7b00;
+  --color-primary-light: #ffb366;
+
+  --bg-body: #0f1112;
+  --bg-surface: #1a1d1e;
+  --bg-elevated: #22252a;
+  --bg-overlay: rgba(0, 0, 0, 0.7);
+
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+  --text-inverse: #000000;
+
+  --border-color: rgba(255, 255, 255, 0.12);
+  --border-color-strong: rgba(255, 255, 255, 0.2);
+
+  --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+
+  --hover-bg: rgba(255, 255, 255, 0.06);
+  --active-bg: rgba(255, 255, 255, 0.12);
+  --focus-ring: rgba(255, 153, 64, 0.4);
+
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --input-text: #ffffff;
+  --input-placeholder: rgba(255, 255, 255, 0.4);
+  --input-focus-shadow: 0 0 0 3px rgba(255, 153, 64, 0.2);
+
+  --btn-primary-bg: var(--color-primary);
+  --btn-primary-text: #000000;
+  --btn-primary-hover-bg: var(--color-primary-light);
+
+  --navbar-bg: rgba(15, 17, 18, 0.95);
+  --navbar-border: rgba(255, 255, 255, 0.1);
+  --navbar-text: rgba(255, 255, 255, 0.85);
+
+  --footer-bg: linear-gradient(180deg, rgba(15, 17, 18, 1), rgba(8, 10, 12, 1));
+  --footer-border: rgba(255, 255, 255, 0.08);
+  --footer-text: #ffffff;
+
+  --table-row-bg: rgba(255, 255, 255, 0.02);
+  --table-row-hover-bg: rgba(255, 153, 64, 0.08);
+  --table-border: rgba(255, 255, 255, 0.06);
+
+  --status-success: #4ade80;
+  --status-success-bg: rgba(74, 222, 128, 0.15);
+  --status-warning: #fbbf24;
+  --status-warning-bg: rgba(251, 191, 36, 0.15);
+  --status-error: #f87171;
+  --status-error-bg: rgba(248, 113, 113, 0.15);
+}
+
+/* Utility small helpers */
+.theme-transition {
+  transition: background-color var(--transition-smooth),
+    color var(--transition-smooth), border-color var(--transition-smooth),
+    box-shadow var(--transition-smooth);
+}
+
+/* Apply default body colors to be read by JS before theme toggles */
+body {
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+}

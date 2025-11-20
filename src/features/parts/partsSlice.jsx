@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createSelector, createEntityAdapter } from "@reduxjs/toolkit";
+import { createEntityAdapter } from "@reduxjs/toolkit";
 
 const partsAdapter = createEntityAdapter({});
 
@@ -7,7 +7,7 @@ const partsSlice = createSlice({
   name: "parts",
   initialState: { data: partsAdapter.getInitialState() },
   reducers: {
-    printParts: (state, action) => {
+    printParts: (state) => {
       return state.data;
     },
   },

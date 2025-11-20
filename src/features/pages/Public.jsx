@@ -1,51 +1,22 @@
-import React, { useState, useEffect } from "react";
-import LoginHeader from "./LoginHeader";
-import LoadingPage from "layout/LoadingPage";
-import "./Public.scss";
-import LandingPage from "./LandingPage";
-import CustomerGallery from "./CustomerGallery";
-import { NewSignup } from "features/users";
-import LoginFooter from "./LoginFooter";
+import React, { useState, useEffect, lazy } from "react";
+import LoadingPage from "components/layout/LoadingPage";
+const LandingPage = lazy(() => import("./LandingPage"));
 
 const Public = () => {
   const [loading, setLoading] = useState(true);
-  const [colorMode, setColorMode] = useState(() => {
-    const savedMode = localStorage.getItem("colorMode");
-    return savedMode ? JSON.parse(savedMode) : "Light";
-  });
-
-  const publicStyle = colorMode === "Light" ? "public-light" : "public-dark";
-
-  const onChangeColorMode = () => {
-    const newMode = colorMode === "Light" ? "Dark" : "Light";
-    localStorage.setItem("colorMode", JSON.stringify(newMode));
-    setColorMode(newMode);
-  };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-    
+    const timer = setTimeout(() => setLoading(false), 1200);
     return () => clearTimeout(timer);
   }, []);
 
-  const content = loading ? (
-    <LoadingPage />
-  ) : (
-    <section className={publicStyle}>
-      <LoginHeader
-        onChangeColorMode={onChangeColorMode}
-        colorMode={colorMode}
-      />
-      <LandingPage colorMode={colorMode} />
-      <CustomerGallery />
-      <NewSignup colorMode={colorMode} />
-      <LoginFooter colorMode={colorMode} />
+  if (loading) return <LoadingPage />;
+
+  return (
+    <section>
+      <LandingPage />
     </section>
   );
-
-  return content;
 };
 
 export default Public;

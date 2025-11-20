@@ -1,8 +1,5 @@
 import React, { useState } from "react";
-import LoginHeader from "../../features/pages/LoginHeader";
 import "./Pricing.scss";
-import LoginFooter from "../../features/pages/LoginFooter";
-import { useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import features from "../../mock_data/features.json";
@@ -12,34 +9,12 @@ import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Pricing = () => {
   const [population, setPopulation] = useState(features);
-  const [count, setCount] = useState(features.length);
-  const [enterpriseCost, setEnterpriseCost] = useState(23.5);
+  const [setCount] = useState(features.length);
+  const [enterpriseCost] = useState(23.5);
   const [totalCost, setTotalCost] = useState(23.5);
-  const [standardCost, setStandardCost] = useState(7.5);
-  const [premiumCost, setPremiumCost] = useState(13.5);
+  const [standardCost] = useState(7.5);
+  const [premiumCost] = useState(13.5);
   const [numberOfUsers, setNumberOfUsers] = useState(50);
-
-  const [colorMode, setColorMode] = useState(
-    JSON.parse(localStorage.getItem("colorMode"))
-  );
-
-  const displayColormode = (styleClass) => {
-    if (colorMode === "Light") {
-      return `${styleClass}-light`;
-    } else {
-      return `${styleClass}-dark`;
-    }
-  };
-
-  const onChangeColorMode = (e) => {
-    if (e === "Light") {
-      localStorage.setItem("colorMode", JSON.stringify("Dark"));
-      setColorMode("Dark");
-    } else {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
-    }
-  };
 
   const handleOnChange = async (e) => {
     let value = e.target.value;
@@ -67,23 +42,10 @@ const Pricing = () => {
     }
   };
 
-  useEffect(() => {
-    const colorMode = JSON.parse(localStorage.getItem("colorMode"));
-
-    if (colorMode === null) {
-      localStorage.setItem("colorMode", JSON.stringify("Light"));
-      setColorMode("Light");
-    }
-  }, [colorMode, displayColormode]);
-
   const content = (
     <>
-      <LoginHeader
-        onChangeColorMode={onChangeColorMode}
-        colorMode={colorMode}
-      />
-      <section className={displayColormode("pricing")}>
-        <div className={displayColormode("header-transition")}>
+      <section>
+        <div>
           <div className="spacer"></div>
           <div className="spacer-small"></div>
           <Container>
@@ -540,7 +502,6 @@ const Pricing = () => {
                   <p className="pricing-p-text">
                     Estimated cost for{" "}
                     <input
-                      className={displayColormode("input-users")}
                       min="50"
                       max="5000"
                       onChange={(e) => handleInputChange(e)}
@@ -762,12 +723,11 @@ const Pricing = () => {
             </Row>
           ))}
         </Container>
-        <div className={displayColormode("footer-transition")}>
+        <div>
           <div className="spacer"></div>
           <div className="spacer-x-small" />
         </div>
       </section>
-      <LoginFooter colorMode={colorMode} />
     </>
   );
 

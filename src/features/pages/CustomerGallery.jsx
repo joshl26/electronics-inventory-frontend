@@ -1,9 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
 import "./CustomerGallery.scss";
-import Apple from "../../svg/Apple.svg";
-import HP from "../../svg/HP.svg";
-import GM from "../../svg/GM.svg";
-import Nvidia from "../../svg/Nvidia.svg";
 
 const CustomerGallery = () => {
   return (

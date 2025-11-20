@@ -1,0 +1,154 @@
+/* ThemeToggle.css - theme-aware toggle switch using [data-theme] */
+
+/* CSS variables with fallbacks */
+:root {
+  --toggle-track-light: rgba(0, 0, 0, 0.12);
+  --toggle-track-dark: rgba(255, 123, 0, 0.3);
+  --thumb-bg-light: #ffd700;
+  --thumb-bg-dark: #1a1d1e;
+  --thumb-color-light: #ff7b00;
+  --thumb-color-dark: #ffd700;
+  --label-color: currentColor;
+}
+
+/* Component root */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 999px;
+  color: inherit;
+}
+
+/* Hover / focus */
+.theme-toggle:hover {
+  background-color: rgba(255, 123, 0, 0.06);
+}
+.theme-toggle:focus-visible {
+  outline: 3px solid rgba(255, 123, 0, 0.4);
+  outline-offset: 2px;
+}
+
+/* Track */
+.theme-toggle-track {
+  position: relative;
+  width: 48px;
+  height: 24px;
+  background-color: var(--toggle-track-light);
+  border-radius: 12px;
+  transition: background-color 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+/* Thumb: we'll use transform for smooth movement */
+.theme-toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px; /* starting position for light */
+  width: 20px;
+  height: 20px;
+  background-color: var(--thumb-bg-light);
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 280ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 220ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(0); /* light position */
+}
+
+/* Thumb icons color */
+.theme-toggle-thumb .theme-icon {
+  color: var(--thumb-color-light);
+  font-size: 12px;
+  transition: color 220ms ease;
+}
+
+/* Dark theme via root attribute */
+[data-theme="dark"] .theme-toggle-track,
+.theme-dark .theme-toggle-track {
+  background-color: var(--toggle-track-dark);
+}
+
+[data-theme="dark"] .theme-toggle-thumb,
+.theme-dark .theme-toggle-thumb {
+  /* move thumb to the right: width - thumb-size - gap = 48 - 20 - 2*2 = 24px */
+  transform: translateX(24px);
+  background-color: var(--thumb-bg-dark);
+}
+
+[data-theme="dark"] .theme-toggle-thumb .theme-icon,
+.theme-dark .theme-toggle-thumb .theme-icon {
+  color: var(--thumb-color-dark);
+}
+
+/* If you want the button itself to show a different label color in dark mode */
+[data-theme="dark"] .theme-toggle .theme-toggle-label,
+.theme-dark .theme-toggle .theme-toggle-label {
+  color: var(--label-color);
+}
+
+/* Optional: support toggling via button state (aria-pressed) if you prefer */
+.theme-toggle[aria-pressed="true"] .theme-toggle-track {
+  background-color: var(--toggle-track-dark);
+}
+.theme-toggle[aria-pressed="true"] .theme-toggle-thumb {
+  transform: translateX(24px);
+  background-color: var(--thumb-bg-dark);
+}
+.theme-toggle[aria-pressed="true"] .theme-toggle-thumb .theme-icon {
+  color: var(--thumb-color-dark);
+}
+
+/* Label */
+.theme-toggle-label {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--label-color);
+  min-width: 40px;
+  transition: color 220ms ease;
+}
+
+/* Hover thumb scale */
+.theme-toggle:hover .theme-toggle-thumb {
+  transform: translateX(var(--thumb-hover-offset, 0)) scale(1.08);
+}
+
+/* To avoid hover affecting the position, use a custom property that is zeroed
+     when the theme is dark. We override it below. */
+.theme-toggle-thumb {
+  --thumb-hover-offset: 0;
+}
+[data-theme="dark"] .theme-toggle-thumb {
+  --thumb-hover-offset: 24px;
+}
+.theme-toggle:hover .theme-toggle-thumb {
+  transform: translateX(var(--thumb-hover-offset)) scale(1.08);
+}
+
+/* Responsive: hide label on small screens */
+@media (max-width: 768px) {
+  .theme-toggle-label {
+    display: none;
+  }
+  .theme-toggle {
+    padding: 0.375rem;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle-track,
+  .theme-toggle-thumb,
+  .theme-icon {
+    transition: none !important;
+  }
+}

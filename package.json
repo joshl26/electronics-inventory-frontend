@@ -31,6 +31,7 @@
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",
+    "lucide-react": "^0.554.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
@@ -93,15 +94,32 @@
     "compilerOptions": {
       "baseUrl": "src",
       "paths": {
-        "features/*": ["features/*"],
-        "shared/*": ["shared/*"],
-        "app/*": ["app/*"],
-        "utils/*": ["utils/*"],
-        "hooks/*": ["hooks/*"],
-        "img/*": ["img/*"],
-        "svg/*": ["svg/*"]
+        "features/*": [
+          "features/*"
+        ],
+        "shared/*": [
+          "shared/*"
+        ],
+        "app/*": [
+          "app/*"
+        ],
+        "utils/*": [
+          "utils/*"
+        ],
+        "hooks/*": [
+          "hooks/*"
+        ],
+        "img/*": [
+          "img/*"
+        ],
+        "svg/*": [
+          "svg/*"
+        ]
       }
     },
-    "exclude": ["node_modules", "build"]
+    "exclude": [
+      "node_modules",
+      "build"
+    ]
   }
 }

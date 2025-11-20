@@ -5,20 +5,12 @@ import {
   Cell,
   Bar,
   ResponsiveContainer,
-  AreaChart,
-  Area,
   XAxis,
   YAxis,
   Tooltip,
   CartesianGrid,
   Legend,
-  ReferenceArea,
-  ReferenceLine,
-  ReferenceDot,
-  LabelList,
-  Label,
 } from "recharts";
-import { curveCardinal } from "victory-vendor/d3-shape";
 import { changeNumberOfData } from "./utils";
 
 const data = [
@@ -43,73 +35,7 @@ const data01 = [
   { day: "05-09", weather: "sunny" },
 ];
 
-const rangeData = [
-  { day: "05-01", temperature: [-1, 10] },
-  { day: "05-02", temperature: [2, 15] },
-  { day: "05-03", temperature: [3, 12] },
-  { day: "05-04", temperature: [4, 12] },
-  { day: "05-05", temperature: [12, 16] },
-  { day: "05-06", temperature: [5, 16] },
-  { day: "05-07", temperature: [3, 12] },
-  { day: "05-08", temperature: [0, 8] },
-  { day: "05-09", temperature: [-3, 5] },
-];
-
 const initialState = { data, data01 };
-
-const CustomTooltip = (props) => {
-  const { active, payload, external, label } = props;
-
-  if (active) {
-    const style = {
-      padding: 6,
-      backgroundColor: "#fff",
-      border: "1px solid #ccc",
-    };
-
-    const currData = external.filter((entry) => entry.name === label)[0];
-
-    return (
-      <div className="area-chart-tooltip" style={style}>
-        <p>
-          {`${payload?.[0]?.name} : `}
-          <em>{payload?.[0]?.value}</em>
-        </p>
-        <p>
-          {"uv : "}
-          <em>{currData.uv}</em>
-        </p>
-      </div>
-    );
-  }
-
-  return null;
-};
-
-const renderCustomizedActiveDot = (props) => {
-  const { cx, cy, stroke, dataKey } = props;
-
-  return (
-    <path
-      d={`M${cx - 2},${cy - 2}h4v4h-4Z`}
-      fill={stroke}
-      key={`dot-${dataKey}`}
-    />
-  );
-};
-
-const renderLabel = (props) => {
-  const { index, x, y } = props;
-
-  return (
-    <text x={x} y={y} className="customized-label">
-      {index}
-    </text>
-  );
-};
-
-// custom curve cardinal `type` prop
-const stepAround = curveCardinal.tension(0.5);
 
 // eslint-disable-next-line import/no-default-export
 export default class BarChart1 extends React.Component {

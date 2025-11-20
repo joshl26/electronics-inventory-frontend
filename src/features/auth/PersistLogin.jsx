@@ -4,7 +4,7 @@ import { useRefreshMutation } from "./authApiSlice";
 import usePersist from "../../hooks/usePersist";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "./authSlice";
-import LoadingPage from "../../layout/LoadingPage";
+import LoadingPage from "../../components/layout/LoadingPage";
 
 const PersistLogin = () => {
   const [persist] = usePersist();

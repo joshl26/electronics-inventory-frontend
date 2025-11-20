@@ -9,31 +9,31 @@ import {
 import { store } from "app/store";
 import { Provider } from "react-redux";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
-import ThemeProvider from "react-bootstrap/ThemeProvider";
-import Layout from "layout/Layout";
+import Layout from "components/layout/PublicLayout";
 import Public from "features/pages/Public";
 import Login from "features/auth/Login";
-import DashLayout from "layout/DashLayout";
-import NotesList from "features/notes/NotesList";
-import UsersList from "features/users/UsersList";
-import PartsList from "features/parts/PartsList";
-import EditUser from "features/users/EditUser";
-import NewUserForm from "features/users/NewUserForm";
-import EditNote from "features/notes/EditNote";
-import NewNote from "features/notes/NewNote";
+import DashLayout from "components/layout/DashLayout";
+import NotesList from "components/notes/NotesList";
+import UsersList from "components/users/UsersList";
+import EditUser from "components/users/EditUser";
+import NewUserForm from "components/users/NewUserForm";
+import EditNote from "components/notes/EditNote";
+import NewNote from "components/notes/NewNote";
 import Prefetch from "features/auth/Prefetch";
 import PersistLogin from "features/auth/PersistLogin";
 import RequireAuth from "features/auth/RequireAuth";
 import { ROLES } from "config/roles";
 import ErrorPage from "error-page";
 import ReactGridLayout from "shared/ui/ReactGridLayout";
-import EditPart from "features/parts/EditPart";
-import NewPart from "features/parts/NewPart";
+import EditPart from "components/parts/EditPart";
+import NewPart from "components/parts/NewPart";
 import Features from "shared/ui/Features";
 import Plans from "shared/ui/Plans";
 import Pricing from "shared/ui/Pricing";
-import ViewPart from "features/parts/ViewPart";
+import ViewPart from "components/parts/ViewPart";
 import "./index.scss";
+import PartsListContainer from "features/parts/containers/PartsListContainer";
+import { ThemeProvider } from "context/ThemeContext";
 
 if (process.env.NODE_ENV === "production") disableReactDevTools();
 
@@ -71,7 +71,7 @@ const router = createBrowserRouter(
                   />
                 }
               >
-                <Route index element={<PartsList />} />
+                <Route index element={<PartsListContainer />} />
                 <Route path=":id" element={<ViewPart />} />
                 <Route path=":id/edit" element={<EditPart />} />
                 <Route path="new" element={<NewPart />} />
@@ -117,10 +117,7 @@ const router = createBrowserRouter(
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <ThemeProvider
-    breakpoints={["xxxl", "xxl", "xl", "lg", "md", "sm", "xs", "xxs"]}
-    minBreakpoint="xxs"
-  >
+  <ThemeProvider>
     <React.StrictMode>
       <Provider store={store}>
         <RouterProvider router={router} />

@@ -5,8 +5,8 @@
   --landing-bg: url("https://res.cloudinary.com/dv6keahg3/image/upload/v1689524251/ElectronicsInventory/frontend_ui_images/background_1_crnuep.png");
   --color-two: #e0e0e0;
   --color-three: #ff6b4a;
-  --TEXT-LIGHT: #111;
-  --TEXT-DARK: #fff;
+  --text-light: #111;
+  --text-dark: #fff;
   --max-content-width: 1200px;
 }
 
@@ -16,7 +16,9 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 80svh; /* safe viewport height */
+  /* If you need the section to fill most of the viewport, keep svh;
+     otherwise use min-height: auto and let flex layout handle full-height pages. */
+  min-height: 80svh;
   width: 100%;
   padding: 0;
   position: relative;
@@ -61,10 +63,10 @@
 
 /* Color variants */
 .landing-one-text-light {
-  color: var(--TEXT-LIGHT);
+  color: var(--text-light);
 }
 .landing-one-text-dark {
-  color: var(--TEXT-DARK);
+  color: var(--text-dark);
 }
 
 /* Spacers */
@@ -106,7 +108,7 @@
 }
 .btn-signup-light:hover {
   background-color: #fff;
-  color: var(--TEXT-LIGHT);
+  color: var(--text-light);
 }
 .btn-signup-dark {
   background-color: transparent;

@@ -6,15 +6,12 @@ function ImagePicker(props) {
 
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [res, setRes] = useState({});
+  const [setRes] = useState({});
   const [imageData, setImageData] = useState("");
 
   const handleSelectFile = (e) => setFile(e.target.files[0]);
 
-  useEffect(() => {
-    // console.log(file);
-    // console.log(imageData);
-  }, [file, imageData]);
+  useEffect(() => {}, [file, imageData]);
 
   const handleUpload = async () => {
     const config = {
@@ -62,9 +59,6 @@ function ImagePicker(props) {
   };
   return (
     <div className="App">
-      {/* <label htmlFor="file" className="btn-grey">
-        select file
-      </label> */}
       {file && <center> {file.name}</center>}
       <div className="vh1-spacer" />
       <input
@@ -73,24 +67,10 @@ function ImagePicker(props) {
         onChange={handleSelectFile}
         multiple={false}
       />
-      {/* <code>
-        {Object.keys(res).length > 0
-          ? Object.keys(res).map((key) => (
-              <p className="output-item" key={key}>
-                <span>{key}:</span>
-                <span>
-                  {typeof res[key] === "object" ? "object" : res[key]}
-                </span>
-              </p>
-            ))
-          : null}
-      </code> */}
       {file && (
-        <>
-          <button onClick={handleUpload} className="btn-green">
-            {loading ? "uploading..." : "upload to cloudinary"}
-          </button>
-        </>
+        <button onClick={handleUpload} className="btn-green">
+          {loading ? "uploading..." : "upload to cloudinary"}
+        </button>
       )}
     </div>
   );

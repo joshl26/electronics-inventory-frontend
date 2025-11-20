@@ -1,9 +1,5 @@
 import * as React from "react";
-import * as _ from "lodash";
 import {
-  BarChart,
-  Cell,
-  Bar,
   ResponsiveContainer,
   AreaChart,
   Area,
@@ -11,12 +7,6 @@ import {
   YAxis,
   Tooltip,
   CartesianGrid,
-  Legend,
-  ReferenceArea,
-  ReferenceLine,
-  ReferenceDot,
-  LabelList,
-  Label,
 } from "recharts";
 
 const AreaChart1 = () => {

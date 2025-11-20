@@ -1,53 +1,28 @@
-import React, { useMemo, lazy, Suspense } from "react";
+// definition: A React component for the landing page of an inventory control application.
+// file: src/features/pages/LandingPage.jsx
+
+import React, { lazy, Suspense } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./LandingPage.scss";
 
 const CustomerReviews = lazy(() => import("../../shared/ui/CustomerReviews"));
 
-const LandingPage = ({ colorMode = "Light" }) => {
-  const landingHeader1Class = useMemo(
-    () =>
-      colorMode === "Light"
-        ? "landing-one-text-light landing-header-1"
-        : "landing-one-text-dark landing-header-1",
-    [colorMode]
-  );
-
-  const landingHeader1InlineClass = useMemo(
-    () =>
-      colorMode === "Light"
-        ? "landing-one-text-light landing-header-1-inline"
-        : "landing-one-text-dark landing-header-1-inline",
-    [colorMode]
-  );
-
-  const landingHeader2Class = useMemo(
-    () =>
-      colorMode === "Light"
-        ? "landing-one-text-light landing-header-2"
-        : "landing-one-text-dark landing-header-2",
-    [colorMode]
-  );
-
-  const signupBtnClass = useMemo(
-    () => (colorMode === "Light" ? "btn-signup-light" : "btn-signup-dark"),
-    [colorMode]
-  );
-
+const LandingPage = () => {
   return (
-    <main>
+    <main className="site-main">
       <section className="landing-one" aria-labelledby="landing-heading">
         <Container className="landing-inner">
           <div className="spacer_medium" />
           <Row className="align-items-center">
             <Col xs={12} md={6} lg={6} className="landing-one-col">
-              <h1 id="landing-heading" className={landingHeader1Class}>
+              <h1 id="landing-heading" className="landing-header-1">
                 Inventory Control
               </h1>
-              <h3 className={landingHeader1InlineClass}>Simplified</h3>
 
-              <h2 className={landingHeader2Class}>
+              <h3 className="landing-header-1-inline">Simplified</h3>
+
+              <h2 className="landing-header-2">
                 Take the guesswork out of inventory control and management.
                 Repetitive tasks like reorder setpoints, inventory costing, and
                 just-in-time management are automatically calculated by our
@@ -60,7 +35,7 @@ const LandingPage = ({ colorMode = "Light" }) => {
                 as={Link}
                 to="/signup"
                 variant="danger"
-                className={signupBtnClass}
+                className="btn-signup"
                 aria-label="Sign up and start free trial"
               >
                 Sign up — Start your free trial
