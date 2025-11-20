@@ -35,11 +35,17 @@ const ThemeToggle = () => {
   useEffect(() => {
     if (isDark === null) return;
     try {
-      document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+      document.documentElement.setAttribute(
+        "data-theme",
+        isDark ? "dark" : "light"
+      );
       localStorage.setItem(STORAGE_KEY, isDark ? "dark" : "light");
     } catch {
       // ignore storage errors
-      document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+      document.documentElement.setAttribute(
+        "data-theme",
+        isDark ? "dark" : "light"
+      );
     }
   }, [isDark]);
 
@@ -75,7 +81,11 @@ const ThemeToggle = () => {
     >
       <span className="theme-toggle-track" aria-hidden="true">
         <span className="theme-toggle-thumb" role="img" aria-hidden="true">
-          {isDark ? <FaMoon className="theme-icon" /> : <FaSun className="theme-icon" />}
+          {isDark ? (
+            <FaMoon className="theme-icon" />
+          ) : (
+            <FaSun className="theme-icon" />
+          )}
         </span>
       </span>
       <span className="theme-toggle-label">{isDark ? "Dark" : "Light"}</span>

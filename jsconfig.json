@@ -3,8 +3,10 @@
         "ignoreDeprecations": "6.0",
       "baseUrl": "src",
       "paths": {
+        "auth/*": ["auth/*"],
+        "layout/*": ["layout/*"],
         "features/*": ["features/*"],
-        "shared/*": ["shared/*"],
+        "pages/*": ["pages/*"],
         "app/*": ["app/*"],
         "config/*": ["config/*"],
         "utils/*": ["utils/*"],

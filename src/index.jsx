@@ -9,45 +9,47 @@ import {
 import { store } from "app/store";
 import { Provider } from "react-redux";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
-import Layout from "components/layout/PublicLayout";
-import Public from "features/pages/Public";
-import Login from "features/auth/Login";
+import PublicLayout from "components/layout/PublicLayout";
+import HomePage from "components/pages/public/HomePage/HomePage";
+import FeaturesPage from "components/pages/public/FeaturesPage/FeaturesPage";
+import PricingPage from "components/pages/public/PricingPage/PricingPage";
+import LoginPage from "components/pages/public/LoginPage/LoginPage";
+
 import DashLayout from "components/layout/DashLayout";
-import NotesList from "components/notes/NotesList";
-import UsersList from "components/users/UsersList";
-import EditUser from "components/users/EditUser";
-import NewUserForm from "components/users/NewUserForm";
-import EditNote from "components/notes/EditNote";
-import NewNote from "components/notes/NewNote";
-import Prefetch from "features/auth/Prefetch";
-import PersistLogin from "features/auth/PersistLogin";
-import RequireAuth from "features/auth/RequireAuth";
+import PartsPage from "components/pages/dashboard/parts/PartsPage";
+import NotesPage from "components/pages/dashboard/notes/NotesPage";
+import UsersList from "components/features/users/UsersList";
+import EditUser from "components/pages/dashboard/EditUserPage/EditUserPage";
+import NewUserForm from "components/features/users/NewUserForm";
+import EditNote from "components/pages/dashboard/notes/EditNotePage/EditNotePage";
+import NewNote from "components/pages/dashboard/notes/NewNotePage/NewNotePage";
+import EditPart from "components/pages/dashboard/parts/EditPartPage/EditPartPage";
+import NewPart from "components/pages/dashboard/parts/NewPartPage/NewPartPage";
+import ViewPart from "components/features/parts/ViewPart";
+import ReactGridLayout from "components/common/ReactGridLayout";
+
+import Prefetch from "components/features/auth/Prefetch";
+import PersistLogin from "components/features/auth/PersistLogin";
+import RequireAuth from "components/features/auth/RequireAuth";
 import { ROLES } from "config/roles";
 import ErrorPage from "error-page";
-import ReactGridLayout from "shared/ui/ReactGridLayout";
-import EditPart from "components/parts/EditPart";
-import NewPart from "components/parts/NewPart";
-import Features from "shared/ui/Features";
-import Plans from "shared/ui/Plans";
-import Pricing from "shared/ui/Pricing";
-import ViewPart from "components/parts/ViewPart";
-import "./index.scss";
-import PartsListContainer from "features/parts/containers/PartsListContainer";
 import { ThemeProvider } from "context/ThemeContext";
+import "./index.scss";
 
 if (process.env.NODE_ENV === "production") disableReactDevTools();
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route errorElement={<ErrorPage />} path="/" element={<Layout />}>
-      {/* Public Routes */}
-      <Route index element={<Public />} />
-      <Route path="features" element={<Features />} />
-      <Route path="plans" element={<Plans />} />
-      <Route path="pricing" element={<Pricing />} />
-      <Route path="login" element={<Login />} />
+    <Route errorElement={<ErrorPage />}>
+      {/* Public Page Routes */}
+      <Route path="/" element={<PublicLayout />}>
+        <Route index element={<HomePage />} />
+        <Route path="features" element={<FeaturesPage />} />
+        <Route path="pricing" element={<PricingPage />} />
+        <Route path="login" element={<LoginPage />} />
+      </Route>
 
-      {/* Protected Routes */}
+      {/* Protected Page Routes */}
       <Route element={<PersistLogin />}>
         <Route
           element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}
@@ -71,7 +73,7 @@ const router = createBrowserRouter(
                   />
                 }
               >
-                <Route index element={<PartsListContainer />} />
+                <Route index element={<PartsPage />} />
                 <Route path=":id" element={<ViewPart />} />
                 <Route path=":id/edit" element={<EditPart />} />
                 <Route path="new" element={<NewPart />} />
@@ -91,7 +93,7 @@ const router = createBrowserRouter(
                   />
                 }
               >
-                <Route index element={<NotesList />} />
+                <Route index element={<NotesPage />} />
                 <Route path=":id" element={<EditNote />} />
                 <Route path="new" element={<NewNote />} />
               </Route>

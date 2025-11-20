@@ -23,13 +23,16 @@ module.exports = (env, argv) => {
     resolve: {
       extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
       alias: {
-        features: path.resolve(__dirname, 'src/features/'),
-        shared: path.resolve(__dirname, 'src/shared/'),
+        features: path.resolve(__dirname, 'src/components/features/'),
         app: path.resolve(__dirname, 'src/app/'),
         utils: path.resolve(__dirname, 'src/utils/'),
         hooks: path.resolve(__dirname, 'src/hooks/'),
         img: path.resolve(__dirname, 'src/img/'),
         svg: path.resolve(__dirname, 'src/svg/'),
+        components: path.resolve(__dirname, 'src/components/'),
+        auth: path.resolve(__dirname, 'src/components/features/auth/'),
+
+        
       },
     },
 
