@@ -16,16 +16,20 @@ import PricingPage from "components/pages/public/PricingPage/PricingPage";
 import LoginPage from "components/pages/public/LoginPage/LoginPage";
 
 import DashLayout from "components/layout/DashLayout";
-import PartsPage from "components/pages/dashboard/parts/PartsPage";
+
+import UsersPage from "components/pages/dashboard/users/UsersPage";
+import EditUserPage from "components/pages/dashboard/users/EditUserPage/EditUserPage";
+import NewUserPage from "components/pages/dashboard/users/NewUserPage/NewUserPage";
+
 import NotesPage from "components/pages/dashboard/notes/NotesPage";
-import UsersList from "components/features/users/UsersList";
-import EditUser from "components/pages/dashboard/EditUserPage/EditUserPage";
-import NewUserForm from "components/features/users/NewUserForm";
-import EditNote from "components/pages/dashboard/notes/EditNotePage/EditNotePage";
-import NewNote from "components/pages/dashboard/notes/NewNotePage/NewNotePage";
-import EditPart from "components/pages/dashboard/parts/EditPartPage/EditPartPage";
-import NewPart from "components/pages/dashboard/parts/NewPartPage/NewPartPage";
-import ViewPart from "components/features/parts/ViewPart";
+import EditNotePage from "components/pages/dashboard/notes/EditNotePage/EditNotePage";
+import NewNotePage from "components/pages/dashboard/notes/NewNotePage/NewNotePage";
+
+import PartsPage from "components/pages/dashboard/parts/PartsPage";
+import EditPartPage from "components/pages/dashboard/parts/EditPartPage/EditPartPage";
+import NewPartPage from "components/pages/dashboard/parts/NewPartPage/NewPartPage";
+import ViewPartPage from "components/pages/dashboard/parts/ViewPartPage/ViewPartPage";
+
 import ReactGridLayout from "components/common/ReactGridLayout";
 
 import Prefetch from "components/features/auth/Prefetch";
@@ -74,9 +78,9 @@ const router = createBrowserRouter(
                 }
               >
                 <Route index element={<PartsPage />} />
-                <Route path=":id" element={<ViewPart />} />
-                <Route path=":id/edit" element={<EditPart />} />
-                <Route path="new" element={<NewPart />} />
+                <Route path=":id" element={<ViewPartPage />} />
+                <Route path=":id/edit" element={<EditPartPage />} />
+                <Route path="new" element={<NewPartPage />} />
               </Route>
 
               {/* Notes Routes */}
@@ -94,8 +98,8 @@ const router = createBrowserRouter(
                 }
               >
                 <Route index element={<NotesPage />} />
-                <Route path=":id" element={<EditNote />} />
-                <Route path="new" element={<NewNote />} />
+                <Route path=":id" element={<EditNotePage />} />
+                <Route path="new" element={<NewNotePage />} />
               </Route>
 
               {/* Users Routes */}
@@ -105,9 +109,9 @@ const router = createBrowserRouter(
                   <RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />
                 }
               >
-                <Route index element={<UsersList />} />
-                <Route path=":id" element={<EditUser />} />
-                <Route path="new" element={<NewUserForm />} />
+                <Route index element={<UsersPage />} />
+                <Route path=":id" element={<EditUserPage />} />
+                <Route path="new" element={<NewUserPage />} />
               </Route>
             </Route>
           </Route>

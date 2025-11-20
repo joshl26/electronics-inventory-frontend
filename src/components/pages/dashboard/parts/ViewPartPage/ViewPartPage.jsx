@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectPartById } from "components/features/parts/partsApiSlice";
 import { selectAllUsers } from "components/features/users/usersApiSlice";
-import EditPartForm from "./EditPartForm";
+import EditPartForm from "../../../../features/parts/EditPartForm";
 import partTypes from "mock_data/partTypes";
 
-const ViewPart = () => {
+const ViewPartPage = () => {
   const { id } = useParams();
 
   const part = useSelector((state) => selectPartById(state, id));
@@ -27,4 +27,4 @@ const ViewPart = () => {
   return content;
 };
 
-export default ViewPart;
+export default ViewPartPage;

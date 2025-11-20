@@ -1,11 +1,11 @@
-import { useGetUsersQuery } from "./usersApiSlice";
+import { useGetUsersQuery } from "components/features/users/usersApiSlice";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import OutletLoadingPage from "components/pages/OutletLoadingPage";
-import User from "./User";
-import "./UsersList.css";
+import User from "components/features/users/User";
+import "./UsersPage.css";
 
-const UsersList = () => {
+const NewUserPage = () => {
   const {
     data: users,
     isLoading,
@@ -167,4 +167,4 @@ const UsersList = () => {
   return content;
 };
 
-export default UsersList;
+export default NewUserPage;
