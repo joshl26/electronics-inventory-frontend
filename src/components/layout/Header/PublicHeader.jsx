@@ -1,7 +1,4 @@
-// Updated LoginHeader with integrated theme toggle
-// file: src/features/pages/LoginHeader.jsx
-
-import React, { useMemo, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -10,56 +7,22 @@ import Lottie from "lottie-react";
 import HamburgerMenu from "svg/HamburgerMenu.json";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { useTheme } from "context/ThemeContext";
 import ThemeToggle from "components/common/ThemeToggle/ThemeToggle";
 import "./PublicHeader.scss";
 
-// const FEATURES_MENU = [
-//   { to: "/features/views", label: "Views" },
-//   { to: "/features/automation", label: "Automation" },
-//   { to: "/features/power-ups", label: "Power-Ups" },
-//   { to: "/features/templates", label: "Templates" },
-//   { to: "/features/integrations", label: "Integrations" },
-// ];
-
-// const PLANS_MENU = [
-//   { to: "/pricing#free", label: "Free Tier" },
-//   { to: "/pricing#standard", label: "Standard Tier" },
-//   { to: "/pricing#premium", label: "Premium Tier" },
-//   { to: "/pricing#enterprise", label: "Enterprise Tier" },
-// ];
-
 const NAV_ITEMS = [
-  // { to: "/", label: "Inventory Tracker", type: "link" },
-  // { label: "Features", type: "dropdown", id: "features", items: FEATURES_MENU },
-  // { label: "Plans", type: "dropdown", id: "plans", items: PLANS_MENU },
   { to: "/about", label: "About", type: "link" },
-
   { to: "/features", label: "Features", type: "link" },
   { to: "/pricing", label: "Pricing", type: "link" },
   { to: "/contact", label: "Contact", type: "link" },
 ];
 
 const PublicHeader = () => {
-  const { isDark } = useTheme();
   const [expanded, setExpanded] = useState(false);
 
-  const navBarClass = useMemo(() => {
-    const base = "navbar-login";
-    const theme = isDark ? "navbar-dark" : "navbar-light";
-    const bg = isDark ? "nav-bg-dark" : "nav-bg-light";
-    return `${base} ${theme} ${bg}`;
-  }, [isDark]);
-
-  const loginBtnClass = useMemo(
-    () => (isDark ? "btn-login-dark" : "btn-login-light"),
-    [isDark]
-  );
-
-  const signupBtnClass = useMemo(
-    () => (isDark ? "btn-signup-dark" : "btn-signup-light"),
-    [isDark]
-  );
+  const navBarClass = "navbar-login";
+  const loginBtnClass = "btn-login";
+  const signupBtnClass = "btn-signup";
 
   const handleNavCollapse = useCallback(() => {
     setExpanded(false);
@@ -135,7 +98,7 @@ const PublicHeader = () => {
                 role="img"
                 aria-label="Ei logo"
               />
-              <h1 className="login_text mb-0">Ei</h1>
+              <h1 className="header_icon_text mb-0">Ei</h1>
             </div>
           </Navbar.Brand>
         </div>

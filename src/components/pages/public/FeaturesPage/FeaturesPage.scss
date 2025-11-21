@@ -1,13 +1,122 @@
-.features-header-text {
-  color: black;
+.features-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-body);
+  transition: background-color var(--transition-smooth),
+    color var(--transition-smooth);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
+.features-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .features-title {
+    font-size: 2.75rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .features-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+.features-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.feature-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  text-align: center;
+  transition: box-shadow var(--transition-smooth),
+    transform var(--transition-smooth);
+  cursor: default;
+
+  &:hover,
+  &:focus-within {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-5px);
+    outline: none;
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .feature-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+  }
+
+  .feature-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+}
+
+/* Light theme overrides */
 .features-light {
-  height: 100vh;
   background-color: var(--color-five);
+  color: var(--text-primary);
 }
 
+/* Dark theme overrides */
 .features-dark {
-  height: 100vh;
   background-color: var(--color-one);
+  color: var(--text-inverse);
+
+  .feature-card {
+    background-color: var(--bg-elevated);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+
+    .feature-icon {
+      color: var(--color-primary-light);
+    }
+
+    .feature-title {
+      color: var(--text-inverse);
+    }
+
+    .feature-description {
+      color: var(--text-secondary);
+    }
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .features-header {
+    .features-title {
+      font-size: 2rem;
+    }
+
+    .features-subtitle {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
 }

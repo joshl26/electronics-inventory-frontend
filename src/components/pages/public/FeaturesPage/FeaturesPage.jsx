@@ -1,4 +1,5 @@
 import React from "react";
+import "./FeaturesPage.scss";
 
 const features = [
   {
@@ -31,35 +32,31 @@ const features = [
 
 const FeaturesPage = () => {
   return (
-    <div style={{ maxWidth: 900, margin: "2rem auto", padding: "1rem" }}>
-      <h2>Features</h2>
-      <div
-        style={{
-          display: "grid",
-          gap: "1.5rem",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-        }}
-      >
+    <section className="features-page theme-transition">
+      <header className="features-header">
+        <h1 className="features-title">Our Features</h1>
+        <p className="features-subtitle">
+          Discover the powerful features that make our app stand out.
+        </p>
+      </header>
+
+      <div className="features-grid" role="list">
         {features.map(({ id, title, description, icon }) => (
-          <div
+          <article
             key={id}
-            style={{
-              border: "1px solid #ddd",
-              borderRadius: 8,
-              padding: "1rem",
-              boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-              textAlign: "center",
-            }}
+            className="feature-card"
+            role="listitem"
+            tabIndex={0}
           >
-            <div style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
+            <div className="feature-icon" aria-hidden="true">
               {icon}
             </div>
-            <h3>{title}</h3>
-            <p style={{ color: "#555" }}>{description}</p>
-          </div>
+            <h2 className="feature-title">{title}</h2>
+            <p className="feature-description">{description}</p>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

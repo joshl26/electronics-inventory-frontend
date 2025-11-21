@@ -1,242 +1,135 @@
-/* header.scss - cleaned header & navbar styles (mobile-first) */
-
-/* Use CSS vars from theme-variables.scss (ensure that file is imported first) */
-
-/* ----------------------------------------
-   Base (mobile)
-   ---------------------------------------- */
-
-.header_container {
+/* Navbar container */
+.navbar-login {
+  background-color: var(--navbar-bg);
+  color: var(--navbar-text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: saturate(180%) blur(10px);
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 10vh; /* adjust if needed */
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1rem;
-  box-sizing: border-box;
+  z-index: 1000;
+  border-bottom: 2px solid var(--border-color);
 }
 
-.header_text {
-  color: var(--text-inverse, #fff);
-  font-size: 1.5rem;
-  padding-top: 0.25rem;
-  line-height: 1;
+/* Nav links */
+.nav-link,
+.link {
+  color: var(--link-text-light);
+  transition: color var(--transition-smooth);
+
+  &:hover,
+  &:focus-visible {
+    color: var(--color-primary);
+    outline-offset: 2px;
+    outline: 2px solid var(--color-primary);
+    text-decoration: underline;
+  }
 }
 
-/* Logo / icon */
+/* Buttons */
+.btn-login,
+.btn-signup {
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  transition: background-color var(--transition-smooth),
+    color var(--transition-smooth);
+
+  &:hover,
+  &:focus-visible {
+    background-color: var(--btn-primary-hover-bg);
+    color: var(--btn-primary-text);
+    border-color: var(--btn-primary-bg);
+    outline: none;
+  }
+}
+
+/* Logo icon */
 .header_icon {
   width: 40px;
   height: 40px;
-  display: inline-block;
   object-fit: contain;
-}
-
-/* Brand / logo text */
-.logo_text {
-  font-family: "Figtree", sans-serif;
-  margin: 0;
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  color: inherit;
-}
-
-/* Nav links - common */
-.nav-item {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
-/* light / dark link paddings (shared) */
-.nav-link-light,
-.nav-link-dark {
-  padding-left: 1rem;
-  padding-right: 1rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.95rem;
-  line-height: 1;
-}
-
-/* link text color */
-.link_text {
-  color: rgb(159, 159, 159);
-  transition: color var(--transition-smooth);
-}
-.link_text:hover,
-.link_text:focus {
-  color: rgb(180, 180, 180);
-}
-
-/* Navbar containers (login / public) */
-.navbar-login {
-  opacity: 0.99;
-  background-color: var(--navbar-bg, rgba(22, 26, 29, 1));
-  z-index: 1000; /* make sure above content */
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
-  transition: background-color 0.35s ease, box-shadow 0.35s ease;
-}
-
-/* Brand padding reset */
-.navbar-brand {
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-/* Hero link hover (use safe rgba values) */
-.hero-link:hover,
-.hero-link:focus {
-  background-color: rgba(255, 255, 255, 0.08);
-  border-radius: 0.25rem;
-}
-
-/* Button styles (light/dark variants) */
-.btn-signup-light {
-  background-color: var(--color-three, #007bff);
-  color: #fff;
-  border: 1px solid transparent;
-}
-.btn-signup-light:hover,
-.btn-signup-light:focus {
-  background-color: #fff;
-  color: var(--text-primary, #000);
-}
-
-.btn-login-light {
-  background-color: var(--color-one, #ff7b00);
-  color: #fff;
-}
-.btn-login-light:hover,
-.btn-login-light:focus {
-  background-color: #fff;
-  color: var(--color-one, #ff7b00);
-  border: 1px solid var(--color-one, #ff7b00);
-}
-
-.btn-login-dark {
-  background-color: var(--color-one, #ff7b00);
-  color: #fff;
-  border: 1px solid var(--color-one, #ff7b00);
-}
-.btn-login-dark:hover,
-.btn-login-dark:focus {
-  background-color: #fff;
-  color: #000;
-  border: 1px solid #fff;
-}
-
-.btn-signup-dark:hover {
-  background-color: #fff;
-  border: 1px solid #fff;
-}
-
-/* small helper */
-.animated-logo {
-  width: auto;
   display: inline-block;
 }
 
-/* ----------------------------------------
-     Desktop / larger screens
-     ---------------------------------------- */
+/* Logo text */
+.header_icon_text {
+  font-family: "Figtree", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: var(--text-primary);
+  margin-bottom: 0;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  user-select: none;
+  transition: color var(--transition-smooth);
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
 
+/* Responsive adjustments */
 @media screen and (min-width: 769px) {
-  .header_container {
-    height: 10vh;
-    padding: 0 1.5rem;
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
   }
 
-  .header_text {
-    font-size: 1.5rem;
-    padding-top: 0.25rem;
-  }
-
-  /* keep navbar fixed but avoid layout jumps */
-  .navbar-login {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    transition: background-color 0.5s ease, box-shadow 0.5s ease;
-  }
-
-  /* Desktop-specific backgrounds */
-  .nav-bg-light {
-    background-color: var(--bg-body, #fff);
-  }
-
-  .nav-bg-dark {
-    background-color: var(--navbar-bg, #161a1d);
-  }
-
-  .link_text {
-    color: rgb(159, 159, 159);
-  }
-
-  .login_text {
-    font-family: "Figtree", sans-serif;
-    margin: 0;
-    font-size: 1.25rem;
-  }
-
-  .btn-signup-light {
-    background-color: var(--color-three, #007bff);
-  }
-
-  .btn-signup-light:hover {
-    background-color: #fff;
-    color: var(--text-primary, #000);
-  }
-
-  /* Slightly larger hit targets on desktop */
-  .nav-link-light,
-  .nav-link-dark {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-
-  .hero-link:hover,
-  .hero-link:focus {
-    background-color: rgba(255, 255, 255, 0.08);
-    border-radius: 0.25rem;
+  .btn-login,
+  .btn-signup {
+    padding: 0.625rem 1.5rem;
+    font-size: 1rem;
   }
 }
 
-/* ----------------------------------------
-     Theme-specific borders (use theme vars)
-     ---------------------------------------- */
-
-/* Dark navbar border - prefer using var fallbacks */
-.navbar-dark {
-  border-bottom: 2px solid rgba(255, 255, 255, 0.8) !important;
+/* Accessibility focus outlines */
+.nav-link:focus-visible,
+.btn-login:focus-visible,
+.btn-signup:focus-visible {
+  outline-offset: 3px;
+  outline: 3px solid var(--color-primary);
 }
 
-/* Light navbar border */
-.navbar-light {
-  border-bottom: 2px solid var(--border-color, rgba(0, 0, 0, 0.12));
+/* Dark theme overrides for link colors */
+/* Dark theme overrides */
+[data-theme="dark"],
+.theme-dark {
+  --link-text-light: #ddd;
+  --link-text-light-hover: #fff;
+  --link-text-active: #fff;
+
+  /* Button hover background and text color for dark mode */
+  --btn-primary-hover-bg: #ffffff; /* white background on hover */
+  --btn-primary-text-hover: #000000; /* dark text on hover */
 }
 
-/* ----------------------------------------
-     Utility: sticky dash header (shared)
-     ---------------------------------------- */
+/* Button base styles */
+.btn-login,
+.btn-signup {
+  font-weight: 600;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  transition: background-color var(--transition-smooth),
+    color var(--transition-smooth);
+}
 
-.dash-header {
-  position: sticky;
-  top: 0;
-  z-index: 900;
-  background-color: var(--bg-body);
-  padding: 0 0.5rem;
-  border-bottom: 1px solid var(--border-color);
+/* Button hover/focus styles */
+.btn-login:hover,
+.btn-login:focus-visible,
+.btn-signup:hover,
+.btn-signup:focus-visible {
+  background-color: var(--btn-primary-hover-bg) !important;
+  color: var(--btn-primary-text-hover, var(--btn-primary-text)) !important;
+  border-color: var(--btn-primary-bg);
+  outline: none;
 }

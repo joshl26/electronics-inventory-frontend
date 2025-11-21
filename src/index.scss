@@ -1,11 +1,10 @@
-// index.scss
 // Global styles, resets, and imports.
 
 // Import theme variables first
-@use "./styles/theme-variables" as *;
+@import "./styles/_theme-variables";
 
 // Import your custom styles (which includes Bootstrap)
-@import "custom";
+@import "./styles/custom";
 
 // Fonts (opt-in)
 @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap");
@@ -114,4 +113,26 @@ select {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
   }
+}
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-three);
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  transition: top 0.3s ease;
+
+  &:focus {
+    top: 0;
+    outline: 2px solid white;
+  }
+}
+
+.container {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
 }

@@ -7,30 +7,6 @@ import "./PublicFooter.scss";
 
 import HamburgerMenu from "svg/HamburgerMenu.json";
 
-// const LANGUAGE_OPTIONS = [
-//   { value: "en", label: "English" },
-//   { value: "cs", label: "Čeština" },
-//   { value: "de", label: "Deutsch" },
-//   { value: "es", label: "Español" },
-//   { value: "fr", label: "Français" },
-//   { value: "it", label: "Italiano" },
-//   { value: "hu", label: "Magyar" },
-//   { value: "nl", label: "Nederlands" },
-//   { value: "nb", label: "Norsk (bokmål)" },
-//   { value: "pl", label: "Polski" },
-//   { value: "pt-BR", label: "Português (Brasil)" },
-//   { value: "fi", label: "Suomi" },
-//   { value: "sv", label: "Svenska" },
-//   { value: "vi", label: "Tiếng Việt" },
-//   { value: "tr", label: "Türkçe" },
-//   { value: "ru", label: "Русский" },
-//   { value: "uk", label: "Українська" },
-//   { value: "th", label: "ภาษาไทย" },
-//   { value: "zh-Hans", label: "中文 (简体)" },
-//   { value: "zh-Hant", label: "中文 (繁體)" },
-//   { value: "ja", label: "日本語" },
-// ];
-
 const FOOTER_LINKS = [
   { to: "/about", title: "About", description: "Learn more about Ei." },
   {
@@ -57,51 +33,13 @@ const SOCIAL_LINKS = [
   { url: "https://google.com/", label: "Google" },
 ];
 
-const LEGAL_LINKS = [
-  // { to: "/privacy", label: "Privacy Policy" },
-  // { to: "/terms", label: "Terms" },
-  // { to: "/cookies", label: "Cookie Settings" },
-];
-
-// const STORAGE_KEY = "language";
-
 const PublicFooter = () => {
-  // const [language, setLanguage] = useState(() => {
-  //   try {
-  //     const stored = localStorage.getItem(STORAGE_KEY);
-  //     return stored ? JSON.parse(stored) : "en";
-  //   } catch {
-  //     return "en";
-  //   }
-  // });
-
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
     return () => clearTimeout(timer);
   }, []);
-
-  // useEffect(() => {
-  //   try {
-  //     const stored = localStorage.getItem(STORAGE_KEY);
-  //     if (!stored) {
-  //       localStorage.setItem(STORAGE_KEY, JSON.stringify(language));
-  //     }
-  //   } catch {
-  //     // ignore
-  //   }
-  // }, [language]);
-
-  // const onLanguageChangeHandler = useCallback((e) => {
-  //   const newLang = e.target.value;
-  //   setLanguage(newLang);
-  //   try {
-  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(newLang));
-  //   } catch {
-  //     // ignore
-  //   }
-  // }, []);
 
   const currentYear = new Date().getFullYear();
 
@@ -165,52 +103,6 @@ const PublicFooter = () => {
           <div className="section-break" role="separator" aria-hidden="true" />
 
           <Row className="footer-social-row align-items-center gy-2">
-            {/* <Col xs={12} md={1}>
-              <h4 className="footer-h4-text">Language</h4>
-            </Col> */}
-
-            {/* <Col xs={12} md={2}>
-              <Form>
-                <Form.Select
-                  name="language"
-                  aria-label="Select a language"
-                  data-testid="language-select"
-                  onChange={onLanguageChangeHandler}
-                  value={language}
-                >
-                  {LANGUAGE_OPTIONS.map((opt) => (
-                    <option
-                      key={opt.value}
-                      value={opt.value}
-                      data-uuid={`${opt.value}_language`}
-                    >
-                      {opt.label}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form>
-            </Col> */}
-
-            {LEGAL_LINKS.map((link) => (
-              <Col key={link.to} xs={12} md={1}>
-                <Link
-                  to={link.to}
-                  className="text-decoration-none"
-                  aria-label={link.label}
-                >
-                  <p
-                    className={
-                      link.to === "/cookies"
-                        ? "footer-p-text-light"
-                        : "footer-p-text"
-                    }
-                  >
-                    {link.label}
-                  </p>
-                </Link>
-              </Col>
-            ))}
-
             <Col xs={12} md={2}>
               <p
                 className="footer-p-text"

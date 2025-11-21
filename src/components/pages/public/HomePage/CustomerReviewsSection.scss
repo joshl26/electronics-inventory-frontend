@@ -1,0 +1,67 @@
+.customer-reviews-section {
+  background-color: #2a9d8f;
+  color: #fff;
+  padding: 4rem 1rem;
+  box-sizing: border-box;
+
+  /* Center content and limit max width */
+
+  .section-title {
+    font-family: "Gloock", serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-subtitle {
+    font-family: "Cabin", sans-serif;
+    font-size: clamp(1rem, 2vw, 1.5rem);
+    text-align: center;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+
+  .slide-item {
+    padding: 0 0.5rem;
+    box-sizing: border-box;
+  }
+
+  /* Override react-slideshow-image nav styles */
+  .default-nav {
+    background-color: #3bcfbe !important;
+    border-radius: 50%;
+    width: 40px !important;
+    height: 40px !important;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #fff !important;
+    }
+  }
+}
+
+/* Prevent horizontal scroll on body */
+body {
+  overflow-x: hidden;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .customer-reviews-section {
+    padding: 2rem 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.25rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .customer-reviews-section {
+    padding: 4rem 2rem;
+  }
+}

@@ -1,0 +1,60 @@
+.customer-gallery {
+  position: relative;
+  background-color: var(--color-four, #f5f5f5);
+  color: var(--text-primary);
+  transition: background-color var(--transition-smooth),
+    color var(--transition-smooth);
+}
+
+.customer-header-text {
+  font-family: "Gloock", serif;
+  font-size: clamp(3rem, calc(2.25rem + 3.75vw), 6rem);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  transition: color var(--transition-smooth);
+}
+
+.customer-icon {
+  width: clamp(200px, calc(10.9375rem + 7.8125vw), 300px);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: filter var(--transition-smooth);
+}
+
+/* Correct dark mode icon inversion */
+[data-theme="dark"] .customer-gallery .customer-icon {
+  filter: invert(1) brightness(1.2);
+}
+
+.customer-col {
+  margin-bottom: 2rem;
+}
+
+.spacer {
+  height: 3rem;
+}
+
+.spacer-small {
+  height: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .customer-header-text {
+    text-align: left;
+    padding-left: 1rem;
+  }
+
+  .customer-icon {
+    padding-top: 2rem;
+    width: 150px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .customer-gallery-container {
+    width: 90vw;
+    text-align: center;
+  }
+}

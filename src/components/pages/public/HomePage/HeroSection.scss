@@ -1,13 +1,18 @@
-/* LandingPage.scss - cleaned and responsive */
-
-/* CSS variables (adjust in global theme if you already have variables) */
 :root {
   --landing-bg: url("https://res.cloudinary.com/dv6keahg3/image/upload/v1689524251/ElectronicsInventory/frontend_ui_images/background_1_crnuep.png");
   --color-two: #e0e0e0;
   --color-three: #ff6b4a;
-  --text-light: #111;
+  --text-light: #fff; /* changed to white */
   --text-dark: #fff;
   --max-content-width: 1200px;
+
+  /* Spacing */
+  --space-small: 1.5rem;
+  --space-medium: 6rem;
+
+  /* Breakpoints */
+  --bp-sm: 600px;
+  --bp-md: 992px;
 }
 
 /* Hero section */
@@ -16,21 +21,31 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* If you need the section to fill most of the viewport, keep svh;
-     otherwise use min-height: auto and let flex layout handle full-height pages. */
-  min-height: 80svh;
+  min-height: 80vh;
   width: 100%;
   padding: 0;
   position: relative;
   z-index: 2;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+
+  /* Force all text white */
+  color: #fff !important;
+
+  /* Force all descendants text white */
+  * {
+    color: #fff !important;
+  }
 }
 
-/* inner container to avoid 100vw issues */
+/* Inner container */
 .landing-inner {
   max-width: var(--max-content-width);
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: var(--space-medium) 1rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Headings */
@@ -38,46 +53,51 @@
 .landing-header-2,
 .landing-header-3 {
   margin: 0 0 0.5rem 0;
+  line-height: 1.1;
+  color: #fff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
 }
 
 .landing-header-1 {
   font-family: "Gloock", serif;
   font-size: clamp(2.75rem, 3.25rem + 3.5vw, 6.5rem);
   line-height: 0.95;
+  font-weight: 700;
 }
 
 .landing-header-1-inline {
   font-family: "Figtree", sans-serif;
   font-size: clamp(2.25rem, 2.5rem + 2.5vw, 5.5rem);
   margin: 0.2rem 0;
+  font-weight: 600;
 }
 
 .landing-header-2 {
   font-family: "Figtree", sans-serif;
   font-size: clamp(1.125rem, 1.125rem + 1.5vw, 2.25rem);
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: var(--space-small);
+  padding-bottom: var(--space-small);
   max-width: 85%;
   text-align: left;
+  font-weight: 400;
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-/* Color variants */
-.landing-one-text-light {
-  color: var(--text-light);
-}
-.landing-one-text-dark {
-  color: var(--text-dark);
-}
-
-/* Spacers */
+/* Spacers using margin */
 .spacer_small {
-  height: 2.5vh;
+  margin-top: var(--space-small);
+  margin-bottom: var(--space-small);
 }
+
 .spacer_medium {
-  height: 12vh;
+  margin-top: var(--space-medium);
+  margin-bottom: var(--space-medium);
 }
+
 .landing-spacer {
-  height: 2.5vh;
+  margin-top: var(--space-small);
+  margin-bottom: var(--space-small);
 }
 
 /* Video embed: responsive aspect ratio */
@@ -88,7 +108,13 @@
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.25);
+  transition: box-shadow 0.3s ease;
+}
+
+.video-wrapper:hover,
+.video-wrapper:focus-within {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
 }
 
 .video-wrapper iframe {
@@ -101,33 +127,52 @@
 }
 
 /* Buttons */
-.btn-signup-light {
+.btn-signup {
   background-color: var(--color-three);
   border-color: var(--color-three);
   color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 107, 74, 0.4);
+  user-select: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  border: none;
 }
-.btn-signup-light:hover {
+
+.btn-signup:hover,
+.btn-signup:focus-visible {
   background-color: #fff;
   color: var(--text-light);
-}
-.btn-signup-dark {
-  background-color: transparent;
-  border: 1px solid #fff;
-  color: #fff;
-}
-.btn-signup-dark:hover {
-  background-color: var(--color-three);
-  color: #fff;
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(255, 107, 74, 0.6);
 }
 
-/* Customer reviews stacking / spacing */
-.customer-reviews {
-  margin-top: 2rem;
-  z-index: 10;
+/* Accessibility: focus-visible */
+.btn-signup:focus-visible {
+  outline-offset: 3px;
 }
 
-/* Responsive fine tuning (mobile-first) */
-@media (max-width: 599px) {
+/* Links inside landing */
+.landing-one a {
+  color: #fff !important;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.landing-one a:hover,
+.landing-one a:focus {
+  color: lighten(#fff, 20%) !important;
+  outline: none;
+}
+
+/* Responsive fine tuning */
+@media (max-width: var(--bp-sm)) {
   .landing-inner {
     padding: 1rem;
   }
@@ -145,13 +190,13 @@
   }
 }
 
-@media (min-width: 600px) and (max-width: 991px) {
+@media (min-width: var(--bp-sm)) and (max-width: 991px) {
   .landing-inner {
     padding: 1.5rem;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: var(--bp-md)) {
   .landing-inner {
     padding: 2.5rem;
   }

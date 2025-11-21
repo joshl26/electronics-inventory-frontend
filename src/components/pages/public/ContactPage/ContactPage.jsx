@@ -1,13 +1,16 @@
 import { useState } from "react";
+import "./ContactPage.scss";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -15,80 +18,156 @@ const ContactPage = () => {
     if (!formData.email.trim()) newErrors.email = "Email is required";
     else if (!/\S+@\S+\.\S+/.test(formData.email))
       newErrors.email = "Email is invalid";
+    if (formData.phone.trim() && !/^\+?[\d\s\-()]{7,}$/.test(formData.phone))
+      newErrors.phone = "Phone number is invalid";
     if (!formData.message.trim()) newErrors.message = "Message is required";
     return newErrors;
   };
 
   const handleChange = (e) => {
-    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-    setErrors((prev) => ({ ...prev, [e.target.name]: null }));
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: null }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    // Here you would typically send formData to your backend or API
-    console.log("Form submitted:", formData);
-    setSubmitted(true);
-    setFormData({ name: "", email: "", message: "" });
+    setSubmitting(true);
+    try {
+      // Simulate API call
+      await new Promise((r) => setTimeout(r, 1500));
+      console.log("Form submitted:", formData);
+      setSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", message: "" });
+      setErrors({});
+    } catch (error) {
+      // Handle submission error here
+      alert("Failed to submit. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: "2rem auto", padding: "1rem" }}>
-      <h2>Contact Us</h2>
+    <div className="contact-page-container" role="main">
+      <h2 tabIndex={-1}>Contact Us</h2>
+
       {submitted && (
-        <p style={{ color: "green" }}>Thank you for your message!</p>
+        <div
+          className="success-message"
+          role="alert"
+          aria-live="assertive"
+          tabIndex={0}
+        >
+          Thank you for your message!
+          <button
+            aria-label="Dismiss success message"
+            onClick={() => setSubmitted(false)}
+            className="dismiss-btn"
+          >
+            ×
+          </button>
+        </div>
       )}
-      <form onSubmit={handleSubmit} noValidate>
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="name">Name:</label>
-          <br />
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "0.5rem" }}
-          />
-          {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
-        </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="email">Email:</label>
-          <br />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "0.5rem" }}
-          />
-          {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-        </div>
+      <form onSubmit={handleSubmit} noValidate aria-describedby="form-errors">
+        <fieldset disabled={submitting} style={{ border: "none", padding: 0 }}>
+          <div className="form-group">
+            <label htmlFor="name">
+              Name <span aria-hidden="true">*</span>
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              aria-invalid={!!errors.name}
+              aria-describedby={errors.name ? "name-error" : undefined}
+              required
+            />
+            {errors.name && (
+              <p className="error-message" id="name-error" role="alert">
+                {errors.name}
+              </p>
+            )}
+          </div>
 
-        <div style={{ marginBottom: "1rem" }}>
-          <label htmlFor="message">Message:</label>
-          <br />
-          <textarea
-            id="message"
-            name="message"
-            rows="5"
-            value={formData.message}
-            onChange={handleChange}
-            style={{ width: "100%", padding: "0.5rem" }}
-          />
-          {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
-        </div>
+          <div className="form-group">
+            <label htmlFor="email">
+              Email <span aria-hidden="true">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              aria-invalid={!!errors.email}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              required
+            />
+            {errors.email && (
+              <p className="error-message" id="email-error" role="alert">
+                {errors.email}
+              </p>
+            )}
+          </div>
 
-        <button type="submit" style={{ padding: "0.75rem 1.5rem" }}>
-          Send Message
-        </button>
+          <div className="form-group">
+            <label htmlFor="phone">Phone (optional)</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              aria-invalid={!!errors.phone}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
+              placeholder="+1 555 123 4567"
+            />
+            {errors.phone && (
+              <p className="error-message" id="phone-error" role="alert">
+                {errors.phone}
+              </p>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="message">
+              Message <span aria-hidden="true">*</span>
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="5"
+              value={formData.message}
+              onChange={handleChange}
+              aria-invalid={!!errors.message}
+              aria-describedby={errors.message ? "message-error" : undefined}
+              required
+            />
+            {errors.message && (
+              <p className="error-message" id="message-error" role="alert">
+                {errors.message}
+              </p>
+            )}
+          </div>
+
+          <button
+            type="submit"
+            disabled={submitting}
+            aria-busy={submitting}
+            className="submit-btn"
+          >
+            {submitting ? "Sending..." : "Send Message"}
+          </button>
+        </fieldset>
       </form>
     </div>
   );

@@ -1,10 +1,10 @@
-// custom.scss
+// Import Bootstrap variable overrides first
+@import "./_custom-bootstrap";
 
-// Import variable overrides first
-@import "./custom-bootstrap";
+// Import Bootstrap itself
+@import "bootstrap/scss/bootstrap";
 
-// Import Bootstrap
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "react-slideshow-image/dist/styles.css";
 
 // Custom component overrides and utility classes
 
@@ -119,9 +119,9 @@
   }
 }
 
-.navbar-login {
-  color: inherit;
-}
+// .navbar-login {
+//   // color: inherit;
+// }
 
 .navbar-login .nav-link,
 .navbar-login .nav-link > .link_text {
@@ -170,14 +170,14 @@
   box-shadow: none;
 }
 
-.navbar-login .nav-link,
-.navbar-login .nav-link * {
-  color: inherit !important;
-}
+// .navbar-login .nav-link,
+// .navbar-login .nav-link * {
+//   // color: inherit !important;
+// }
 
 .navbar-login.navbar-light .nav-link,
 .navbar-login.navbar-dark .nav-link {
-  color: inherit;
+  // color: inherit;
   background: transparent;
 }
 

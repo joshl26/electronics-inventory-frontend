@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "./index.scss";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -38,7 +39,7 @@ import RequireAuth from "components/features/auth/RequireAuth";
 import { ROLES } from "config/roles";
 import ErrorPage from "components/pages/error-page";
 import { ThemeProvider } from "context/ThemeContext";
-import "./index.scss";
+
 import SignupPage from "components/pages/public/SignupPage/SignupPage";
 import ContactPage from "components/pages/public/ContactPage/ContactPage";
 import AboutPage from "components/pages/public/AboutPage/AboutPage";

@@ -1,17 +1,31 @@
-// definition: A React component for the landing page of an inventory control application.
-// file: src/features/pages/LandingSection.jsx
-
-import React, { lazy, Suspense } from "react";
+import React, { memo } from "react";
+import { Helmet } from "react-helmet";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./LandingSection.scss";
+import "./HeroSection.scss";
 
-const CustomerReviews = lazy(() => import("components/common/CustomerReviews"));
-
-const LandingSection = () => {
+const HeroSection = () => {
   return (
-    <main className="site-main">
-      <section className="landing-one" aria-labelledby="landing-heading">
+    <>
+      <Helmet>
+        <title>Inventory Control Simplified | Electronics Inventory</title>
+        <meta
+          name="description"
+          content="Take the guesswork out of inventory control and management with our automated software. Start your free trial today."
+        />
+        <link rel="canonical" href="https://yourdomain.com/" />
+        {/* Add JSON-LD structured data here if desired */}
+      </Helmet>
+
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
+      <section
+        id="main-content"
+        className="landing-one"
+        aria-labelledby="landing-heading"
+      >
         <Container className="landing-inner">
           <div className="spacer_medium" />
           <Row className="align-items-center">
@@ -20,14 +34,14 @@ const LandingSection = () => {
                 Inventory Control
               </h1>
 
-              <h3 className="landing-header-1-inline">Simplified</h3>
+              <h2 className="landing-header-1-inline">Simplified</h2>
 
-              <h2 className="landing-header-2">
+              <h3 className="landing-header-2">
                 Take the guesswork out of inventory control and management.
                 Repetitive tasks like reorder setpoints, inventory costing, and
                 just-in-time management are automatically calculated by our
                 software so you can focus on running the business.
-              </h2>
+              </h3>
 
               <div className="landing-spacer" />
 
@@ -46,12 +60,13 @@ const LandingSection = () => {
               <div className="spacer_small" />
               <div className="video-wrapper" aria-hidden="false">
                 <iframe
-                  title="Electronics Inventory demo"
+                  title="Electronics Inventory demo video showing key features"
                   src="https://www.youtube.com/embed/lDAWaOmSFIQ?si=U6czkvzBlWsdcS6_"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
                   loading="lazy"
+                  tabIndex={-1}
                 />
               </div>
             </Col>
@@ -60,12 +75,8 @@ const LandingSection = () => {
           <div className="spacer_small" />
         </Container>
       </section>
-
-      <Suspense fallback={<div className="spinner">Loading reviews…</div>}>
-        <CustomerReviews />
-      </Suspense>
-    </main>
+    </>
   );
 };
 
-export default LandingSection;
+export default memo(HeroSection);
