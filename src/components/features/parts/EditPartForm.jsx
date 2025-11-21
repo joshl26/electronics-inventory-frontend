@@ -16,7 +16,7 @@ import Form from "react-bootstrap/Form";
 import useAuth from "hooks/useAuth";
 import ImagePicker from "../files/ImagePicker";
 import "./EditPartForm.scss";
-import partTypes from "mock_data/partTypes";
+import partTypes from "data/partTypes";
 
 const EditPartForm = ({ part, idReadOnly }) => {
   const { username, isManager, isAdmin, isEmployee } = useAuth();

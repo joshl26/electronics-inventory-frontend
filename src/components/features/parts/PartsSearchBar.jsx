@@ -3,7 +3,7 @@
 
 import PropTypes from "prop-types";
 import { Col, Dropdown, Row } from "react-bootstrap";
-import partTypes from "mock_data/partTypes";
+import partTypes from "data/partTypes";
 
 const SORT_OPTIONS = [
   "Part Number Ascending",

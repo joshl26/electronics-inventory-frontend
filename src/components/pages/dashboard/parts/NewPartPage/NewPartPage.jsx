@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { selectAllUsers } from "components/features/users/usersApiSlice";
 import NewPartForm from "components/features/parts/NewPartForm";
-import partTypes from "mock_data/partTypes.js";
+import partTypes from "data/partTypes.js";
 
 const NewPart = () => {
   const users = useSelector(selectAllUsers);

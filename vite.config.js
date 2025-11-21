@@ -9,10 +9,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-        mock_data: path.resolve(__dirname, 'src/mock_data'),
-        context: path.resolve(__dirname, 'src/context'),
-        config: path.resolve(__dirname, 'src/config'),
-        components: path.resolve(__dirname, 'src/components'),
+      data: path.resolve(__dirname, 'src/data'),
+      context: path.resolve(__dirname, 'src/context'),
+      config: path.resolve(__dirname, 'src/config'),
+      components: path.resolve(__dirname, 'src/components'),
       features: path.resolve(__dirname, 'src/features'),
       auth: path.resolve(__dirname, 'src/features/auth'),
       shared: path.resolve(__dirname, 'src/shared'),

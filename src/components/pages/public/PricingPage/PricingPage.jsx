@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./PricingPage.scss";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import features from "mock_data/features.json";
+import features from "data/features.json";
 import { arraySearch } from "utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";

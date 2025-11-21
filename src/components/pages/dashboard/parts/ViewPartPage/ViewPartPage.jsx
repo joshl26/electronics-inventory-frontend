@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectPartById } from "components/features/parts/partsApiSlice";
 import { selectAllUsers } from "components/features/users/usersApiSlice";
 import EditPartForm from "../../../../features/parts/EditPartForm";
-import partTypes from "mock_data/partTypes";
+import partTypes from "data/partTypes";
 
 const ViewPartPage = () => {
   const { id } = useParams();
