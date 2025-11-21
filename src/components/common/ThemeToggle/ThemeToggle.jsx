@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./ThemeToggle.css";
+import "./ThemeToggle.scss";
 import { FaSun, FaMoon } from "react-icons/fa";
 
 const STORAGE_KEY = "theme"; // "dark" | "light"

@@ -13,7 +13,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import useAuth from "hooks/useAuth";
 import ImagePicker from "../files/ImagePicker";
-import "./NewPartForm.css";
+import "./NewPartForm.scss";
 
 const NewPartForm = ({ users, partTypes }) => {
   const { username } = useAuth();

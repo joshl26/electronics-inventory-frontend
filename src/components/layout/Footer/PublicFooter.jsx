@@ -3,7 +3,7 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Lottie from "lottie-react";
 import { SocialIcon } from "react-social-icons";
-import "./PublicFooter.css";
+import "./PublicFooter.scss";
 
 import HamburgerMenu from "svg/HamburgerMenu.json";
 

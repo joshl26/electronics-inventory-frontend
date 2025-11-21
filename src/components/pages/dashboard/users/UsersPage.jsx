@@ -3,7 +3,7 @@ import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import OutletLoadingPage from "components/pages/OutletLoadingPage";
 import User from "components/features/users/User";
-import "./UsersPage.css";
+import "./UsersPage.scss";
 
 const NewUserPage = () => {
   const {

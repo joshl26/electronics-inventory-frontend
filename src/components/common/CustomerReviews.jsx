@@ -2,8 +2,7 @@ import React from "react";
 import { Slide } from "react-slideshow-image";
 import CustomerReviewCard from "./CustomerReviewCard";
 import { Container } from "react-bootstrap";
-import "react-slideshow-image/dist/styles.css";
-import "./CustomerReviews.css";
+import "./CustomerReviews.scss";
 
 const CustomerReviews = () => {
   const data = [

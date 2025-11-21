@@ -5,7 +5,7 @@ import React from "react";
 import Note from "./Note";
 import { Button, Col, Dropdown, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import "./NoteList.css";
+import "./NoteList.scss";
 
 const NoteList = ({ notes, filteredIds }) => {
   const { ids, entities } = notes;

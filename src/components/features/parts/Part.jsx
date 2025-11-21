@@ -3,7 +3,7 @@ import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectPartById } from "./partsApiSlice";
-import "./PartsList.css";
+import "./PartsList.scss";
 
 const Part = ({ partId, partsListStatus, partsListType }) => {
   const part = useSelector((state) => selectPartById(state, partId));

@@ -3,7 +3,7 @@ import { useUpdateNoteMutation, useDeleteNoteMutation } from "./notesApiSlice";
 import { useNavigate } from "react-router-dom";
 import { FaSave, FaTrash } from "react-icons/fa";
 import useAuth from "hooks/useAuth";
-import "./EditNoteForm.css";
+import "./EditNoteForm.scss";
 
 const EditNoteForm = ({ note, users }) => {
   const {

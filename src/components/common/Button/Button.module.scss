@@ -13,6 +13,7 @@
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   white-space: nowrap;
+  -webkit-user-select: none;
   user-select: none;
 }
 

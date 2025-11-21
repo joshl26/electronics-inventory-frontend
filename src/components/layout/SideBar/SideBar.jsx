@@ -9,7 +9,7 @@ import {
   FaPlus,
   FaPlusCircle,
 } from "react-icons/fa";
-import "./SideBar.css";
+import "./SideBar.scss";
 
 const SideBar = ({ sidebarShown }) => {
   const { username, isManager, isAdmin, isEmployee } = useAuth();

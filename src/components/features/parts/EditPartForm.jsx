@@ -15,7 +15,7 @@ import {
 import Form from "react-bootstrap/Form";
 import useAuth from "hooks/useAuth";
 import ImagePicker from "../files/ImagePicker";
-import "./EditPartForm.css";
+import "./EditPartForm.scss";
 import partTypes from "mock_data/partTypes";
 
 const EditPartForm = ({ part, idReadOnly }) => {
