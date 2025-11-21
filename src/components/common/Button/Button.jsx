@@ -1,6 +1,9 @@
+// A reusable Button component with various styles and states
+// file: src/components/common/Button/Button.jsx
+
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./Button.module.css";
+import "./Button.scss"; // plain global CSS import
 
 /**
  * Reusable Button component
@@ -15,6 +18,7 @@ import styles from "./Button.module.css";
  * @param {string} props.className - Additional CSS classes
  * @param {boolean} props.fullWidth - Whether button takes full width
  */
+
 const Button = ({
   children,
   variant = "primary",
@@ -28,11 +32,11 @@ const Button = ({
   ...rest
 }) => {
   const buttonClasses = [
-    styles.button,
-    styles[variant],
-    styles[size],
-    fullWidth && styles.fullWidth,
-    loading && styles.loading,
+    "button",
+    variant,
+    size,
+    fullWidth ? "fullWidth" : "",
+    loading ? "loading" : "",
     className,
   ]
     .filter(Boolean)
@@ -55,8 +59,8 @@ const Button = ({
     >
       {loading ? (
         <>
-          <span className={styles.spinner} aria-hidden="true" />
-          <span className={styles.loadingText}>Loading...</span>
+          <span className="spinner" aria-hidden="true" />
+          <span className="loadingText">Loading...</span>
         </>
       ) : (
         children

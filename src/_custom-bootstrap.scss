@@ -1,0 +1,58 @@
+// _custom-bootstrap.scss
+// Bootstrap variable overrides
+
+$orange-primary: #ff7b00;
+$orange-dark: #e66900;
+$blue-primary: #007bff;
+$gray-light: #e0e0e0;
+$gray-dark: #0f1112;
+
+$theme-colors: (
+  "primary": $orange-primary,
+  "secondary": $gray-light,
+  "success": #28a745,
+  "info": #17a2b8,
+  "warning": #ffc107,
+  "danger": #dc3545,
+  "light": #f8f9fa,
+  "dark": $gray-dark,
+);
+
+// Typography
+$font-family-sans-serif: "Fira Sans", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-family-heading: "Cabin", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, sans-serif;
+$headings-font-family: $font-family-heading;
+$headings-font-weight: 700;
+
+// Spacing
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * 0.25,
+  2: $spacer * 0.5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+);
+
+// Border radius
+$border-radius: 0.5rem;
+$border-radius-sm: 0.375rem;
+$border-radius-lg: 0.75rem;
+
+// Buttons
+$btn-padding-y: 0.625rem;
+$btn-padding-x: 1.25rem;
+$btn-font-weight: 600;
+$btn-border-radius: 0.625rem;
+$btn-transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Forms
+$input-padding-y: 0.75rem;
+$input-padding-x: 1rem;
+$input-border-radius: 0.625rem;
+$input-border-color: rgba(0, 0, 0, 0.12);
+$input-focus-border-color: $orange-primary;
+$input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);

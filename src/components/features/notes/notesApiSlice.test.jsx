@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { renderHook } from "@testing-library/react-hooks";
+import React from "react";
+import { renderHook } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import {
@@ -9,7 +10,7 @@ import {
   selectNoteIds,
 } from "./notesApiSlice";
 
-// If you don't have a setupApiStore helper, you can create a store like this:
+// Create the Redux store with the API slice reducer and middleware
 const store = configureStore({
   reducer: {
     [notesApiSlice.reducerPath]: notesApiSlice.reducer,
@@ -18,11 +19,11 @@ const store = configureStore({
     getDefaultMiddleware().concat(notesApiSlice.middleware),
 });
 
+// Wrapper component to provide Redux store context
 const wrapper = ({ children }) => <Provider store={store}>{children}</Provider>;
 
 describe("notesApiSlice", () => {
   it("should have initial state selectors working correctly", () => {
-    // Initial state should be empty
     const state = store.getState();
 
     const allNotes = selectAllNotes(state);
@@ -38,5 +39,12 @@ describe("notesApiSlice", () => {
     expect(note).toBeUndefined();
   });
 
-  // You can add more tests here for RTK Query hooks using renderHook if you want to test API calls
+  // Example of testing a hook with renderHook and wrapper
+  // Uncomment and adapt if you have hooks to test
+
+  // it("should test RTK Query hooks", async () => {
+  //   const { result, waitFor } = renderHook(() => useGetNotesQuery(), { wrapper });
+  //   await waitFor(() => result.current.isSuccess);
+  //   expect(result.current.data).toBeDefined();
+  // });
 });

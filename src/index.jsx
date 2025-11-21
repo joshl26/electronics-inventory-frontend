@@ -36,7 +36,7 @@ import Prefetch from "components/features/auth/Prefetch";
 import PersistLogin from "components/features/auth/PersistLogin";
 import RequireAuth from "components/features/auth/RequireAuth";
 import { ROLES } from "config/roles";
-import ErrorPage from "error-page";
+import ErrorPage from "components/pages/error-page";
 import { ThemeProvider } from "context/ThemeContext";
 import "./index.scss";
 import SignupPage from "components/pages/public/SignupPage/SignupPage";
@@ -45,7 +45,7 @@ import AboutPage from "components/pages/public/AboutPage/AboutPage";
 import PrivacyPage from "components/pages/public/PrivacyPage/PrivacyPage";
 import TermsPage from "components/pages/public/TermsPage/TermsPage";
 
-if (process.env.NODE_ENV === "production") disableReactDevTools();
+if (import.meta.env.MODE === "production") disableReactDevTools();
 
 const router = createBrowserRouter(
   createRoutesFromElements(

@@ -1,3 +1,6 @@
+// Description: A React component that displays customer reviews in a responsive slideshow format using the react-slideshow-image library.
+// file: src/components/common/CustomerReviews.jsx
+
 import React from "react";
 import { Slide } from "react-slideshow-image";
 import CustomerReviewCard from "./CustomerReviewCard";

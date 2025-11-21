@@ -1,3 +1,6 @@
+// Description: RTK Query API slice for authentication (login, logout, refresh token)
+// file: src/components/features/auth/authApiSlice.jsx
+
 import { apiSlice } from "app/api/apiSlice";
 import { logOut, setCredentials } from "./authSlice";
 

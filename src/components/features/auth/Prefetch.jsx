@@ -1,3 +1,6 @@
+// Component to prefetch data for notes, users, and parts using RTK Query
+// file: src/components/features/auth/Prefetch.jsx
+
 import { store } from "app/store";
 import { notesApiSlice } from "../notes/notesApiSlice";
 import { partsApiSlice } from "../parts/partsApiSlice";

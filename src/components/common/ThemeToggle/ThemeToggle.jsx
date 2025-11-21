@@ -1,3 +1,6 @@
+// A toggle button to switch between light and dark themes, persisting choice in localStorage.
+// file: src/components/common/ThemeToggle/ThemeToggle.jsx
+
 import React, { useEffect, useState } from "react";
 import "./ThemeToggle.scss";
 import { FaSun, FaMoon } from "react-icons/fa";

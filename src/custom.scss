@@ -1,79 +1,13 @@
 // custom.scss
-// Enhanced Bootstrap overrides and component theming using SCSS variables
-// NOTE: Set SCSS variables here BEFORE importing bootstrap.scss so overrides take effect.
 
-/* ----------------------------------------------------
-   Bootstrap SCSS variable overrides
-   ---------------------------------------------------- */
+// Import variable overrides first
+@import "./custom-bootstrap";
 
-// Colors
-$orange-primary: #ff7b00 !default;
-$orange-dark: #e66900 !default;
-$blue-primary: #007bff !default;
-$gray-light: #e0e0e0 !default;
-$gray-dark: #0f1112 !default;
+// Import Bootstrap
+@import "../node_modules/bootstrap/scss/bootstrap";
 
-// Theme color map (Bootstrap uses $theme-colors)
-$theme-colors: (
-  "primary": $orange-primary,
-  "secondary": $gray-light,
-  "success": #28a745,
-  "info": #17a2b8,
-  "warning": #ffc107,
-  "danger": #dc3545,
-  "light": #f8f9fa,
-  "dark": $gray-dark,
-);
+// Custom component overrides and utility classes
 
-// Typography
-$font-family-sans-serif: "Fira Sans", -apple-system, BlinkMacSystemFont,
-  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-$font-family-heading: "Cabin", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  Roboto, sans-serif;
-$headings-font-family: $font-family-heading;
-$headings-font-weight: 700;
-
-// Spacing
-$spacer: 1rem;
-$spacers: (
-  0: 0,
-  1: $spacer * 0.25,
-  2: $spacer * 0.5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-);
-
-// Border radius
-$border-radius: 0.5rem;
-$border-radius-sm: 0.375rem;
-$border-radius-lg: 0.75rem;
-
-// Buttons
-$btn-padding-y: 0.625rem;
-$btn-padding-x: 1.25rem;
-$btn-font-weight: 600;
-$btn-border-radius: 0.625rem;
-$btn-transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1);
-
-// Forms
-$input-padding-y: 0.75rem;
-$input-padding-x: 1rem;
-$input-border-radius: 0.625rem;
-$input-border-color: rgba(0, 0, 0, 0.12);
-$input-focus-border-color: $orange-primary;
-$input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
-
-/* ----------------------------------------------------
-   Import Bootstrap (after you set overrides above)
-   ---------------------------------------------------- */
-@import "../node_modules/bootstrap/scss/bootstrap.scss";
-
-/* ----------------------------------------------------
-   Custom component overrides and utility classes
-   ---------------------------------------------------- */
-
-/* Buttons */
 .btn {
   font-family: $font-family-sans-serif;
   font-weight: $btn-font-weight;
@@ -100,7 +34,6 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   }
 }
 
-/* Forms */
 .form-control,
 .form-select {
   font-family: $font-family-sans-serif;
@@ -119,7 +52,6 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   }
 }
 
-/* Dropdown */
 .dropdown-menu {
   border: none;
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
@@ -127,7 +59,6 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   border-radius: $border-radius;
 }
 
-/* Cards */
 .card {
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 0.125rem 0.75rem rgba(0, 0, 0, 0.06);
@@ -140,7 +71,6 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   }
 }
 
-/* Navbar */
 .navbar {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   -webkit-backdrop-filter: blur(6px);
@@ -169,7 +99,6 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   }
 }
 
-/* Utility helpers */
 .theme-transition {
   transition: background-color var(--transition-smooth),
     color var(--transition-smooth), border-color var(--transition-smooth),
@@ -181,7 +110,6 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   outline-offset: 3px;
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -191,28 +119,18 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   }
 }
 
-/* -------------------------
-   Bootstrap Nav Link Overrides (place after bootstrap.css)
-   ------------------------- */
-
-/* Scope to your fixed navbar so we don't disturb other navbars */
 .navbar-login {
-  /* ensure navbar color variables apply */
   color: inherit;
 }
 
-/* Base link color (normal state)
-   - Use .link_text inside .nav-link where possible so inner text uses the var
-*/
 .navbar-login .nav-link,
 .navbar-login .nav-link > .link_text {
   color: var(--link-text-light, rgb(159, 159, 159));
-  background: transparent; /* remove any Bootstrap background */
-  opacity: 1; /* counter Bootstrap dimming */
+  background: transparent;
+  opacity: 1;
   transition: color 180ms ease;
 }
 
-/* Dark-mode override via root attribute */
 [data-theme="dark"] .navbar-login .nav-link,
 [data-theme="dark"] .navbar-login .nav-link > .link_text,
 .theme-dark .navbar-login .nav-link,
@@ -220,14 +138,13 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   color: var(--link-text-dark, #dde9f6);
 }
 
-/* Hover / focus states */
 .navbar-login .nav-link:hover,
 .navbar-login .nav-link:focus,
 .navbar-login .nav-link:focus-visible,
 .navbar-login .nav-link:hover > .link_text,
 .navbar-login .nav-link:focus > .link_text {
   color: var(--link-text-light-hover, rgb(220, 220, 220));
-  background: transparent; /* make sure bootstrap `.nav-link:hover` bg is removed */
+  background: transparent;
   text-decoration: none;
 }
 
@@ -238,7 +155,6 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   color: var(--link-text-dark-hover, #fff);
 }
 
-/* Active / current route styling */
 .navbar-login .nav-link.active,
 .navbar-login .nav-link[aria-current="page"] {
   color: var(--link-text-active, rgb(34, 34, 34));
@@ -250,31 +166,24 @@ $input-focus-box-shadow: 0 0 0 0.2rem rgba(255, 123, 0, 0.15);
   color: var(--link-text-active, #fff);
 }
 
-/* Remove Bootstrap outline / border resets that collide with your focus styles */
 .navbar-login .nav-link:focus {
   box-shadow: none;
 }
 
-/* Make sure nav-link wrappers inherit color rather than forcing their own */
 .navbar-login .nav-link,
 .navbar-login .nav-link * {
-  color: inherit !important; /* use sparingly: ensures inner components (icons/text) follow var colors */
+  color: inherit !important;
 }
 
-/* If bootstrap's .navbar-light / .navbar-dark are present, neutralize them inside .navbar-login */
 .navbar-login.navbar-light .nav-link,
 .navbar-login.navbar-dark .nav-link {
   color: inherit;
   background: transparent;
 }
 
-/* Optional: restore pointer hit area but not extra padding from bootstrap */
 .navbar-login .nav-link {
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
-  padding-left: 0.75rem; /* keep smaller than bootstrap by default */
+  padding-left: 0.75rem;
   padding-right: 0.75rem;
 }
-
-/* Stronger specificity (use only if rules still overridden) */
-/* .header_container .navbar-login .nav-link { ... } */

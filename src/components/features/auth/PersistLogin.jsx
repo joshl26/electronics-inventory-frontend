@@ -1,3 +1,6 @@
+// Description: Component to persist login state across sessions
+// file: src/components/features/auth/PersistLogin.jsx
+
 import { Outlet, Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useRefreshMutation } from "./authApiSlice";

@@ -1,5 +1,5 @@
 // definition of LoadingPage component
-// file: src/components/pages/public/LoadingPage.jsx 
+// file: src/components/pages/public/LoadingPage.jsx
 
 import Lottie from "lottie-react";
 import React from "react";

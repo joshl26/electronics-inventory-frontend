@@ -1,3 +1,6 @@
+// Description: Redux slice for authentication state management
+// file: src/components/features/auth/authSlice.jsx
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const authSlice = createSlice({
