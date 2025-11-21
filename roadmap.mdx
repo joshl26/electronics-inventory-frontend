@@ -1,3 +1,7 @@
+Here is your updated roadmap with the conflicting Phase 12s resolved by renumbering Internationalization to Phase 13 and keeping Critical Technical Debt & Security as Phase 12 for clarity and priority:
+
+---
+
 # Electronics Inventory Frontend Improvement Roadmap
 
 ## Phase 1: Code Quality & Modern Tooling 🔧
@@ -33,7 +37,7 @@
 ## Phase 2: Testing Infrastructure 🧪
 
 ### Unit & Integration Testing
-- [ ] Set up Vitest (or Jest) for unit testing
+- [x] Set up Vitest (or Jest) for unit testing
 - [ ] Create tests for all Redux slices and API slices
 - [ ] Test all custom hooks (useAuth, usePersist)
 - [ ] Add React Testing Library tests for key components
@@ -252,7 +256,7 @@
 - [ ] Create development mock server
 - [ ] Implement feature flags
 - [ ] Add debug utilities for development
-- [ ] Create component playground/sandbox
+- [ ] Create component Playground/sandbox
 - [ ] Add performance profiling tools
 
 ### Build & Deployment
@@ -307,20 +311,7 @@
 
 ---
 
-## Phase 12: Internationalization (i18n) 🌍
-
-### Multi-language Support
-- [ ] Implement i18n framework (react-i18next)
-- [ ] Extract all strings to translation files
-- [ ] Add language switcher
-- [ ] Implement RTL support
-- [ ] Handle date/time/number formatting
-- [ ] Add currency formatting
-- [ ] Test with multiple languages
-
----
-
-## Critical Technical Debt 🔨
+## Phase 12: Critical Technical Debt & Security 🔨
 
 ### Immediate Fixes Needed
 - [ ] Remove unused dependencies (victory-vendor, remote-redux-devtools)
@@ -338,6 +329,19 @@
 - [ ] Implement Content Security Policy
 - [ ] Add Subresource Integrity (SRI) for CDN resources
 - [ ] Implement HTTPS-only in production
+
+---
+
+## Phase 13: Internationalization (i18n) 🌍
+
+### Multi-language Support
+- [ ] Implement i18n framework (react-i18next)
+- [ ] Extract all strings to translation files
+- [ ] Add language switcher
+- [ ] Implement RTL support
+- [ ] Handle date/time/number formatting
+- [ ] Add currency formatting
+- [ ] Test with multiple languages
 
 ---
 
@@ -361,7 +365,7 @@
 1. PWA implementation (Phase 10)
 2. 3D optimization (Phase 8)
 3. File upload improvements (Phase 7)
-4. Internationalization (Phase 12)
+4. Internationalization (Phase 13)
 5. Advanced analytics (Phase 11)
 
 ### ⚪ Low Priority (Nice to Have)
@@ -410,3 +414,4 @@ These can be done quickly for immediate impact:
 8. **Implement code splitting** - Split by route (2 days)
 9. **Add form validation** - Improve data quality (2 days)
 10. **Create loading skeletons** - Better UX during data fetching (2 days)
+

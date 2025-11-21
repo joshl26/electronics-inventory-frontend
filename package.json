@@ -1,50 +1,54 @@
 {
-  "name": "electronicsnventoryfrontend",
+  "name": "electronicsinventoryfrontend",
   "description": "First pre release demo version",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-brands-svg-icons": "^6.4.0",
-    "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@fvilers/disable-react-devtools": "^1.3.0",
-    "@react-spring/three": "^9.7.2",
-    "@react-three/cannon": "^6.5.2",
-    "@react-three/drei": "^9.70.0",
-    "@react-three/fiber": "^8.13.0",
-    "@react-three/postprocessing": "^2.14.7",
-    "@redux-devtools/extension": "^3.2.5",
     "@reduxjs/toolkit": "^1.9.2",
     "@testing-library/jest-dom": "^5.16.5",
-    "@types/lodash": "^4.14.192",
-    "@types/three": "^0.152.1",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
     "axios": "^1.3.5",
-    "babel-plugin-macros": "^3.1.0",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.8",
+    "classnames": "^2.5.1",
     "d3-scale-chromatic": "^3.0.0",
-    "gsap": "^3.11.5",
+    "eslint-config-react-app": "^7.0.1",
+    "html-webpack-plugin": "^5.6.5",
     "jwt-decode": "^3.1.2",
     "lodash": "^4.17.21",
     "lottie-react": "^2.4.0",
-    "lucide-react": "^0.554.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "nanoid": "^5.1.6",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-grid-layout": "^1.3.4",
     "react-icons": "^4.10.1",
     "react-redux": "^8.0.5",
+    "react-resizable": "^3.0.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "^5.0.1",
     "react-slideshow-image": "^4.2.1",
     "react-social-icons": "^5.15.0",
     "recharts": "^2.5.0",
-    "remote-redux-devtools": "^0.5.16",
-    "three": "^0.152.2",
-    "victory-vendor": "^36.6.8",
-    "web-vitals": "^2.1.4",
+    "sass": "^1.94.2",
+    "victory-vendor": "^36.6.8"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/react-hooks": "^8.0.1",
+    "@testing-library/user-event": "^14.6.1",
+    "concurrently": "^8.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^2.8.0",
+    "redux-mock-store": "^1.5.5",
+    "typescript": "^4.9.5",
     "webpack": ">=5.76.0"
   },
   "scripts": {
@@ -80,55 +84,21 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@testing-library/dom": "^10.4.1",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/react-hooks": "^8.0.1",
-    "@testing-library/user-event": "^14.6.1",
-    "concurrently": "^8.0.0",
-    "eslint": "^8.0.0",
-    "eslint-plugin-import": "^2.27.0",
-    "eslint-plugin-react": "^7.32.0",
-    "prettier": "^2.8.0",
-    "redux-mock-store": "^1.5.5",
-    "sass": "^1.58.3",
-    "typescript": "^4.9.5",
-    "webpack": ">=5.76.0"
-  },
   "jsconfig": {
     "compilerOptions": {
       "baseUrl": "src",
       "paths": {
-        "features/*": [
-          "features/*"
-        ],
-        "auth/*": [
-          "auth/*"
-        ],
-        "shared/*": [
-          "shared/*"
-        ],
-        "app/*": [
-          "app/*"
-        ],
-        "utils/*": [
-          "utils/*"
-        ],
-        "hooks/*": [
-          "hooks/*"
-        ],
-        "img/*": [
-          "img/*"
-        ],
-        "svg/*": [
-          "svg/*"
-        ]
+        "features/*": ["features/*"],
+        "auth/*": ["auth/*"],
+        "shared/*": ["shared/*"],
+        "app/*": ["app/*"],
+        "utils/*": ["utils/*"],
+        "hooks/*": ["hooks/*"],
+        "img/*": ["img/*"],
+        "svg/*": ["svg/*"]
       }
     },
-    "exclude": [
-      "node_modules",
-      "build"
-    ]
+    "exclude": ["node_modules", "build"]
   },
   "jest": {
     "collectCoverageFrom": [
