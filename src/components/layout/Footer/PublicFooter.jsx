@@ -32,16 +32,16 @@ import HamburgerMenu from "svg/HamburgerMenu.json";
 // ];
 
 const FOOTER_LINKS = [
-  { to: "/about", title: "About", description: "What's behind the boards." },
+  { to: "/about", title: "About", description: "Learn more about Ei." },
   {
     to: "/privacy-policy",
     title: "Privacy",
-    description: "Download the Ei app for Desktop & Mobile.",
+    description: "Privacy practices and policies of Ei.",
   },
   {
     to: "/terms-of-service",
     title: "Terms",
-    description: "Choose the right plan.",
+    description: "Terms and conditions for using Ei.",
   },
   {
     to: "/contact",
