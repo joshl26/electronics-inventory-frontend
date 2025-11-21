@@ -31,8 +31,6 @@ module.exports = (env, argv) => {
         svg: path.resolve(__dirname, 'src/svg/'),
         components: path.resolve(__dirname, 'src/components/'),
         auth: path.resolve(__dirname, 'src/components/features/auth/'),
-
-        
       },
     },
 
@@ -45,11 +43,10 @@ module.exports = (env, argv) => {
           use: {
             loader: 'babel-loader',
             // Babel config should include presets for react and env
-            // (or use .babelrc / babel.config.js)
           },
         },
 
-        // Styles (SCSS/CSS)
+        // Styles (SCSS/CSS) without CSS Modules
         {
           test: /\.(sa|sc|c)ss$/i,
           use: [
@@ -58,10 +55,7 @@ module.exports = (env, argv) => {
               loader: 'css-loader',
               options: {
                 importLoaders: 1,
-                modules: {
-                  auto: resourcePath => resourcePath.endsWith('.module.scss') || resourcePath.endsWith('.module.css'),
-                  localIdentName: isDev ? '[path][name]__[local]' : '[hash:base64:6]',
-                },
+                modules: false, // disable CSS Modules
               },
             },
             'sass-loader',
@@ -72,10 +66,16 @@ module.exports = (env, argv) => {
         {
           test: /\.(png|jpe?g|gif|svg)$/i,
           type: 'asset/resource',
+          generator: {
+            filename: 'static/media/[name].[hash:8][ext]',
+          },
         },
         {
           test: /\.(woff2?|eot|ttf|otf)$/i,
           type: 'asset/resource',
+          generator: {
+            filename: 'static/fonts/[name].[hash:8][ext]',
+          },
         },
       ],
     },
@@ -85,7 +85,6 @@ module.exports = (env, argv) => {
         template: path.resolve(__dirname, 'public', 'index.html'),
         favicon: path.resolve(__dirname, 'public', 'favicon.ico'),
       }),
-      // Extract CSS files in production
       !isDev &&
         new MiniCssExtractPlugin({
           filename: 'static/css/[name].[contenthash:8].css',
@@ -111,7 +110,6 @@ module.exports = (env, argv) => {
         },
       },
 
-      // your provided setupMiddlewares block (kept as-is and integrated)
       setupMiddlewares: (middlewares, devServer) => {
         if (!devServer) {
           throw new Error('webpack-dev-server is not defined');
