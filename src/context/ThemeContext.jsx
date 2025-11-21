@@ -64,7 +64,7 @@ export const ThemeProvider = ({ children }) => {
 
   // Listen for system theme changes
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const mediaQuery = window.matchMedia?.("(prefers-color-scheme: dark)");
 
     const handleChange = (e) => {
       // Only auto-switch if user hasn't manually set a preference
@@ -74,18 +74,16 @@ export const ThemeProvider = ({ children }) => {
       }
     };
 
-    // Modern browsers
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener("change", handleChange);
-      return () => mediaQuery.removeEventListener("change", handleChange);
-    }
-    // Legacy browsers
-    else if (mediaQuery.addListener) {
-      mediaQuery.addListener(handleChange);
-      return () => mediaQuery.removeListener(handleChange);
+    if (mediaQuery) {
+      if (typeof mediaQuery.addEventListener === "function") {
+        mediaQuery.addEventListener("change", handleChange);
+        return () => mediaQuery.removeEventListener("change", handleChange);
+      } else if (typeof mediaQuery.addListener === "function") {
+        mediaQuery.addListener(handleChange);
+        return () => mediaQuery.removeListener(handleChange);
+      }
     }
   }, []);
-
   const toggleTheme = useCallback(() => {
     setTheme((prevTheme) =>
       prevTheme === THEMES.LIGHT ? THEMES.DARK : THEMES.LIGHT

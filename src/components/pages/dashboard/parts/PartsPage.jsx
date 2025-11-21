@@ -1,5 +1,5 @@
 // Container component that handles data fetching, business logic, and state management
-// file: src/features/parts/containers/PartsListContainer.jsx
+// file: src/components/pages/parts/PartsPage.jsx
 
 import { useGetPartsQuery } from "components/features/parts/partsApiSlice";
 import { useState, useMemo, useCallback } from "react";

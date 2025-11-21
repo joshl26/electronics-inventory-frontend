@@ -33,6 +33,8 @@ const NAV_ITEMS = [
   // { to: "/", label: "Inventory Tracker", type: "link" },
   // { label: "Features", type: "dropdown", id: "features", items: FEATURES_MENU },
   // { label: "Plans", type: "dropdown", id: "plans", items: PLANS_MENU },
+  { to: "/about", label: "About", type: "link" },
+
   { to: "/features", label: "Features", type: "link" },
   { to: "/pricing", label: "Pricing", type: "link" },
   { to: "/contact", label: "Contact", type: "link" },
@@ -159,7 +161,7 @@ const PublicHeader = () => {
             <Nav.Item>
               <Button
                 as={Link}
-                to="/login"
+                to="/signup"
                 className={signupBtnClass}
                 variant="primary"
                 onClick={handleNavCollapse}

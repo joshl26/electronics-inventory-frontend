@@ -1,53 +1,79 @@
-import { useRef, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+// src/components/pages/public/LoginPage/LoginPage.jsx
 
+import { useRef, useState, useEffect, useCallback } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "components/features/auth/authSlice";
 import { useLoginMutation } from "components/features/auth/authApiSlice";
-
 import usePersist from "hooks/usePersist";
-
 import Lottie from "lottie-react";
 import HamburgerMenu from "svg/HamburgerMenu.json";
-
 import { Col, Container, Row } from "react-bootstrap";
 import LoadingPage from "components/pages/LoadingPage";
 import "./LoginPage.css";
 
-const Login = () => {
+const LoginPage = () => {
   const userRef = useRef();
   const errRef = useRef();
+
+  // Form state
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+
+  // Persist login state
   const [persist, setPersist] = usePersist();
-  const [continueBtn, setContinueBtn] = useState(true);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showSignIn, setShowSignIn] = useState(false);
-  const [disabled, setDisabled] = useState(false);
 
-  const [colorMode] = useState(JSON.parse(localStorage.getItem("colorMode")));
+  // UI state for login steps
+  const [loginStep, setLoginStep] = useState("username"); // 'username' or 'password'
 
-  const loginContainerStyle =
-    colorMode === "Light"
-      ? "login-container-inner-light"
-      : "login-container-inner-dark";
+  // Disable username input after continue
+  const isUsernameDisabled = loginStep === "password";
 
-  const sectionBreakStyle =
-    colorMode === "Light" ? "section-break-light" : "section-break-dark";
+  // Show password and sign-in button only on password step
+  const showPassword = loginStep === "password";
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [login, { isLoading }] = useLoginMutation();
 
+  // Focus username input on mount
   useEffect(() => {
-    userRef.current.focus();
+    userRef.current?.focus();
   }, []);
 
+  // Clear error message on input change
   useEffect(() => {
     setErrMsg("");
   }, [username, password]);
+
+  // Handlers
+  const handleUsernameChange = useCallback(
+    (e) => setUsername(e.target.value),
+    []
+  );
+  const handlePasswordChange = useCallback(
+    (e) => setPassword(e.target.value),
+    []
+  );
+  const handleTogglePersist = useCallback(
+    () => setPersist((prev) => !prev),
+    [setPersist]
+  );
+
+  const handleContinueClick = useCallback(() => {
+    if (username.trim()) {
+      setLoginStep("password");
+    }
+  }, [username]);
+
+  const handleUsernameClick = useCallback(() => {
+    if (isUsernameDisabled) {
+      setLoginStep("username");
+      setPassword("");
+    }
+  }, [isUsernameDisabled]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,361 +84,164 @@ const Login = () => {
       setPassword("");
       navigate("/dash");
     } catch (err) {
-      if (!err.status) {
-        setErrMsg("No Server Response");
-      } else if (err.status === 400) {
-        setErrMsg("Missing Username or Password");
-      } else if (err.status === 401) {
-        setErrMsg("Unauthorized");
-      } else {
-        setErrMsg(err.data?.message);
-      }
-      errRef.current.focus();
+      console.log("Login error:", err);
+      if (!err.status) setErrMsg("No Server Response");
+      else if (err.status === 400) setErrMsg("Missing Username or Password");
+      else if (err.status === 401) setErrMsg("Unauthorized");
+      else setErrMsg(err.data?.message || "Login Failed");
+      errRef.current?.focus();
     }
   };
-
-  const handleUserInput = (e) => setUsername(e.target.value);
-  const handlePwdInput = (e) => setPassword(e.target.value);
-  const handleToggle = () => setPersist((prev) => !prev);
-  const handleContinueBtnClick = () => {
-    if (username.length > 0) {
-      setContinueBtn(false);
-      setShowPassword(true);
-      setShowSignIn(true);
-      setDisabled(true);
-      console.log(showPassword);
-    }
-  };
-
-  const handleUsernameClick = () => {
-    if (disabled === true) {
-      setDisabled(false);
-      setShowPassword(false);
-      setContinueBtn(true);
-      setShowSignIn(false);
-    }
-  };
-
-  const errClass = errMsg ? "errmsg" : "offscreen";
-
-  const loginStyle = colorMode === "Light" ? "login-light" : "login-dark";
 
   if (isLoading) return <LoadingPage />;
 
-  const content = (
-    <div className={loginStyle}>
+  return (
+    <div>
       <Container>
-        <div className="spacer-extra=small"></div>
+        <div className="spacer-extra-small" />
         <Row>
-          <Col></Col>
+          <Col />
           <Col md={2} className="login-col-align-left">
-            <Link to="/">
+            <Link to="/" aria-label="Home">
               <Lottie
                 className="login-icon"
                 animationData={HamburgerMenu}
                 loop={false}
               />
             </Link>
-
             <h1 className="login-text">Ei</h1>
           </Col>
-          <Col></Col>
+          <Col />
         </Row>
-        <div className={loginContainerStyle}>
-          <p ref={errRef} className={errClass} aria-live="assertive">
+
+        <div>
+          <p
+            ref={errRef}
+            className={errMsg ? "errmsg" : "offscreen"}
+            aria-live="assertive"
+            aria-atomic="true"
+            role="alert"
+          >
             {errMsg}
           </p>
-          <form className="form" onSubmit={handleSubmit}>
-            {/* <label htmlFor="username">Username:</label> */}
+
+          <form className="form" onSubmit={handleSubmit} noValidate>
             <h4 className="text-center login-header">Log in to Ei</h4>
 
-            <div onClick={handleUsernameClick}>
+            <div
+              onClick={handleUsernameClick}
+              aria-label="Username input container"
+            >
               <input
                 className="form__input"
                 type="text"
                 id="username"
                 ref={userRef}
                 value={username}
-                onChange={handleUserInput}
+                onChange={handleUsernameChange}
                 autoComplete="off"
                 required
                 placeholder="Enter Username"
-                disabled={disabled}
+                disabled={isUsernameDisabled}
+                aria-describedby={errMsg ? "error-message" : undefined}
+                autoFocus
               />
             </div>
 
-            {showPassword > 0 ? (
+            {showPassword && (
               <>
                 <label htmlFor="password">Password:</label>
                 <input
                   className="form__input"
                   type="password"
                   id="password"
-                  onChange={handlePwdInput}
                   value={password}
+                  onChange={handlePasswordChange}
                   required
+                  autoComplete="current-password"
                 />
               </>
-            ) : (
-              ""
             )}
 
-            {continueBtn ? (
+            {loginStep === "username" && (
               <button
                 type="button"
-                onClick={handleContinueBtnClick}
+                onClick={handleContinueClick}
                 className="form__submit-button"
+                disabled={!username.trim()}
               >
                 Continue
               </button>
-            ) : (
-              ""
             )}
 
-            <div className="spacer-tiny"></div>
+            <div className="spacer-tiny" />
 
-            {showSignIn ? (
+            {showPassword && (
               <>
-                <button className="form__submit-button">Sign In</button>
+                <button type="submit" className="form__submit-button">
+                  Sign In
+                </button>
 
                 <label htmlFor="persist" className="form__persist">
                   <input
                     type="checkbox"
                     className="form__checkbox"
                     id="persist"
-                    onChange={handleToggle}
+                    onChange={handleTogglePersist}
                     checked={persist}
                   />
                   Trust This Device
                 </label>
               </>
-            ) : (
-              ""
             )}
           </form>
-          <div className="spacer-extra-small"></div>
-          <form className="form">
-            <Row>
+
+          <div className="spacer-extra-small" />
+
+          {/* Alternative login options */}
+          <form className="form" aria-label="Alternative login options">
+            {/* Uncomment and implement alternative login buttons if needed */}
+            {/* <Row>
               <p className="text-center light">OR</p>
-            </Row>
-            <Row>
-              <button
-                type="button"
-                onClick={handleContinueBtnClick}
-                className="form__submit-button"
-              >
-                Continue with Google
-                <img
-                  className="login-button-icon"
-                  alt="Google Login"
-                  src="https://res.cloudinary.com/dv6keahg3/image/upload/v1689541688/ElectronicsInventory/frontend_ui_images/Google_color_edzwj2.svg"
-                />
-              </button>
-            </Row>
-            <Row>
-              <button
-                type="button"
-                onClick={handleContinueBtnClick}
-                className="form__submit-button"
-              >
-                Continue with Microsoft
-                <img
-                  alt="Microsoft Login"
-                  className="login-button-icon"
-                  src="https://res.cloudinary.com/dv6keahg3/image/upload/v1689541690/ElectronicsInventory/frontend_ui_images/Microsoft_color_duzdcl.svg"
-                />
-              </button>
-            </Row>
-            <Row>
-              <button
-                type="button"
-                onClick={handleContinueBtnClick}
-                className="form__submit-button"
-              >
-                Continue with Apple
-                <img
-                  alt="Apple Login"
-                  className="login-button-icon"
-                  src="https://res.cloudinary.com/dv6keahg3/image/upload/v1689541690/ElectronicsInventory/frontend_ui_images/Apple_color_ax7zu9.svg"
-                />
-              </button>
-            </Row>
-            <Row>
-              <button
-                type="button"
-                onClick={handleContinueBtnClick}
-                className="form__submit-button"
-              >
-                Continue with Slack{" "}
-                <img
-                  alt="Slack Login"
-                  className="login-button-icon"
-                  src="https://res.cloudinary.com/dv6keahg3/image/upload/v1689541691/ElectronicsInventory/frontend_ui_images/Slack_color_gfgg0w.svg"
-                />
-              </button>
-            </Row>
-            <div className="spacer-extra-small"></div>
-            <div className={sectionBreakStyle}></div>
+            </Row> */}
+
+            {/* {[
+              { name: "Google", src: "https://res.cloudinary.com/dv6keahg3/image/upload/v1689541688/ElectronicsInventory/frontend_ui_images/Google_color_edzwj2.svg" },
+              { name: "Microsoft", src: "https://res.cloudinary.com/dv6keahg3/image/upload/v1689541690/ElectronicsInventory/frontend_ui_images/Microsoft_color_duzdcl.svg" },
+              { name: "Apple", src: "https://res.cloudinary.com/dv6keahg3/image/upload/v1689541690/ElectronicsInventory/frontend_ui_images/Apple_color_ax7zu9.svg" },
+              { name: "Slack", src: "https://res.cloudinary.com/dv6keahg3/image/upload/v1689541691/ElectronicsInventory/frontend_ui_images/Slack_color_gfgg0w.svg" },
+            ].map(({ name, src }) => (
+              <Row key={name}>
+                <button
+                  type="button"
+                  onClick={handleContinueClick}
+                  className="form__submit-button"
+                  aria-label={`Continue with ${name}`}
+                >
+                  Continue with {name}
+                  <img alt={`${name} Login`} className="login-button-icon" src={src} />
+                </button>
+              </Row>
+            ))} */}
+
+            <div className="spacer-extra-small" />
 
             <Col>
               <Row className="text-center">
                 <p>
-                  <Link>Can't log in?</Link>{" "}
-                  <p style={{ display: "inline", color: " white" }}> | </p>{" "}
-                  <Link>Sign up for an account</Link>
+                  Can't log in?
+                  <span style={{ color: "white" }}> | </span>{" "}
+                  <Link to="/signup" tabIndex={0}>
+                    Sign up for an account
+                  </Link>
                 </p>
               </Row>
             </Col>
           </form>
         </div>
-        <div className="spacer-extra-small"></div>
-        <Col>
-          <Row className="text-center">
-            <p>
-              <Link>Privacy Policy</Link>
-              <p style={{ display: "inline", color: " white" }}> | </p>
-              <Link>Terms of Service</Link>
-            </p>
-          </Row>
-        </Col>
-        <div className="spacer-extra-small"></div>
-
-        <Col className="text-center">
-          <form className="LanguageSelectFormstyles__LanguageForm-sc-5xddw4-0 eSGOHD">
-            <select
-              aria-label="Select a language"
-              data-testid="language-select"
-            >
-              <option value="cs" data-uuid="cs_language">
-                Čeština
-              </option>
-              <option value="de" data-uuid="de_language">
-                Deutsch
-              </option>
-              <option value="en" data-uuid="en_language">
-                English
-              </option>
-              <option value="es" data-uuid="es_language">
-                Español
-              </option>
-              <option value="fr" data-uuid="fr_language">
-                Français
-              </option>
-              <option value="it" data-uuid="it_language">
-                Italiano
-              </option>
-              <option value="hu" data-uuid="hu_language">
-                Magyar
-              </option>
-              <option value="nl" data-uuid="nl_language">
-                Nederlands
-              </option>
-              <option value="nb" data-uuid="nb_language">
-                Norsk (bokmål)
-              </option>
-              <option value="pl" data-uuid="pl_language">
-                Polski
-              </option>
-              <option value="pt-BR" data-uuid="pt-BR_language">
-                Português (Brasil)
-              </option>
-              <option value="fi" data-uuid="fi_language">
-                Suomi
-              </option>
-              <option value="sv" data-uuid="sv_language">
-                Svenska
-              </option>
-              <option value="vi" data-uuid="vi_language">
-                Tiếng Việt
-              </option>
-              <option value="tr" data-uuid="tr_language">
-                Türkçe
-              </option>
-              <option value="ru" data-uuid="ru_language">
-                Русский
-              </option>
-              <option value="uk" data-uuid="uk_language">
-                Українська
-              </option>
-              <option value="th" data-uuid="th_language">
-                ภาษาไทย
-              </option>
-              <option value="zh-Hans" data-uuid="zh-Hans_language">
-                中文 (简体)
-              </option>
-              <option value="zh-Hant" data-uuid="zh-Hant_language">
-                中文 (繁體)
-              </option>
-              <option value="ja" data-uuid="ja_language">
-                日本語
-              </option>
-            </select>
-          </form>
-        </Col>
-        <div className="spacer-small"></div>
-        <div className="spacer-extra-small"></div>
-        <div className="spacer-extra-small"></div>
-        <Col>
-          <div className={sectionBreakStyle}></div>
-        </Col>
-        <div className="spacer-extra-small"></div>
-        <div className="spacer-extra-small"></div>
-        <Col>
-          <h3 className="text-center">BlackRock Design Haus</h3>
-        </Col>
-        <div className="spacer-extra-small"></div>
-        <Row>
-          <Col>
-            <Link>
-              <p className="login-footer-links">Templates</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>Pricing</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>Apps</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>Jobs</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>Blog</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>Developers</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>About</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>Help</p>
-            </Link>
-          </Col>
-          <Col>
-            <Link>
-              <p>Cookie Settings</p>
-            </Link>
-          </Col>
-        </Row>
-        <div className="spacer-extra-small"></div>
       </Container>
     </div>
   );
-
-  return content;
 };
-export default Login;
+
+export default LoginPage;

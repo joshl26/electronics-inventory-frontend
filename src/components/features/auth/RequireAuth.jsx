@@ -1,5 +1,8 @@
+// desc: Component to restrict access to routes based on user roles.
+// file: src/components/features/auth/RequireAuth.jsx
+
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "hooks/useAuth";
 
 const RequireAuth = ({ allowedRoles }) => {
   const location = useLocation();

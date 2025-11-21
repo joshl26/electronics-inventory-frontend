@@ -3,9 +3,10 @@ import React from "react";
 import { Image } from "react-bootstrap";
 import HamburgerIcon from "svg/HamburgerMenu.json";
 import background from "img/background_2.png";
+import "./LoadingPage.css";
 
 const LoadingPage = () => {
-  const content = (
+  return (
     <section>
       <Image className="loading-background" src={background} />
       <Lottie
@@ -15,8 +16,6 @@ const LoadingPage = () => {
       />
     </section>
   );
-
-  return content;
 };
 
 export default LoadingPage;

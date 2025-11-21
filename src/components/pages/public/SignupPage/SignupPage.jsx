@@ -2,7 +2,7 @@ import React from "react";
 import "./SignupPage.scss";
 import { Container, Row, Col, Button } from "react-bootstrap";
 
-const NewSignup = ({ colorMode }) => {
+const SignupPage = ({ colorMode }) => {
   const signupSectionStlye =
     colorMode === "Light" ? "signup-section-light" : "signup-section-dark";
 
@@ -54,4 +54,4 @@ const NewSignup = ({ colorMode }) => {
   );
 };
 
-export default NewSignup;
+export default SignupPage;

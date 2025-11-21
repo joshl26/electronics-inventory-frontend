@@ -6,9 +6,13 @@ const PublicLayout = () => {
   return (
     <>
       <PublicHeader />
-      <Outlet />
+      {/* Use Bootstrap padding top utility class */}
+      <div className="pt-5 min-vh-100">
+        <Outlet />
+      </div>
       <PublicFooter />
     </>
   );
 };
+
 export default PublicLayout;

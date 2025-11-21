@@ -39,6 +39,11 @@ import { ROLES } from "config/roles";
 import ErrorPage from "error-page";
 import { ThemeProvider } from "context/ThemeContext";
 import "./index.scss";
+import SignupPage from "components/pages/public/SignupPage/SignupPage";
+import ContactPage from "components/pages/public/ContactPage/ContactPage";
+import AboutPage from "components/pages/public/AboutPage/AboutPage";
+import PrivacyPage from "components/pages/public/PrivacyPage/PrivacyPage";
+import TermsPage from "components/pages/public/TermsPage/TermsPage";
 
 if (process.env.NODE_ENV === "production") disableReactDevTools();
 
@@ -48,9 +53,14 @@ const router = createBrowserRouter(
       {/* Public Page Routes */}
       <Route path="/" element={<PublicLayout />}>
         <Route index element={<HomePage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="contact" element={<ContactPage />} />
         <Route path="features" element={<FeaturesPage />} />
-        <Route path="pricing" element={<PricingPage />} />
         <Route path="login" element={<LoginPage />} />
+        <Route path="pricing" element={<PricingPage />} />
+        <Route path="privacy-policy" element={<PrivacyPage />} />
+        <Route path="signup" element={<SignupPage />} />
+        <Route path="terms-of-service" element={<TermsPage />} />
       </Route>
 
       {/* Protected Page Routes */}
