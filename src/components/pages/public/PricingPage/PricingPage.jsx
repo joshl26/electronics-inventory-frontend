@@ -6,8 +6,21 @@ import { arraySearch } from "utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./PricingPage.scss";
+import { generateBreadcrumbs, seoData } from "data/seoData";
+import SEO from "components/common/SEO/SEO";
 
 const PricingPage = () => {
+
+  const breadcrumbs = generateBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Pricing', path: '/pricing' }
+  ]);
+
+  const combinedStructuredData = [
+    seoData.pricing.structuredData,
+    breadcrumbs
+  ];
+
   const [population, setPopulation] = useState(features);
   const [enterpriseCost] = useState(23.5);
   const [totalCost, setTotalCost] = useState(23.5);
@@ -50,7 +63,14 @@ const PricingPage = () => {
   };
 
   return (
-    <>
+    <main>
+      <SEO
+        title={seoData.pricing.title}
+        description={seoData.pricing.description}
+        keywords={seoData.pricing.keywords}
+        structuredData={combinedStructuredData}
+        canonicalUrl={`${window.location.origin}/pricing`}
+      />
       <section>
         <div className="spacer" />
         <div className="spacer-small" />
@@ -403,7 +423,7 @@ const PricingPage = () => {
         <div className="spacer" />
         <div className="spacer-x-small" />
       </section>
-    </>
+    </main>
   );
 };
 

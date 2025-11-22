@@ -1,5 +1,7 @@
 import React from "react";
 import "./AboutPage.scss";
+import { generateBreadcrumbs, seoData } from "data/seoData";
+import SEO from "components/common/SEO/SEO";
 
 const technologies = [
   "HTML5",
@@ -16,8 +18,26 @@ const technologies = [
 ];
 
 const AboutPage = () => {
+
+  const breadcrumbs = generateBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' }
+  ]);
+
+  const combinedStructuredData = [
+    seoData.about.structuredData,
+    breadcrumbs
+  ];
+
   return (
     <main className="about-page theme-transition">
+      <SEO
+        title={seoData.about.title}
+        description={seoData.about.description}
+        keywords={seoData.about.keywords}
+        structuredData={combinedStructuredData}
+        canonicalUrl={`${window.location.origin}/about`}
+      />
       <h1 className="title">About Electronics Inventory</h1>
 
       <section className="section">

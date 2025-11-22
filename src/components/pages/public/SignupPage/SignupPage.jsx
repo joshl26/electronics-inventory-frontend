@@ -1,8 +1,22 @@
 import React from "react";
 import "./SignupPage.scss";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { generateBreadcrumbs, seoData } from "data/seoData";
+import SEO from "components/common/SEO/SEO";
 
 const SignupPage = ({ colorMode }) => {
+
+  const breadcrumbs = generateBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Sign Up', path: '/signup' }
+  ]);
+
+  const combinedStructuredData = [
+    seoData.signup.structuredData,
+    breadcrumbs
+  ];
+
+
   const signupSectionStlye =
     colorMode === "Light" ? "signup-section-light" : "signup-section-dark";
 
@@ -11,7 +25,14 @@ const SignupPage = ({ colorMode }) => {
   };
 
   return (
-    <div className={signupSectionStlye}>
+    <main className={signupSectionStlye}>
+       <SEO
+        title={seoData.signup.title}
+        description={seoData.signup.description}
+        keywords={seoData.signup.keywords}
+        structuredData={combinedStructuredData}
+        canonicalUrl={`${window.location.origin}/signup`}
+      />
       <div className="signup-spacer"></div>
       <Container>
         <Col>
@@ -50,7 +71,7 @@ const SignupPage = ({ colorMode }) => {
         <div className="signup-spacer"></div>
         <div className="signup-spacer"></div>
       </Container>
-    </div>
+    </main>
   );
 };
 

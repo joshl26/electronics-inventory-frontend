@@ -11,8 +11,21 @@ import HamburgerMenu from "svg/HamburgerMenu.json";
 import { Col, Container, Row } from "react-bootstrap";
 import LoadingPage from "components/pages/LoadingPage";
 import "./LoginPage.scss";
+import { generateBreadcrumbs, seoData } from "data/seoData";
+import SEO from "components/common/SEO/SEO";
 
 const LoginPage = () => {
+
+  const breadcrumbs = generateBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Login', path: '/login' }
+  ]);
+
+  const combinedStructuredData = [
+    seoData.login.structuredData,
+    breadcrumbs
+  ];
+
   const userRef = useRef();
   const errRef = useRef();
 
@@ -96,7 +109,15 @@ const LoginPage = () => {
   if (isLoading) return <LoadingPage />;
 
   return (
-    <div>
+    <main>
+
+<SEO
+        title={seoData.login.title}
+        description={seoData.login.description}
+        keywords={seoData.login.keywords}
+        structuredData={combinedStructuredData}
+        canonicalUrl={`${window.location.origin}/login`}
+      />
       <Container>
         <div className="spacer-extra-small" />
         <Row>
@@ -240,7 +261,7 @@ const LoginPage = () => {
           </form>
         </div>
       </Container>
-    </div>
+    </main>
   );
 };
 

@@ -1,7 +1,20 @@
 import { useState } from "react";
 import "./ContactPage.scss";
+import { generateBreadcrumbs, seoData } from "data/seoData";
+import SEO from "components/common/SEO/SEO";
 
 const ContactPage = () => {
+
+  const breadcrumbs = generateBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Contact', path: '/contact' }
+  ]);
+
+  const combinedStructuredData = [
+    seoData.contact.structuredData,
+    breadcrumbs
+  ];
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -54,7 +67,14 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="contact-page-container" role="main">
+    <main className="contact-page-container" role="main">
+      <SEO
+        title={seoData.contact.title}
+        description={seoData.contact.description}
+        keywords={seoData.contact.keywords}
+        structuredData={combinedStructuredData}
+        canonicalUrl={`${window.location.origin}/contact`}
+      />
       <h2 tabIndex={-1}>Contact Us</h2>
 
       {submitted && (
@@ -169,7 +189,7 @@ const ContactPage = () => {
           </button>
         </fieldset>
       </form>
-    </div>
+    </main>
   );
 };
 

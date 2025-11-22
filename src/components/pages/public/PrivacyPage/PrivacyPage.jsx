@@ -1,8 +1,28 @@
+import SEO from "components/common/SEO/SEO";
+import { generateBreadcrumbs, seoData } from "data/seoData";
 import React from "react";
 
 const PrivacyPage = () => {
+
+  const breadcrumbs = generateBreadcrumbs([
+    { name: 'Home', path: '/' },
+    { name: 'Privacy Policy', path: '/privacy-policy' }
+  ]);
+
+  const combinedStructuredData = [
+    seoData.privacy.structuredData,
+    breadcrumbs
+  ];
+
   return (
-    <div style={{ maxWidth: 800, margin: "2rem auto", padding: "1rem" }}>
+    <main style={{ maxWidth: 800, margin: "2rem auto", padding: "1rem" }}>
+      <SEO
+        title={seoData.privacy.title}
+        description={seoData.privacy.description}
+        keywords={seoData.privacy.keywords}
+        structuredData={combinedStructuredData}
+        canonicalUrl={`${window.location.origin}/privacy`}
+      />
       <h2>Privacy Policy</h2>
 
       <section>
@@ -53,7 +73,7 @@ const PrivacyPage = () => {
           at <a href="mailto:privacy@example.com">privacy@example.com</a>.
         </p>
       </section>
-    </div>
+    </main>
   );
 };
 
