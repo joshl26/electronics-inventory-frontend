@@ -62,8 +62,6 @@
   },
   "scripts": {
     "start": "vite",
-    "generate:sitemap": "node scripts/generateSitemap.js",
-    "prebuild": "npm run generate:sitemap",
     "build": "vite build",
     "test": "jest",
     "lint": "eslint src --ext .js,.jsx",
