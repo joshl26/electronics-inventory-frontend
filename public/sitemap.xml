@@ -1,9 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Home Page -->
   <url>
-    <loc>https://yourdomain.com/</loc>
+    <loc>https://electronics-inventory-client.onrender.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <lastmod>2025-11-21</lastmod>
   </url>
-  <!-- Add all pages -->
+  
+  <!-- Features Page -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com//features</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+  
+  <!-- Pricing Page -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com/pricing</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+  
+  <!-- About Page -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+  
+  <!-- Login Page -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com/login</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+  
+  <!-- Signup Page -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com/signup</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+  
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com/privacy-policy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+  
+  <!-- Terms of Service -->
+  <url>
+    <loc>https://electronics-inventory-client.onrender.com/terms-of-service</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+    <lastmod>2025-11-21</lastmod>
+  </url>
+
 </urlset>

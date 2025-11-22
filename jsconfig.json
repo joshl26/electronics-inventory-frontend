@@ -15,5 +15,5 @@
         "svg/*": ["svg/*"]
       }
     },
-    "include": ["src"]
+    "include": ["src", "scripts"]
   }
