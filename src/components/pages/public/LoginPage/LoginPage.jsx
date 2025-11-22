@@ -15,16 +15,12 @@ import { generateBreadcrumbs, seoData } from "data/seoData";
 import SEO from "components/common/SEO/SEO";
 
 const LoginPage = () => {
-
   const breadcrumbs = generateBreadcrumbs([
-    { name: 'Home', path: '/' },
-    { name: 'Login', path: '/login' }
+    { name: "Home", path: "/" },
+    { name: "Login", path: "/login" },
   ]);
 
-  const combinedStructuredData = [
-    seoData.login.structuredData,
-    breadcrumbs
-  ];
+  const combinedStructuredData = [seoData.login.structuredData, breadcrumbs];
 
   const userRef = useRef();
   const errRef = useRef();
@@ -110,8 +106,7 @@ const LoginPage = () => {
 
   return (
     <main>
-
-<SEO
+      <SEO
         title={seoData.login.title}
         description={seoData.login.description}
         keywords={seoData.login.keywords}

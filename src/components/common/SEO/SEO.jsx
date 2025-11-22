@@ -1,14 +1,14 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import { Helmet } from "react-helmet";
 
 const SEO = ({
   title,
   description,
   keywords,
-  ogType = 'website',
+  ogType = "website",
   ogImage,
   structuredData,
-  canonicalUrl
+  canonicalUrl,
 }) => {
   const siteUrl = window.location.origin;
   const currentUrl = canonicalUrl || window.location.href;

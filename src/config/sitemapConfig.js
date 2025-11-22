@@ -1,7 +1,8 @@
+/* eslint-disable import/no-anonymous-default-export */
 // src/config/sitemapConfig.js
 // Configuration for sitemap generation
 
-import siteConfig from './siteConfig';
+import siteConfig from "./siteConfig";
 
 /**
  * Sitemap page configurations
@@ -9,58 +10,58 @@ import siteConfig from './siteConfig';
  */
 export const sitemapPages = [
   {
-    path: '/',
-    changefreq: 'daily',
+    path: "/",
+    changefreq: "daily",
     priority: 1.0,
-    description: 'Home page - highest priority',
+    description: "Home page - highest priority",
   },
   {
-    path: '/features',
-    changefreq: 'weekly',
+    path: "/features",
+    changefreq: "weekly",
     priority: 0.8,
-    description: 'Features page - key conversion page',
+    description: "Features page - key conversion page",
   },
   {
-    path: '/pricing',
-    changefreq: 'weekly',
+    path: "/pricing",
+    changefreq: "weekly",
     priority: 0.8,
-    description: 'Pricing page - key conversion page',
+    description: "Pricing page - key conversion page",
   },
   {
-    path: '/about',
-    changefreq: 'monthly',
+    path: "/about",
+    changefreq: "monthly",
     priority: 0.6,
-    description: 'About page - supporting content',
+    description: "About page - supporting content",
   },
   {
-    path: '/contact',
-    changefreq: 'monthly',
+    path: "/contact",
+    changefreq: "monthly",
     priority: 0.7,
-    description: 'Contact page - important but stable',
+    description: "Contact page - important but stable",
   },
   {
-    path: '/login',
-    changefreq: 'yearly',
+    path: "/login",
+    changefreq: "yearly",
     priority: 0.5,
-    description: 'Login page - utility page',
+    description: "Login page - utility page",
   },
   {
-    path: '/signup',
-    changefreq: 'yearly',
+    path: "/signup",
+    changefreq: "yearly",
     priority: 0.7,
-    description: 'Signup page - important conversion point',
+    description: "Signup page - important conversion point",
   },
   {
-    path: '/privacy',
-    changefreq: 'monthly',
+    path: "/privacy",
+    changefreq: "monthly",
     priority: 0.3,
-    description: 'Privacy policy - legal page',
+    description: "Privacy policy - legal page",
   },
   {
-    path: '/terms',
-    changefreq: 'monthly',
+    path: "/terms",
+    changefreq: "monthly",
     priority: 0.3,
-    description: 'Terms of service - legal page',
+    description: "Terms of service - legal page",
   },
 ];
 
@@ -69,24 +70,24 @@ export const sitemapPages = [
  */
 export const robotsConfig = {
   allow: [
-    '/',
-    '/features',
-    '/pricing',
-    '/about',
-    '/contact',
-    '/login',
-    '/signup',
-    '/privacy',
-    '/terms',
+    "/",
+    "/features",
+    "/pricing",
+    "/about",
+    "/contact",
+    "/login",
+    "/signup",
+    "/privacy",
+    "/terms",
   ],
   disallow: [
-    '/dash/',
-    '/dash/*',
-    '/api/',
-    '/api/*',
-    '/upload/',
-    '/*?token=*',
-    '/*?reset=*',
+    "/dash/",
+    "/dash/*",
+    "/api/",
+    "/api/*",
+    "/upload/",
+    "/*?token=*",
+    "/*?reset=*",
   ],
   crawlDelay: {
     // Optional: Set crawl delay for specific bots
@@ -104,11 +105,11 @@ export const robotsConfig = {
  */
 export const generateSitemapXML = () => {
   const { url } = siteConfig.site;
-  const today = new Date().toISOString().split('T')[0];
+  const today = new Date().toISOString().split("T")[0];
 
   const urlEntries = sitemapPages
     .map(({ path, changefreq, priority }) => {
-      const loc = path === '/' ? url : `${url}${path}`;
+      const loc = path === "/" ? url : `${url}${path}`;
       return `  <url>
     <loc>${loc}</loc>
     <changefreq>${changefreq}</changefreq>
@@ -116,7 +117,7 @@ export const generateSitemapXML = () => {
     <lastmod>${today}</lastmod>
   </url>`;
     })
-    .join('\n');
+    .join("\n");
 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -176,7 +177,7 @@ export const generateRobotsTxt = () => {
  */
 export const getPageUrl = (path) => {
   const { url } = siteConfig.site;
-  return path === '/' ? url : `${url}${path}`;
+  return path === "/" ? url : `${url}${path}`;
 };
 
 /**

@@ -10,16 +10,12 @@ import { generateBreadcrumbs, seoData } from "data/seoData";
 import SEO from "components/common/SEO/SEO";
 
 const PricingPage = () => {
-
   const breadcrumbs = generateBreadcrumbs([
-    { name: 'Home', path: '/' },
-    { name: 'Pricing', path: '/pricing' }
+    { name: "Home", path: "/" },
+    { name: "Pricing", path: "/pricing" },
   ]);
 
-  const combinedStructuredData = [
-    seoData.pricing.structuredData,
-    breadcrumbs
-  ];
+  const combinedStructuredData = [seoData.pricing.structuredData, breadcrumbs];
 
   const [population, setPopulation] = useState(features);
   const [enterpriseCost] = useState(23.5);
@@ -261,7 +257,8 @@ const PricingPage = () => {
                 <Row>
                   <p className="pricing-p-text">
                     Per user/month - billed annually <br /> ($
-                    {Math.round((totalCost * 12 + Number.EPSILON) * 100) / 100}{" "}
+                    {Math.round((totalCost * 12 + Number.EPSILON) * 100) /
+                      100}{" "}
                     annual price per user)
                   </p>
                   <div className="spacer-x-small"></div>

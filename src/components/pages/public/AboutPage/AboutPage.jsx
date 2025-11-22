@@ -18,16 +18,12 @@ const technologies = [
 ];
 
 const AboutPage = () => {
-
   const breadcrumbs = generateBreadcrumbs([
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' }
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
   ]);
 
-  const combinedStructuredData = [
-    seoData.about.structuredData,
-    breadcrumbs
-  ];
+  const combinedStructuredData = [seoData.about.structuredData, breadcrumbs];
 
   return (
     <main className="about-page theme-transition">
@@ -154,16 +150,6 @@ const AboutPage = () => {
       <section className="section">
         <h2 className="heading">Live Demo & Repositories</h2>
         <ul className="list">
-          <li>
-            <a
-              href="https://el-in.ca"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="link"
-            >
-              Live Demo
-            </a>
-          </li>
           <li>
             <a
               href="https://github.com/joshl26/electronics-inventory-frontend"

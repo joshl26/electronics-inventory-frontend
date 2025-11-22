@@ -5,17 +5,12 @@ import { generateBreadcrumbs, seoData } from "data/seoData";
 import SEO from "components/common/SEO/SEO";
 
 const SignupPage = ({ colorMode }) => {
-
   const breadcrumbs = generateBreadcrumbs([
-    { name: 'Home', path: '/' },
-    { name: 'Sign Up', path: '/signup' }
+    { name: "Home", path: "/" },
+    { name: "Sign Up", path: "/signup" },
   ]);
 
-  const combinedStructuredData = [
-    seoData.signup.structuredData,
-    breadcrumbs
-  ];
-
+  const combinedStructuredData = [seoData.signup.structuredData, breadcrumbs];
 
   const signupSectionStlye =
     colorMode === "Light" ? "signup-section-light" : "signup-section-dark";
@@ -26,7 +21,7 @@ const SignupPage = ({ colorMode }) => {
 
   return (
     <main className={signupSectionStlye}>
-       <SEO
+      <SEO
         title={seoData.signup.title}
         description={seoData.signup.description}
         keywords={seoData.signup.keywords}

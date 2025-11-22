@@ -3,16 +3,12 @@ import { generateBreadcrumbs, seoData } from "data/seoData";
 import React from "react";
 
 const PrivacyPage = () => {
-
   const breadcrumbs = generateBreadcrumbs([
-    { name: 'Home', path: '/' },
-    { name: 'Privacy Policy', path: '/privacy-policy' }
+    { name: "Home", path: "/" },
+    { name: "Privacy Policy", path: "/privacy-policy" },
   ]);
 
-  const combinedStructuredData = [
-    seoData.privacy.structuredData,
-    breadcrumbs
-  ];
+  const combinedStructuredData = [seoData.privacy.structuredData, breadcrumbs];
 
   return (
     <main style={{ maxWidth: 800, margin: "2rem auto", padding: "1rem" }}>

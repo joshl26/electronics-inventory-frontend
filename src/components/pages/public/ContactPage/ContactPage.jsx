@@ -4,16 +4,12 @@ import { generateBreadcrumbs, seoData } from "data/seoData";
 import SEO from "components/common/SEO/SEO";
 
 const ContactPage = () => {
-
   const breadcrumbs = generateBreadcrumbs([
-    { name: 'Home', path: '/' },
-    { name: 'Contact', path: '/contact' }
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
   ]);
 
-  const combinedStructuredData = [
-    seoData.contact.structuredData,
-    breadcrumbs
-  ];
+  const combinedStructuredData = [seoData.contact.structuredData, breadcrumbs];
 
   const [formData, setFormData] = useState({
     name: "",
